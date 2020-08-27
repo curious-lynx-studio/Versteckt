@@ -1,13 +1,14 @@
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d");
 
-canvas.width = canvas.height = 300;
+canvas.width = 1000;
+canvas.height = 500;
 
-var x = 150,
-    y = 150,
+var x = 0,
+    y = 0,
     velY = 0,
     velX = 0,
-    speed = 2,
+    speed = 4,
     friction = 0.7,
     keys = [];
 
@@ -41,19 +42,19 @@ function update() {
     velX *= friction;
     x += velX;
 
-    if (x >= 295) {
-        x = 295;
+    if (x >= 995) {
+        x = 995;
     } else if (x <= 5) {
         x = 5;
     }
 
-    if (y > 295) {
-        y = 295;
+    if (y > 495) {
+        y = 495;
     } else if (y <= 5) {
         y = 5;
     }
 
-    ctx.clearRect(0, 0, 300, 300);
+    ctx.clearRect(0, 0, 1000, 500);
     ctx.beginPath();
     ctx.arc(x, y, 5, 0, Math.PI * 2);
     ctx.fill();
