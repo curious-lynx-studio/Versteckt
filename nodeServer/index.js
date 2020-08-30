@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 var WebSocketServer = require('websocket').server;
 var http = require('http');
+const { client } = require('websocket');
+
+const clientArray = [];
  
 var server = http.createServer(function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
@@ -32,11 +35,20 @@ wsServer.on('request', function(request) {
     connection.on('message', function(message) {
         console.log('Received Message: ' + message.utf8Data);
         if ( message.utf8Data ===  "Hello i am new!") {
-            
+            const clientObject = {clientId: Number, clientLastSeen: Number, clientX: Number, clientY: Number}
+            client.clientId = generateId();
+            client.clientLastSeen = 0;
+            client.clientX = 0;
+            client.clientY = 0;
+            clientArray.push(client);
+            connection.sendUTF("id=" + client.clientId);
         }
-        connection.sendUTF(message.utf8Data);
     });
     connection.on('close', function(reasonCode, description) {
         console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
     });
 });
+
+function generateId() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
