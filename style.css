@@ -1,5 +1,16 @@
-canvas {
+.gameArea {
     display: block;
     margin: 0 auto;
+    width: 1000px;
+    height: 600px;
     border:1px solid #000;
+    overflow: hidden;
+    position: relative;
+}
+
+.player {
+    height: 25px;
+    width: 25px;
+    background-color: red;
+    position: relative;
 }
