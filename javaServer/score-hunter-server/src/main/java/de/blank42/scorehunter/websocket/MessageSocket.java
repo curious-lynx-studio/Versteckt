@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 @ApplicationScoped
-@ServerEndpoint(value = "/positions")
+@ServerEndpoint(value = "/positions", subprotocols = "echo-protocol")
 public class MessageSocket {
 
     private static final Logger LOG = LoggerFactory.getLogger(MessageSocket.class);

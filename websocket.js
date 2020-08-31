@@ -1,5 +1,5 @@
 // Let us open a web socket
-var ws = new WebSocket("ws://localhost:9998/", 'echo-protocol');
+var ws = new WebSocket("ws://localhost:9998/positions", 'echo-protocol');
 let id= "";
 
 ws.onmessage = function (evt) {

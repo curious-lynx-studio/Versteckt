@@ -14,7 +14,7 @@
     <p id="messageRcv"></p>
 </body>
 <script>
-    let webSocket = new WebSocket("ws://localhost:8080/positions");
+    let webSocket = new WebSocket("ws://localhost:9998/positions");
     let id;
     webSocket.onmessage = (message) => {
         if (message.data.match(/^id=/)) {
