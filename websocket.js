@@ -2,11 +2,7 @@
 var ws = new WebSocket("ws://localhost:9998/", 'echo-protocol');
 let id= "";
 
-ws.onopen = function() {
-    ws.send("Hello i am new!");
-};
-
-ws.onmessage = function (evt) { 
+ws.onmessage = function (evt) {
     var received_msg = evt.data;
     if (received_msg.match(/^id=/)) {
         id = received_msg.substring(3);
