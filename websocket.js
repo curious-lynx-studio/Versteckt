@@ -1,22 +1,29 @@
 // Let us open a web socket
-var ws = new WebSocket("ws://blank42.de:9998/positions", 'echo-protocol');
+var webSocket = new WebSocket("ws://blank42.de:9998/positions");
 let id= "";
 
-ws.onmessage = function (evt) {
-    var received_msg = evt.data;
-    if (received_msg.match(/^id=/)) {
-        id = received_msg.substring(3);
-        console.log(id)
+webSocket.onmessage = (message) => {
+    if (message.data.match(/^id=/)) {
+        console.log("Setting id")
+        id = message.data.substring(3);
+        var positionSendLoop = setInterval(sendData, 100);
     } else {
-        getNetworkJson(received_msg);
+        console.log("Writing data")
     }
-};
+}
 
-ws.onclose = function() {   
+webSocket.onclose = function() {   
     // websocket is closed.
     console.log("Connection is closed..."); 
 };
 
 function getNetworkJson(received_msg) {
     console.log(received_msg);
+}
+
+function sendData() {
+    var x = document.getElementById("player").style.left;
+    var y = document.getElementById("player").style.top;
+    let data = {id: id, positions: [{x: x, y: y}]};
+    webSocket.send(JSON.stringify(data));
 }

@@ -9,8 +9,19 @@
 }
 
 .player {
-    height: 25px;
-    width: 25px;
-    background-color: red;
+    height: 32px;
+    width: 32px;
     position: relative;
+    background-image: url(gameAssets/Char01_Front.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bomb {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-image: url(gameAssets/Char01_Front.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }

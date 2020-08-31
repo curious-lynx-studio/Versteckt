@@ -11,11 +11,8 @@ function logKey(event) {
 
 function dropBomb(x, y) {
     var bomb = document.createElement("DIV");
-    bomb.style.position = "absolute";
-    bomb.style.width = "10px";
-    bomb.style.height = "10px";
+    bomb.className = "bomb";
     bomb.style.left = x;
     bomb.style.top = y;
-    bomb.style.background = "black";
     document.getElementById("gameArea").appendChild(bomb);
 }
