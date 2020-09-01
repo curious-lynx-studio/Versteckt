@@ -1,6 +1,7 @@
 // Let us open a web socket
 var webSocket = new WebSocket("ws://blank42.de:9998/positions");
 let id= "";
+let lastOtherClientArray;
 
 webSocket.onmessage = (message) => {
     if (message.data.match(/^id=/)) {
@@ -18,6 +19,17 @@ webSocket.onmessage = (message) => {
                 }
             }
         });
+        if(lastOtherClientArray != undefined) {
+            lastOtherClientArray.forEach(element => {
+                console.log("test")
+                const exists = obj.filter(obj => obj.id === element.id);
+                console.log(exists)
+                if (exists == false) {
+                    deleteObject(element);
+                }
+            });
+        }
+        lastOtherClientArray = obj;
     }
 }
 
@@ -59,4 +71,8 @@ function createPlayerObj(user) {
     otherClient.style.left = user.positions[0].x + "px";
     otherClient.style.top = user.positions[0].y + "px";
     document.getElementById("gameArea").appendChild(otherClient);
+}
+
+function deleteObject(element) {
+    document.getElementById(element.id).remove();
 }
