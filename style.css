@@ -25,3 +25,12 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.otherClient {
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    background-image: url(gameAssets/Char01_Front.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
