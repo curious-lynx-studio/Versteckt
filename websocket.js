@@ -5,7 +5,6 @@ let lastOtherClientArray;
 
 webSocket.onmessage = (message) => {
     if (message.data.match(/^id=/)) {
-        console.log("Setting id")
         id = message.data.substring(3);
         var positionSendLoop = setInterval(sendData, 100);
     } else {
@@ -21,9 +20,7 @@ webSocket.onmessage = (message) => {
         });
         if(lastOtherClientArray != undefined) {
             lastOtherClientArray.forEach(element => {
-                console.log("test")
                 const exists = obj.filter(obj => obj.id === element.id);
-                console.log(exists)
                 if (exists == false) {
                     deleteObject(element);
                 }
@@ -37,10 +34,6 @@ webSocket.onclose = function() {
     // websocket is closed.
     console.log("Connection is closed..."); 
 };
-
-function getNetworkJson(received_msg) {
-    console.log(received_msg);
-}
 
 function sendData() {
     var x = document.getElementById("player").style.left;

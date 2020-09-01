@@ -6,6 +6,9 @@
     border:1px solid #000;
     overflow: hidden;
     position: relative;
+    background-image: url(gameAssets/BackgroundTest.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .player {
