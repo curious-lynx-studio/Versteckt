@@ -6,7 +6,7 @@
     border:1px solid #000;
     overflow: hidden;
     position: relative;
-    background-image: url(gameAssets/BackgroundTest.png);
+    background-image: url(../gameAssets/BackgroundTest.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -15,7 +15,7 @@
     height: 32px;
     width: 32px;
     position: relative;
-    background-image: url(gameAssets/Char01_Front.png);
+    background-image: url(../gameAssets/Char01_Front.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -24,7 +24,7 @@
     position: absolute;
     width: 10px;
     height: 10px;
-    background-image: url(gameAssets/Char01_Front.png);
+    background-image: url(../gameAssets/Char01_Front.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -33,7 +33,7 @@
     height: 32px;
     width: 32px;
     position: absolute;
-    background-image: url(gameAssets/Char01_Front.png);
+    background-image: url(../gameAssets/Char01_Front.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
