@@ -1,6 +1,7 @@
 package de.blank42.scorehunter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import javax.websocket.Session;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.List;
 
+@RegisterForReflection
 public class Player {
 
     static long activeTimeout = 60L;

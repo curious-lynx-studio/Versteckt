@@ -1,5 +1,8 @@
 package de.blank42.scorehunter.model;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
+@RegisterForReflection
 public class Position {
 
     private int x;
