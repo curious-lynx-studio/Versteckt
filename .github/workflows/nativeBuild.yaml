@@ -16,10 +16,17 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Build with Maven
-        run: mvn -B package --file javaServer/score-hunter-server/pom.xml -Pnative -Dquarkus.native.container-build=true
-      - name: Archive Build Result
+      - name: Build uber-jar
+        run: mvn -B package --file javaServer/score-hunter-server/pom.xml
+      - name: Archive uber-jar
+          uses: actions/upload-artifact@v2
+          with:
+            name: JarResult
+            path: javaServer/score-hunter-server/target/*-runner.jar
+      - name: Build native executable
+        run: mvn -B clean package --file javaServer/score-hunter-server/pom.xml -Pnative -Dquarkus.native.container-build=true
+      - name: Archive Native Build
         uses: actions/upload-artifact@v2
         with:
-          name: BuildResult
-          path: javaServer/score-hunter-server/target
+          name: NativeResult
+          path: javaServer/score-hunter-server/target/*-runner
