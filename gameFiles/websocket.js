@@ -2,6 +2,7 @@
 var webSocket = new WebSocket("ws://blank42.de:9998/positions");
 let id= "";
 let lastOtherClientArray;
+let username = localStorage.setItem('playerName', name);
 
 webSocket.onmessage = (message) => {
     if (message.data.match(/^id=/)) {
@@ -40,7 +41,7 @@ function sendData() {
     var y = document.getElementById("player").style.top;
     x = x.substring(0, x.length - 2);
     y = y.substring(0, y.length - 2);
-    let data = {id: id, positions: [{x: x, y: y}]};
+    let data = {id: id, positions: [{x: x, y: y}], name: name, character: 0};
     webSocket.send(JSON.stringify(data));
 }
 

@@ -3,19 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>[blank-42]</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <title>ScoreHunter</title>
 
     <!-- Bootstrap core CSS -->
     <link href="imports/bootstrap.min.css" rel="stylesheet" >
     <link href="imports/style.css" rel="stylesheet" >
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="gameFiles/setPlayerConfig.js"></script>
+
   </head>
   <body class="d-flex flex-column h-100">
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      </nav>
-	  </header>
 
     <!-- Begin page content -->
     <main role="main" class="flex-shrink-0">
@@ -23,7 +21,16 @@
       <div class="container">
         <br><br><br>
         <div class="container">
-          <a href="game.html"><div class="btn btn-primary">Start Game</div></a>
+          <div class="jumbotron">
+            <h4>Set Your Username:</h4>
+            <div class="input-group mb-3">
+              <input type="text" id="nameInput" class="form-control" placeholder="Set Your Username" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="setPlayerName()">Set</button>
+              </div>
+            </div>
+            <a href="game.html"><div class="btn btn-primary" onclick="setStdUserName()">Start Game</div></a>
+          </div>
         </div>        
       </div>
     </main>
