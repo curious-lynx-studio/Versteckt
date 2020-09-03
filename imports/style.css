@@ -27,9 +27,7 @@
     position: absolute;
     width: 10px;
     height: 10px;
-    background-image: url(../gameAssets/Char01_Front.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: black;
 }
 
 .otherClient {

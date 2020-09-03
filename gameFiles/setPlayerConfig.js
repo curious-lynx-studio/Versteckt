@@ -1,5 +1,6 @@
 $(document).ready(function(){ 
     var name = localStorage.getItem('playerName');
+    console.log(name)
     if (name != false) {
         document.getElementById('nameInput').value = name;
     }
@@ -12,7 +13,7 @@ function setPlayerName() {
 
 function setStdUserName() {
     var name = localStorage.getItem('playerName');
-    if (name == '') {
-        localStorage.setItem('playerName', 'player');
+    if (name == '' || name == undefined || name == null) {
+        localStorage.setItem('playerName', 'unknownplayer');
     }
 }
