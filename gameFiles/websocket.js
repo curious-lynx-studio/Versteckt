@@ -9,7 +9,6 @@ webSocket.onmessage = (message) => {
         var positionSendLoop = setInterval(sendData, 100);
     } else {
         const obj = JSON.parse(message.data);
-        console.log(obj);
         obj.forEach(user => {
             if(user.id != id) {
                 if(document.getElementById(user.id)){
@@ -49,7 +48,6 @@ function sendData() {
 function updatePlayerObj(user) {
     const x = user.positions[0].x + "px";
     const y = user.positions[0].y + "px";
-    console.log(x,y)
     const otherClient = document.getElementById(user.id);
     otherClient.style.left = x;
     otherClient.style.top = y;
@@ -62,7 +60,6 @@ function createPlayerObj(user) {
     otherClient.className = "otherClient";
     otherClient.id = user.id;
     otherClient.innerHTML = user.name;
-    console.log(user.positions[0].x)
     otherClient.style.left = user.positions[0].x + "px";
     otherClient.style.top = user.positions[0].y + "px";
     document.getElementById("gameArea").appendChild(otherClient);
