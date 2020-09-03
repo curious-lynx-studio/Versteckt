@@ -6,7 +6,7 @@ let lastOtherClientArray;
 webSocket.onmessage = (message) => {
     if (message.data.match(/^id=/)) {
         id = message.data.substring(3);
-        var positionSendLoop = setInterval(sendData, 100);
+        var positionSendLoop = setInterval(sendData, 10);
     } else {
         const obj = JSON.parse(message.data);
         obj.forEach(user => {
