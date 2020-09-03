@@ -72,7 +72,7 @@ public class MessageSocket {
                 .forEach(Player::closeConnection);
     }
 
-    @Scheduled(every = "0.1s")
+    @Scheduled(every = "0.01s")
     public void sendUpdates() {
         try {
             final String messageToSend = MAPPER.writeValueAsString(players.values());

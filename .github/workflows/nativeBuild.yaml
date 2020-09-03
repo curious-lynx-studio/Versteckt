@@ -17,7 +17,7 @@ jobs:
         with:
           java-version: 11
       - name: Build uber-jar
-        run: mvn -B package --file javaServer/score-hunter-server/pom.xml
+        run: mvn -B package --file javaServer/score-hunter-server/pom.xml -Dquarkus.package.type=uber-jar
       - name: Archive uber-jar
         uses: actions/upload-artifact@v2
         with:

@@ -14,12 +14,13 @@ public class Player {
 
     static long activeTimeout = 60L;
 
-    private int id;
-
     @JsonIgnore //ignored because not needed in JSON
     private Session wsSession;
 
+    private int id;
     private List<Position> positions;
+    private String name;
+    private int character;
 
     @JsonIgnore
     private LocalTime lastUpdated;
@@ -51,7 +52,25 @@ public class Player {
         return positions;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(int character) {
+        this.character = character;
+    }
+
     public void updatePositions(Player newData) {
+        this.name = newData.getName();
+        this.character = newData.getCharacter();
         this.positions = newData.getPositions();
         lastUpdated = LocalTime.now();
     }
