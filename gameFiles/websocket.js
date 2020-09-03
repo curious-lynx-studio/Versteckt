@@ -2,7 +2,6 @@
 var webSocket = new WebSocket("ws://blank42.de:9998/positions");
 let id= "";
 let lastOtherClientArray;
-let username = localStorage.setItem('playerName', name);
 
 webSocket.onmessage = (message) => {
     if (message.data.match(/^id=/)) {
@@ -10,6 +9,7 @@ webSocket.onmessage = (message) => {
         var positionSendLoop = setInterval(sendData, 100);
     } else {
         const obj = JSON.parse(message.data);
+        console.log(obj);
         obj.forEach(user => {
             if(user.id != id) {
                 if(document.getElementById(user.id)){
@@ -41,7 +41,8 @@ function sendData() {
     var y = document.getElementById("player").style.top;
     x = x.substring(0, x.length - 2);
     y = y.substring(0, y.length - 2);
-    let data = {id: id, positions: [{x: x, y: y}], name: name, character: 0};
+    var playerName = localStorage.getItem('playerName');
+    let data = {id: id, positions: [{x: x, y: y}], name: playerName, character: 0};
     webSocket.send(JSON.stringify(data));
 }
 
@@ -57,10 +58,10 @@ function updatePlayerObj(user) {
 function createPlayerObj(user) {
     const x = user.positions[0].x + "px";
     const y = user.positions[0].y + "px";
-    console.log(x,y)
     const otherClient = document.createElement("DIV");
     otherClient.className = "otherClient";
     otherClient.id = user.id;
+    otherClient.innerHTML = user.name;
     console.log(user.positions[0].x)
     otherClient.style.left = user.positions[0].x + "px";
     otherClient.style.top = user.positions[0].y + "px";

@@ -12,12 +12,13 @@
 }
 
 .player {
-    height: 32px;
+    height: 50px;
     width: 32px;
     position: relative;
     background-image: url(../gameAssets/Char01_Front.png);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-position: bottom;
+    color: white;
 }
 
 .bomb {

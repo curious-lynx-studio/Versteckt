@@ -12,7 +12,7 @@ function setPlayerName() {
 
 function setStdUserName() {
     var name = localStorage.getItem('playerName');
-    if (name == false) {
-        localStorage.setItem('playerName', name);
+    if (name == '') {
+        localStorage.setItem('playerName', 'player');
     }
 }
