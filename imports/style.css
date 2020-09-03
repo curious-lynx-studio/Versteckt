@@ -19,6 +19,8 @@
     background-repeat: no-repeat;
     background-position: bottom;
     color: white;
+    display: flex;
+    justify-content: center;
 }
 
 .bomb {
@@ -31,10 +33,14 @@
 }
 
 .otherClient {
+    height: 50px;
     height: 32px;
     width: 32px;
     position: absolute;
     background-image: url(../gameAssets/Char01_Front.png);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-position: bottom;
+    color: white;
+    display: flex;
+    justify-content: center;
 }
