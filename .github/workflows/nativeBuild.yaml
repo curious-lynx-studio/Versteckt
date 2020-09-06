@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Build server artifact
+name: Build native docker image and push to registry
 
 on: push
 
@@ -16,17 +16,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Build uber-jar
-        run: mvn -B package --file javaServer/score-hunter-server/pom.xml -Dquarkus.package.type=uber-jar
-      - name: Archive uber-jar
-        uses: actions/upload-artifact@v2
-        with:
-          name: JarResult
-          path: javaServer/score-hunter-server/target/*-runner.jar
-      - name: Build native executable
-        run: mvn -B clean package --file javaServer/score-hunter-server/pom.xml -Pnative -Dquarkus.native.container-build=true
-      - name: Archive Native Build
-        uses: actions/upload-artifact@v2
-        with:
-          name: NativeResult
-          path: javaServer/score-hunter-server/target/*-runner
+      - name: Push native-image to docker
+          env:
+            dockerUser: ${{ secrets.DOCKER_USERNAME }}
+            dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
+          run: mvn -B package -Pnative --file server/aws-chat-server/pom.xml -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.name=score-hunter-server-native -Ddocker_user=$dockerUser -Ddocker_password=$dockerPassword
