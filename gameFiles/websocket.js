@@ -10,7 +10,6 @@ webSocket.onmessage = (message) => {
         var positionSendLoop = setInterval(sendData, 10);
     } else {
         const obj = JSON.parse(message.data);
-        console.log(obj);
         obj['players'].forEach(user => {
             if(user.id != id) {
                 if(document.getElementById(user.id)){
