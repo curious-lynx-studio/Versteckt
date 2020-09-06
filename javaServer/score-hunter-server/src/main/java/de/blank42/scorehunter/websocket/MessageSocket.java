@@ -1,6 +1,7 @@
 package de.blank42.scorehunter.websocket;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.blank42.scorehunter.model.Bomb;
 import de.blank42.scorehunter.model.Player;
@@ -22,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 @ServerEndpoint(value = "/positions")
@@ -32,7 +32,8 @@ public class MessageSocket {
 
     private static int idGenerator = 1;
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper DEFAULT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper BOMB_MAPPER = new ObjectMapper().enable(DeserializationFeature.UNWRAP_ROOT_VALUE);
 
     Map<String, Player> players;
 
@@ -57,11 +58,10 @@ public class MessageSocket {
     public void saveUpdate(String messageRcv)  {
         try {
             if (messageRcv.startsWith("{\"bombs")) {
-                Bomb bombToAdd = MAPPER.readValue(messageRcv.replace("{\"bombs\":", "")
-                                .replace("}}","}"), Bomb.class);
+                Bomb bombToAdd = BOMB_MAPPER.readValue(messageRcv, Bomb.class);
                 bombs.add(bombToAdd);
             } else {
-                Player playerUpdate = MAPPER.readValue(messageRcv, Player.class);
+                Player playerUpdate = DEFAULT_MAPPER.readValue(messageRcv, Player.class);
                 Player playerToUpdate = players.get(playerUpdate.getId());
                 playerToUpdate.updateData(playerUpdate);
             }
@@ -95,7 +95,7 @@ public class MessageSocket {
     public void sendUpdates() {
         try {
             ResponseData dataToSend = new ResponseData(new ArrayList<>(players.values()), bombs);
-            final String messageToSend = MAPPER.writeValueAsString(dataToSend);
+            final String messageToSend = DEFAULT_MAPPER.writeValueAsString(dataToSend);
             players.values().forEach(player -> player.sendData(messageToSend));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
