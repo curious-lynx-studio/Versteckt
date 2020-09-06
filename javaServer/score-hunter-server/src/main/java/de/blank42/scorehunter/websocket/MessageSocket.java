@@ -41,6 +41,7 @@ public class MessageSocket {
     @PostConstruct
     void init() {
         players = new ConcurrentHashMap<>();
+        bombs = new ArrayList<>();
     }
 
     @OnOpen
