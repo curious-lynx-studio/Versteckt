@@ -11,7 +11,6 @@ webSocket.onmessage = (message) => {
     } else {
         const obj = JSON.parse(message.data);
         obj.forEach(user => {
-            console.log(user)
             if(user.id != id) {
                 if(document.getElementById(user.id)){
                     updatePlayerObj(user);
@@ -56,8 +55,6 @@ function updatePlayerObj(user) {
 }
 
 function createPlayerObj(user) {
-    console.log(user.x);
-    console.log(user.y);
     const x = user.x + "px";
     const y = user.y + "px";
     const otherClient = document.createElement("DIV");

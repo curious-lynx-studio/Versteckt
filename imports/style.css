@@ -25,9 +25,11 @@
 
 .bomb {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: black;
+    width: 25px;
+    height: 25px;
+    background-image: url(../gameAssets/bomb_01.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .otherClient {
@@ -40,4 +42,11 @@
     color: white;
     display: flex;
     justify-content: center;
+}
+
+.gameInfoBar {
+    display: block;
+    margin: 0 auto;
+    width: 1000px;
+    height: 30px;
 }
