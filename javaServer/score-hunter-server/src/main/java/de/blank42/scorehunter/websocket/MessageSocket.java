@@ -57,7 +57,7 @@ public class MessageSocket {
     public void saveUpdate(String messageRcv)  {
         try {
             if (messageRcv.startsWith("{\"bombs")) {
-                Bomb bombToAdd = MAPPER.readValue(messageRcv.replace("{\"bombs\"", "")
+                Bomb bombToAdd = MAPPER.readValue(messageRcv.replace("{\"bombs\":", "")
                                 .replace("}}","}"), Bomb.class);
                 bombs.add(bombToAdd);
             } else {
