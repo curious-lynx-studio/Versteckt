@@ -10,7 +10,7 @@ webSocket.onmessage = (message) => {
         var positionSendLoop = setInterval(sendData, 10);
     } else {
         const obj = JSON.parse(message.data);
-        obj.forEach(user => {
+        obj[players].forEach(user => {
             if(user.id != id) {
                 if(document.getElementById(user.id)){
                     updatePlayerObj(user);
@@ -19,6 +19,11 @@ webSocket.onmessage = (message) => {
                 }
             }
         });
+        document.getElementsByClassName("bomb").remove();
+        obj[bombs].forEach(bomb => {
+            drawBomb(bomb.x, bomb.y);
+        });
+
         if(lastOtherClientArray != undefined) {
             lastOtherClientArray.forEach(element => {
                 const exists = obj.filter(obj => obj.id === element.id);
@@ -69,4 +74,18 @@ function createPlayerObj(user) {
 
 function deleteObject(element) {
     document.getElementById(element.id).remove();
+}
+
+function sendBombDropToServer(x,y) {
+    let data = {bombs:{x: x, y: y}};
+    webSocket.send(JSON.stringify(data));
+}
+
+function drawBomb(x, y) {
+    var bomb = document.createElement("DIV");
+    bomb.className = "bomb";
+    bomb.id = "bomb";
+    bomb.style.left = x;
+    bomb.style.top = y;
+    document.getElementById("gameArea").appendChild(bomb);
 }

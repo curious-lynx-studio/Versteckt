@@ -1,7 +1,7 @@
 .gameArea {
     display: block;
     margin: 0 auto;
-    width: 1000px;
+    width: 960px;
     height: 600px;
     border:1px solid #000;
     overflow: hidden;
@@ -47,6 +47,6 @@
 .gameInfoBar {
     display: block;
     margin: 0 auto;
-    width: 1000px;
+    width: 960px;
     height: 30px;
 }

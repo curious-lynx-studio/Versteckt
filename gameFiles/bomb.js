@@ -18,13 +18,9 @@ function logKey(event) {
 }
 
 function dropBomb(x, y) {
-    var bomb = document.createElement("DIV");
-    bomb.className = "bomb";
-    bomb.style.left = x;
-    bomb.style.top = y;
-    document.getElementById("gameArea").appendChild(bomb);
     playerBombCount = playerBombCount - 1;
     document.getElementById("bombCount").innerHTML = playerBombCount;
+    sendBombDropToServer(x, y);
 }
 
 function getNewBomb() {
