@@ -29,7 +29,7 @@ public class MessageSocket {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    Map<Integer, Player> players;
+    Map<String, Player> players;
 
     @PostConstruct
     void init() {
@@ -38,7 +38,7 @@ public class MessageSocket {
 
     @OnOpen
     public void openSession(Session session) {
-        int id = idGenerator;
+        String id = String.valueOf(idGenerator);
         idGenerator++;
         players.put(id, new Player(id, session));
         LOG.info("New player connected. Setting id {}", id);
@@ -46,10 +46,14 @@ public class MessageSocket {
     }
 
     @OnMessage
-    public void saveUpdate(String messageRcv) throws JsonProcessingException {
-        Player playerUpdate = MAPPER.readValue(messageRcv, Player.class);
-        Player playerToUpdate = players.get(playerUpdate.getId());
-        playerToUpdate.updatePositions(playerUpdate);
+    public void saveUpdate(String messageRcv)  {
+        try {
+            Player playerUpdate = MAPPER.readValue(messageRcv, Player.class);
+            Player playerToUpdate = players.get(playerUpdate.getId());
+            playerToUpdate.updateData(playerUpdate);
+        } catch (JsonProcessingException e) {
+           LOG.error("Error during update", e);
+        }
     }
 
     @OnClose
@@ -72,10 +76,12 @@ public class MessageSocket {
                 .forEach(Player::closeConnection);
     }
 
+//    @Scheduled(every = "1s") //for tests
     @Scheduled(every = "0.01s")
     public void sendUpdates() {
         try {
             final String messageToSend = MAPPER.writeValueAsString(players.values());
+            LOG.info("Sent {}", messageToSend);
             players.values().forEach(player -> player.sendData(messageToSend));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
