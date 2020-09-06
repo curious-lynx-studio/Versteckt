@@ -81,7 +81,6 @@ public class MessageSocket {
     public void sendUpdates() {
         try {
             final String messageToSend = MAPPER.writeValueAsString(players.values());
-            LOG.info("Sent {}", messageToSend);
             players.values().forEach(player -> player.sendData(messageToSend));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
