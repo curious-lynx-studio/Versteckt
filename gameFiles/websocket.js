@@ -2,7 +2,7 @@
 var webSocket = new WebSocket("ws://blank42.de:9998/positions");
 let id= "";
 let lastOtherClientArray;
-let playerHealth = 0;
+let playerHealth = 100;
 
 webSocket.onmessage = (message) => {
     if (message.data.match(/^id=/)) {

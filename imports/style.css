@@ -63,3 +63,12 @@
     width: 100px;
     height: 25px;
 }
+
+.healthBarOutline {
+    height: 25px;
+    width: 200px;
+    -webkit-box-shadow:inset 0px 0px 0px 2px #fff;
+    -moz-box-shadow:inset 0px 0px 0px 2px #fff;
+    box-shadow:inset 0px 0px 0px 2px #fff;
+    margin-right: 3px;
+}
