@@ -19,13 +19,20 @@ function logKey(event) {
 
 function dropBomb(x, y) {
     playerBombCount = playerBombCount - 1;
-    document.getElementById("bombCount").innerHTML = playerBombCount;
+    drawBombCounter();
     sendBombDropToServer(x, y);
 }
 
 function getNewBomb() {
-  document.getElementById("bombCount").innerHTML = playerBombCount;
+  drawBombCounter();
   if (playerBombCount < 3) {
     playerBombCount = playerBombCount + 1;
+  }
+}
+
+function drawBombCounter() {
+  document.getElementById("bombCount").innerHTML = '';
+  for(var i = 0; i < playerBombCount; i++) {
+    document.getElementById("bombCount").innerHTML += '<div id="bombIcon" class="bombIcon"></div>';
   }
 }

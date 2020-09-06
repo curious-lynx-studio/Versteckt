@@ -50,3 +50,16 @@
     width: 960px;
     height: 30px;
 }
+
+.bombIcon {
+    width: 25px;
+    height: 25px;
+    background-image: url(../gameAssets/bomb_01.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bombCountBar {
+    width: 100px;
+    height: 25px;
+}
