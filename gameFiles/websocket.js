@@ -10,29 +10,33 @@ webSocket.onmessage = (message) => {
         var positionSendLoop = setInterval(sendData, 10);
     } else {
         const obj = JSON.parse(message.data);
-        obj[players].forEach(user => {
+        console.log(obj);
+        obj['players'].forEach(user => {
             if(user.id != id) {
                 if(document.getElementById(user.id)){
                     updatePlayerObj(user);
                 } else {
                     createPlayerObj(user);
                 }
+            } else {
+                updateOwnHelthbar(user);
             }
         });
-        document.getElementsByClassName("bomb").remove();
-        obj[bombs].forEach(bomb => {
+
+        removeAllBombsOnGameField();
+        obj['bombs'].forEach(bomb => {
             drawBomb(bomb.x, bomb.y);
         });
 
         if(lastOtherClientArray != undefined) {
             lastOtherClientArray.forEach(element => {
-                const exists = obj.filter(obj => obj.id === element.id);
+                const exists = obj['players'].filter(obj => obj.id === element.id);
                 if (exists == false) {
                     deleteObject(element);
                 }
             });
         }
-        lastOtherClientArray = obj;
+        lastOtherClientArray = obj['players'];
     }
 }
 
@@ -77,6 +81,10 @@ function deleteObject(element) {
 }
 
 function sendBombDropToServer(x,y) {
+    x = x.slice(0, -2); 
+    y = y.slice(0, -2); 
+    x = parseInt(x, 10);
+    y = parseInt(y, 10);
     let data = {bombs:{x: x, y: y}};
     webSocket.send(JSON.stringify(data));
 }
@@ -88,4 +96,13 @@ function drawBomb(x, y) {
     bomb.style.left = x;
     bomb.style.top = y;
     document.getElementById("gameArea").appendChild(bomb);
+}
+
+function updateOwnHelthbar(user) {
+    document.getElementById("playerInnerHealth").style.width = user.health + '%';
+}
+
+function removeAllBombsOnGameField() {
+    const elements = document.getElementsByClassName("bomb");
+    while (elements.length > 0) elements[0].remove();
 }

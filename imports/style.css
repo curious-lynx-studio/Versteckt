@@ -71,4 +71,11 @@
     -moz-box-shadow:inset 0px 0px 0px 2px #fff;
     box-shadow:inset 0px 0px 0px 2px #fff;
     margin-right: 3px;
+    overflow: hidden;
+}
+
+.healthBarInline {
+    height: 21px;
+    margin: 2px;
+    background-color: darkred;
 }
