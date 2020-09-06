@@ -104,6 +104,7 @@ public class Player {
         this.character = newData.getCharacter();
         this.x = newData.getXint();
         this.y = newData.getYint();
+        this.health = newData.getHealth();
         lastUpdated = LocalTime.now();
     }
 

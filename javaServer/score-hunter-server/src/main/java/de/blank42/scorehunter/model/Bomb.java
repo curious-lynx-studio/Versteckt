@@ -14,6 +14,10 @@ public class Bomb {
     @JsonIgnore
     private long timeUpdated;
 
+    public Bomb() {
+        state = State.PLANTED;
+    }
+
     public int getX() {
         return x;
     }
@@ -36,7 +40,7 @@ public class Bomb {
 
     public void updateState() {
         long now = System.currentTimeMillis();
-        if (now - timeUpdated > 1000L) {
+        if (now - timeUpdated > 1000L && state != State.EXPLODED) {
             timeUpdated = now;
             state = state.getNextState();
         }
