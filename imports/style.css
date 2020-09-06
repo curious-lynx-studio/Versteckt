@@ -67,6 +67,7 @@
 .healthBarOutline {
     height: 25px;
     width: 200px;
+    padding: 2px;
     -webkit-box-shadow:inset 0px 0px 0px 2px #fff;
     -moz-box-shadow:inset 0px 0px 0px 2px #fff;
     box-shadow:inset 0px 0px 0px 2px #fff;
@@ -76,6 +77,5 @@
 
 .healthBarInline {
     height: 21px;
-    margin: 2px;
     background-color: darkred;
 }
