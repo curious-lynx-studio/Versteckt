@@ -20,4 +20,4 @@ jobs:
         env:
           dockerUser: ${{ secrets.DOCKER_USERNAME }}
           dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
-        run: mvn -B package --file server/aws-chat-server/pom.xml -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.name=score-hunter-server-java -Ddocker_user=$dockerUser -Ddocker_password=$dockerPassword -Dquarkus.package.type=fast-jar
+        run: mvn -B package --file javaServer/score-hunter-server/pom.xml -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.name=score-hunter-server-java -Ddocker_user=$dockerUser -Ddocker_password=$dockerPassword -Dquarkus.package.type=fast-jar
