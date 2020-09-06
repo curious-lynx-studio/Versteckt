@@ -50,6 +50,7 @@ function updatePlayerObj(user) {
     const x = user.x + "px";
     const y = user.y + "px";
     const otherClient = document.getElementById(user.id);
+    otherClient.innerHTML = user.name;
     otherClient.style.left = x;
     otherClient.style.top = y;
 }
