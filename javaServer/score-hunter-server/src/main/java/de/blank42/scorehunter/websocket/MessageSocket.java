@@ -2,7 +2,9 @@ package de.blank42.scorehunter.websocket;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.blank42.scorehunter.model.Bomb;
 import de.blank42.scorehunter.model.Player;
+import de.blank42.scorehunter.model.ResponseData;
 import io.quarkus.scheduler.Scheduled;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,7 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +33,8 @@ public class MessageSocket {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     Map<String, Player> players;
+
+    List<Bomb> bombs;
 
     @PostConstruct
     void init() {
@@ -48,9 +53,15 @@ public class MessageSocket {
     @OnMessage
     public void saveUpdate(String messageRcv)  {
         try {
-            Player playerUpdate = MAPPER.readValue(messageRcv, Player.class);
-            Player playerToUpdate = players.get(playerUpdate.getId());
-            playerToUpdate.updateData(playerUpdate);
+            if (messageRcv.startsWith("{bombs")) {
+                Bomb bombToAdd = MAPPER.readValue(messageRcv.replace("{bombs", "")
+                                .replace("}}","}"), Bomb.class);
+                bombs.add(bombToAdd);
+            } else {
+                Player playerUpdate = MAPPER.readValue(messageRcv, Player.class);
+                Player playerToUpdate = players.get(playerUpdate.getId());
+                playerToUpdate.updateData(playerUpdate);
+            }
         } catch (JsonProcessingException e) {
            LOG.error("Error during update", e);
         }
@@ -80,13 +91,18 @@ public class MessageSocket {
     @Scheduled(every = "0.01s")
     public void sendUpdates() {
         try {
-            final String messageToSend = MAPPER.writeValueAsString(players.values());
+            ResponseData dataToSend = new ResponseData(((List<Player>) players.values()), bombs);
+            final String messageToSend = MAPPER.writeValueAsString(dataToSend);
             players.values().forEach(player -> player.sendData(messageToSend));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+    }
 
-
+    @Scheduled(every = "0.1s")
+    public void updateBombs() {
+        bombs.forEach(Bomb::updateState);
+        bombs.removeIf(Bomb::toRemove);
     }
 
     @PreDestroy
