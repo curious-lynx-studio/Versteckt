@@ -17,10 +17,12 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 @ServerEndpoint(value = "/positions")
@@ -91,7 +93,7 @@ public class MessageSocket {
     @Scheduled(every = "0.01s")
     public void sendUpdates() {
         try {
-            ResponseData dataToSend = new ResponseData(((List<Player>) players.values()), bombs);
+            ResponseData dataToSend = new ResponseData(new ArrayList<>(players.values()), bombs);
             final String messageToSend = MAPPER.writeValueAsString(dataToSend);
             players.values().forEach(player -> player.sendData(messageToSend));
         } catch (JsonProcessingException e) {
