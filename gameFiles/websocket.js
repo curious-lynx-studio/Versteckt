@@ -2,6 +2,7 @@
 var webSocket = new WebSocket("ws://blank42.de:9998/positions");
 let id= "";
 let lastOtherClientArray;
+let playerHealth = 0;
 
 webSocket.onmessage = (message) => {
     if (message.data.match(/^id=/)) {
@@ -10,6 +11,7 @@ webSocket.onmessage = (message) => {
     } else {
         const obj = JSON.parse(message.data);
         obj.forEach(user => {
+            console.log(user)
             if(user.id != id) {
                 if(document.getElementById(user.id)){
                     updatePlayerObj(user);
@@ -41,27 +43,29 @@ function sendData() {
     x = x.substring(0, x.length - 2);
     y = y.substring(0, y.length - 2);
     var playerName = localStorage.getItem('playerName');
-    let data = {id: id, positions: [{x: x, y: y}], name: playerName, character: 0};
+    let data = {id: id, x: x, y: y, name: playerName, character: 0, health: playerHealth};
     webSocket.send(JSON.stringify(data));
 }
 
 function updatePlayerObj(user) {
-    const x = user.positions[0].x + "px";
-    const y = user.positions[0].y + "px";
+    const x = user.x + "px";
+    const y = user.y + "px";
     const otherClient = document.getElementById(user.id);
     otherClient.style.left = x;
     otherClient.style.top = y;
 }
 
 function createPlayerObj(user) {
-    const x = user.positions[0].x + "px";
-    const y = user.positions[0].y + "px";
+    console.log(user.x);
+    console.log(user.y);
+    const x = user.x + "px";
+    const y = user.y + "px";
     const otherClient = document.createElement("DIV");
     otherClient.className = "otherClient";
     otherClient.id = user.id;
     otherClient.innerHTML = user.name;
-    otherClient.style.left = user.positions[0].x + "px";
-    otherClient.style.top = user.positions[0].y + "px";
+    otherClient.style.left = user.x + "px";
+    otherClient.style.top = user.y + "px";
     document.getElementById("gameArea").appendChild(otherClient);
 }
 
