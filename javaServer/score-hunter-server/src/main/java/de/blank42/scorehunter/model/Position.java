@@ -1,29 +1,18 @@
 package de.blank42.scorehunter.model;
 
-import io.quarkus.runtime.annotations.RegisterForReflection;
-
-@RegisterForReflection
 public class Position {
 
     private int x;
     private int y;
 
-    public Position() {
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
+    public Position(int x, int y) {
         this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
         this.y = y;
+    }
+
+    public double getDistance(int otherX, int otherY) {
+        int distanceX = otherX - x;
+        int distanceY = otherY - y;
+        return Math.sqrt(distanceX * distanceX + distanceY * distanceY);
     }
 }

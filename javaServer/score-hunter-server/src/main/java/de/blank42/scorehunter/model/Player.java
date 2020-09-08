@@ -35,6 +35,7 @@ public class Player {
         this.id = id;
         this.wsSession = wsSession;
         lastUpdated = LocalTime.now();
+        health = 100;
     }
 
     public void setId(String id) {
@@ -104,7 +105,6 @@ public class Player {
         this.character = newData.getCharacter();
         this.x = newData.getXint();
         this.y = newData.getYint();
-        this.health = newData.getHealth();
         lastUpdated = LocalTime.now();
     }
 
@@ -129,14 +129,11 @@ public class Player {
         return wsSession.equals(otherSession);
     }
 
-    @Override
-    public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", x=" + x +
-                ", y=" + y +
-                ", name='" + name + '\'' +
-                ", character=" + character +
-                '}';
+    public void updateBombDamage(Position bombPosition) {
+        double distanceToBomb = bombPosition.getDistance(x, y);
+        int damage = 150 - (int) distanceToBomb;
+        if (damage > 0) {
+            health -= Math.min(damage, health);
+        }
     }
 }
