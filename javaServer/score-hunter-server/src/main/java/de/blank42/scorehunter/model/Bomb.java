@@ -38,19 +38,23 @@ public class Bomb {
     }
 
 
-    public void updateState() {
+    public Position updateState() {
         long now = System.currentTimeMillis();
         if (now - timeUpdated > 1000L && state != State.EXPLODED) {
             timeUpdated = now;
             state = state.getNextState();
+            if (state == State.EXPLODED) {
+                return new Position(x, y);
+            }
         }
+        return null;
     }
 
     public boolean toRemove() {
         return state == State.EXPLODED && System.currentTimeMillis() - timeUpdated > 1000L;
     }
 
-    public static enum State {
+    public enum State {
         PLANTED,
         ONE,
         TWO,

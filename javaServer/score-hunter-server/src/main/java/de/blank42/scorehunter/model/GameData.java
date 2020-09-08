@@ -4,9 +4,13 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import javax.websocket.Session;
+import java.util.BitSet;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiConsumer;
+import java.util.stream.Stream;
 
 @RegisterForReflection
 public class GameData {
@@ -43,4 +47,9 @@ public class GameData {
     public void removePlayer(Player playerToRemove) {
         players.remove(playerToRemove.getId());
     }
+
+    public void calculateBombDamage(Position bombPosition) {
+        players.values().forEach(player -> player.updateBombDamage(bombPosition));
+    }
+
 }

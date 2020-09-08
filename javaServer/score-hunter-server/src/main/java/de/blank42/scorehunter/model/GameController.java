@@ -13,8 +13,12 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.websocket.Session;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @ApplicationScoped
 public class GameController {
@@ -78,7 +82,10 @@ public class GameController {
 
     @Scheduled(every = "0.1s")
     void updateBombs() {
-        gameData.getBombs().forEach(Bomb::updateState);
+        gameData.getBombs().stream()
+                .map(Bomb::updateState)
+                .filter(Objects::nonNull)
+                .forEach(gameData::calculateBombDamage);
         gameData.getBombs().removeIf(Bomb::toRemove);
     }
 
@@ -96,4 +103,5 @@ public class GameController {
     void shutdown() {
         gameData.getPlayers().forEach(Player::closeConnection);
     }
+
 }
