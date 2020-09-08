@@ -23,15 +23,6 @@
     justify-content: center;
 }
 
-.bomb {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background-image: url(../gameAssets/bomb_01.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .otherClient {
     height: 50px;
     width: 32px;
@@ -78,4 +69,34 @@
 .healthBarInline {
     height: 21px;
     background-color: darkred;
+}
+
+.bomb--one {
+    background-image: url(../gameAssets/bomb_01.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bomb--two {
+    background-image: url(../gameAssets/bomb_02.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bomb--three {
+    background-image: url(../gameAssets/bomb_03.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bomb--explo {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../gameAssets/explo_03.png);
+}
+
+.bomb {
+    position: absolute;
+    width: 25px;
+    height: 25px;
 }

@@ -1,11 +1,12 @@
 $(document).ready(function(){ 
   getNewBomb();
+  drawBombCounter();
 }) 
 
 document.addEventListener('keydown', logKey);
 
 let playerBombCount = 3;
-setInterval(getNewBomb, 10000);
+setInterval(getNewBomb, 5000);
 
 function logKey(event) {
   if (event.keyCode === 32) {
@@ -24,9 +25,9 @@ function dropBomb(x, y) {
 }
 
 function getNewBomb() {
-  drawBombCounter();
   if (playerBombCount < 3) {
     playerBombCount = playerBombCount + 1;
+    drawBombCounter();
   }
 }
 

@@ -24,7 +24,7 @@ webSocket.onmessage = (message) => {
 
         removeAllBombsOnGameField();
         obj['bombs'].forEach(bomb => {
-            drawBomb(bomb.x, bomb.y);
+            drawBomb(bomb.x, bomb.y, bomb.state);
         });
 
         if(lastOtherClientArray != undefined) {
@@ -88,9 +88,20 @@ function sendBombDropToServer(x,y) {
     webSocket.send(JSON.stringify(data));
 }
 
-function drawBomb(x, y) {
+function drawBomb(x, y, state) {
+    console.log(state)
     var bomb = document.createElement("DIV");
-    bomb.className = "bomb";
+    if(state === "ONE"){
+        bomb.className = "bomb bomb--one";
+    } else if(state === "TWO"){
+        bomb.className = "bomb bomb--two";
+    } else if(state === "THREE"){
+        bomb.className = "bomb bomb--three";
+    } else if(state === "EXPLODED"){
+        bomb.className = "bomb bomb--explo";
+    } else {
+        bomb.className = "bomb bomb--one";
+    }
     bomb.id = "bomb";
     bomb.style.left = x;
     bomb.style.top = y;
