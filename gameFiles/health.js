@@ -4,7 +4,7 @@ function sleep(ms) {
   
 
 async function playerDeathFunction() {
-    document.removeEventListener('keypress', logKey);
+    document.removeEventListener('keypress');
     document.getElementById("player").className = "playerDeath";
     await sleep(200);
     document.getElementById("gameOverScreen").style.visibility = "visible";

@@ -1,4 +1,3 @@
-// Let us open a web socket
 var webSocket = new WebSocket("ws://blank42.de:9998/positions");
 let id= "";
 let lastOtherClientArray;
@@ -89,7 +88,6 @@ function sendBombDropToServer(x,y) {
 }
 
 function drawBomb(x, y, state) {
-    console.log(state)
     var bomb = document.createElement("DIV");
     if(state === "ONE"){
         bomb.className = "bomb bomb--one";
