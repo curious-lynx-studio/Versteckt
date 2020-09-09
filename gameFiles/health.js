@@ -11,3 +11,7 @@ async function playerDeathFunction() {
     await sleep(2000);
     window.open("index.html","_self");
 }
+
+function otherPlayerDeathFunction(id) {
+    document.getElementById(id).className = "playerDeath";
+}

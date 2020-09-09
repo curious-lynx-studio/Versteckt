@@ -60,6 +60,9 @@ function updatePlayerObj(user) {
     otherClient.innerHTML = user.name;
     otherClient.style.left = x;
     otherClient.style.top = y;
+    if (user.health <= 0) {
+        otherPlayerDeathFunction(user.id);
+    }
 }
 
 function createPlayerObj(user) {
