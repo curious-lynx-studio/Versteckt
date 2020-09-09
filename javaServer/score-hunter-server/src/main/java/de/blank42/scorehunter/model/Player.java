@@ -131,7 +131,12 @@ public class Player {
 
     public void updateBombDamage(Position bombPosition) {
         double distanceToBomb = bombPosition.getDistance(x, y);
-        int damage = 150 - (int) distanceToBomb;
+        System.out.println(distanceToBomb);
+        if (distanceToBomb < 42) {
+            health = 0;
+            return;
+        }
+        int damage = 128 -  (int) (1.5 * distanceToBomb);
         if (damage > 0) {
             health -= Math.min(damage, health);
         }
