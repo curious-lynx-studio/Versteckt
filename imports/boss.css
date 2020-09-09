@@ -1,0 +1,18 @@
+.bossUrug {
+    height: 96px;
+    width: 96px;
+    animation-name: bossIdle;
+    animation-duration: 1s;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    position: relative;
+    animation-iteration-count:infinite;
+}
+
+@keyframes bossIdle {
+    0%   {background-image: url(../gameAssets/Boss/Boss1_03.png);}
+    25%  {background-image: url(../gameAssets/Boss/Boss1_02.png);}
+    50%  {background-image: url(../gameAssets/Boss/Boss1_01.png);}
+    75%  {background-image: url(../gameAssets/Boss/Boss1_02.png);}
+    100%   {background-image: url(../gameAssets/Boss/Boss1_03.png);}
+}
