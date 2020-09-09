@@ -4,6 +4,13 @@
         <link rel="stylesheet" type="text/css" href="imports/style.css">
         <link href="imports/bootstrap.min.css" rel="stylesheet" >
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preload" href="imports/style.css" as="style">
+        <link rel="preload" href="gameFiles/websocket.js" as="script">
+        <link rel="preload" href="gameFiles/charImage.js" as="script">
+        <link rel="preload" href="gameFiles/bomb.js" as="script">
+        <link rel="preload" href="gameFiles/health.js" as="script">
+        <link rel="preload" href="gameFiles/showPlayerName.js" as="script">
     </head>
     <body>
         <div id="gameOverScreen" class="gameOverScreen"><h1 class="gameOverText">YOU DIED</h1></div>
@@ -18,7 +25,7 @@
         </div>
     </body>
     <script type="text/javascript" src="gameFiles/websocket.js"></script>
-    <script id="movement" type="text/javascript" src="gameFiles/movement.js"></script>
+    <script type="text/javascript" src="gameFiles/movement.js"></script>
     <script type="text/javascript" src="gameFiles/charImage.js"></script>
     <script type="text/javascript" src="gameFiles/bomb.js"></script>
     <script type="text/javascript" src="gameFiles/health.js"></script>
