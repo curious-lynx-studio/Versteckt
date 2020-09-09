@@ -15,7 +15,7 @@
     height: 50px;
     width: 32px;
     position: relative;
-    background-image: url(../gameAssets/Char01_Front.png);
+    background-image: url(../gameAssets/Character/Char01_Front.png);
     background-repeat: no-repeat;
     background-position: bottom;
     color: white;
@@ -27,7 +27,7 @@
     height: 50px;
     width: 32px;
     position: absolute;
-    background-image: url(../gameAssets/Char01_Front.png);
+    background-image: url(../gameAssets/Character/Char01_Front.png);
     background-repeat: no-repeat;
     background-position: bottom;
     color: white;
@@ -45,7 +45,7 @@
 .bombIcon {
     width: 25px;
     height: 25px;
-    background-image: url(../gameAssets/bomb_01.png);
+    background-image: url(../gameAssets/bomb/bomb_01.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -72,19 +72,19 @@
 }
 
 .bomb--one {
-    background-image: url(../gameAssets/bomb_01.png);
+    background-image: url(../gameAssets/bomb/bomb_01.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .bomb--two {
-    background-image: url(../gameAssets/bomb_02.png);
+    background-image: url(../gameAssets/bomb/bomb_02.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .bomb--three {
-    background-image: url(../gameAssets/bomb_03.png);
+    background-image: url(../gameAssets/bomb/bomb_03.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -92,11 +92,47 @@
 .bomb--explo {
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url(../gameAssets/explo_03.png);
+    background-image: url(../gameAssets/bomb/explo_03.png);
 }
 
 .bomb {
     position: absolute;
     width: 25px;
     height: 25px;
+}
+
+.playerDeath {
+    height: 50px;
+    width: 32px;
+    position: relative;
+    background-image: url(../gameAssets/Character/killed_01.png);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    color: white;
+    display: flex;
+    justify-content: center;
+    animation-name: killed;
+    animation-duration: 2s;
+}
+
+@keyframes killed {
+    0%   {background-image: url(../gameAssets/Character/killed_01.png);}
+    50%  {background-image: url(../gameAssets/Character/killed_02.png);}
+    100%  {background-image: url(../gameAssets/Character/killed_03.png);}
+}
+
+.gameOverScreen {
+    padding-top: 30%;
+    visibility: hidden;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.808);
+    color: darkred;
+    z-index: 99999999;
+    text-align: center;
+}
+
+.gameOverText {
+    color: darkred;
 }

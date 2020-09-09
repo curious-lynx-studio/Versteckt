@@ -110,6 +110,9 @@ function drawBomb(x, y, state) {
 
 function updateOwnHelthbar(user) {
     document.getElementById("playerInnerHealth").style.width = user.health + '%';
+    if (user.health <= 0) {
+        playerDeathFunction();
+    }
 }
 
 function removeAllBombsOnGameField() {

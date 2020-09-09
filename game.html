@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <div id="gameOverScreen" class="gameOverScreen"><h1 class="gameOverText">YOU DIED</h1></div>
         <div id="gameArea" class="gameArea">
             <div id="player" class="player"></div>
         </div>
@@ -17,8 +18,9 @@
         </div>
     </body>
     <script type="text/javascript" src="gameFiles/websocket.js"></script>
-    <script type="text/javascript" src="gameFiles/movement.js"></script>
+    <script id="movement" type="text/javascript" src="gameFiles/movement.js"></script>
     <script type="text/javascript" src="gameFiles/charImage.js"></script>
     <script type="text/javascript" src="gameFiles/bomb.js"></script>
+    <script type="text/javascript" src="gameFiles/health.js"></script>
     <script type="text/javascript" src="gameFiles/showPlayerName.js"></script>
 </html>
