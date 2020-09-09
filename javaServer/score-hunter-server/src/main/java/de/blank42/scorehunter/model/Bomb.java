@@ -2,7 +2,6 @@ package de.blank42.scorehunter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @RegisterForReflection
@@ -37,6 +36,9 @@ public class Bomb {
         this.y = y;
     }
 
+    public State getState() {
+        return state;
+    }
 
     public Position updateState() {
         long now = System.currentTimeMillis();
@@ -60,11 +62,6 @@ public class Bomb {
         TWO,
         THREE,
         EXPLODED;
-
-        @JsonValue
-        public int getId() {
-            return this.ordinal();
-        }
 
         public State getNextState() {
             return State.values()[this.ordinal() + 1];
