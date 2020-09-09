@@ -8,6 +8,7 @@
     <!-- Bootstrap core CSS -->
     <link href="imports/bootstrap.min.css" rel="stylesheet" >
     <link href="imports/style.css" rel="stylesheet" >
+    <link href="imports/menu.css" rel="stylesheet" >
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="gameFiles/setPlayerConfig.js"></script>
@@ -23,17 +24,46 @@
       <div class="container">
         <br><br><br>
         <div class="container">
-          <div class="jumbotron">
+          <div class="jumbotron mainJumbotron">
             <h4>Set Your Username:</h4>
             <div class="input-group mb-3">
               <input type="text" id="nameInput" class="form-control" placeholder="Set Your Username" aria-describedby="button-addon2">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="setPlayerName()">Set</button>
+                <button class="btn btn-primary" type="button" id="button-addon2" onclick="setPlayerName()">Set</button>
               </div>
             </div>
             <a href="game.html"><div class="btn btn-primary" onclick="setStdUserName()">Start Game</div></a>
           </div>
-        </div>        
+        </div>    
+        
+        <div class="container colorTest">
+          <div class="jumbotron mainJumbotron">
+            <h4>Lobby List:</h4>
+            <table class="table table-dark table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Lobby Name</th>
+                  <th scope="col">Players</th>
+                  <th scope="col">Join</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">TestLobby</th>
+                  <td>2/4</td>
+                  <td><div class="btn btn-primary">Join</div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="jumbotron mainJumbotron">
+            <h4>Highscore:</h4>
+          </div>
+        </div>
+
       </div>
     </main>
 

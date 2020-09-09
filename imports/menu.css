@@ -1,0 +1,32 @@
+.mainJumbotron {
+    background-color:#755d5da6;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.btn-primary {
+    background-color: darkred;
+    border-color: darkred;
+}
+
+.btn-primary:hover {
+    background-color: black;
+    border-color: black;
+}
+
+h4 {
+    color: black !important;
+}
+
+table {
+    color: black !important;
+}
+
+.table-dark {
+    background-color: #4a0c0f;
+    border-color: black;
+}
+
+body {
+    background-image: url("../gameAssets/menu_bg.png");
+}
