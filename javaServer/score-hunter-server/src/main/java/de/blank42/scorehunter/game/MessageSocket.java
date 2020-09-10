@@ -1,6 +1,5 @@
-package de.blank42.scorehunter.websocket;
+package de.blank42.scorehunter.game;
 
-import de.blank42.scorehunter.model.GameController;
 import io.quarkus.scheduler.Scheduled;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -12,7 +11,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 @ApplicationScoped
-@ServerEndpoint(value = "/positions")
+@ServerEndpoint("/positions")
 public class MessageSocket {
 
     @Inject

@@ -1,9 +1,11 @@
-package de.blank42.scorehunter.model;
+package de.blank42.scorehunter.game;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.quarkus.runtime.annotations.RegisterForReflection;
+import de.blank42.scorehunter.game.model.Bomb;
+import de.blank42.scorehunter.game.model.GameData;
+import de.blank42.scorehunter.game.model.Player;
 import io.quarkus.scheduler.Scheduled;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +15,9 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.websocket.Session;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @ApplicationScoped
 public class GameController {

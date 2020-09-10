@@ -1,4 +1,4 @@
-package de.blank42.scorehunter.model;
+package de.blank42.scorehunter.game.model;
 
 public class Position {
 

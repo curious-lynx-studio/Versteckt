@@ -1,4 +1,4 @@
-package de.blank42.scorehunter.model;
+package de.blank42.scorehunter.game.model;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
