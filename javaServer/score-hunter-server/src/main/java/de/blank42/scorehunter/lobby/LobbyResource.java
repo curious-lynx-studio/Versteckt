@@ -4,11 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.blank42.scorehunter.lobby.exception.LobbyAlreadyExistsException;
 import de.blank42.scorehunter.lobby.exception.LobbyIsFullException;
 import de.blank42.scorehunter.lobby.exception.LobbyNotFoundException;
-import de.blank42.scorehunter.lobby.model.ConnectedLobby;
 import de.blank42.scorehunter.lobby.model.Lobby;
-import de.blank42.scorehunter.lobby.model.LobbyConnect;
+import de.blank42.scorehunter.lobby.model.LobbyConnectRequest;
+import de.blank42.scorehunter.lobby.model.LobbyCreateRequest;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -24,21 +23,12 @@ public class LobbyResource {
     @Inject
     LobbyController lobbyController;
 
-
     @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String createLobby(Lobby lobby) throws LobbyAlreadyExistsException {
+    public String createLobby(LobbyCreateRequest lobby) throws LobbyAlreadyExistsException {
         return lobbyController.addLobby(lobby);
-    }
-
-    @POST
-    @Path("/connect")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String connectToLobby(LobbyConnect connectRequest) throws LobbyNotFoundException, LobbyIsFullException {
-        return lobbyController.connectToLobby(connectRequest);
     }
 
 }

@@ -4,17 +4,21 @@ import de.blank42.scorehunter.lobby.exception.LobbyAlreadyExistsException;
 import de.blank42.scorehunter.lobby.exception.LobbyIsFullException;
 import de.blank42.scorehunter.lobby.exception.LobbyNotFoundException;
 import de.blank42.scorehunter.lobby.model.ConnectedLobby;
+import de.blank42.scorehunter.lobby.model.ListedLobby;
 import de.blank42.scorehunter.lobby.model.Lobby;
-import de.blank42.scorehunter.lobby.model.LobbyConnect;
+import de.blank42.scorehunter.lobby.model.LobbyConnectRequest;
+import de.blank42.scorehunter.lobby.model.LobbyCreateRequest;
 import io.quarkus.security.UnauthorizedException;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.websocket.Session;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -30,31 +34,23 @@ public class LobbyController {
     @Inject
     LobbyListSocket lobbyListSocket;
 
-    @ConfigProperty(name = "server.url")
-    String serverUrl;
-
-    @ConfigProperty(name = "quarkus.http.port")
-    int port;
-
     @PostConstruct
     void init() {
         lobbies = new ConcurrentHashMap<>();
     }
 
-    public String addLobby(Lobby lobby) throws LobbyAlreadyExistsException {
-        final String lobbyName = lobby.getLobbyName();
+    public String addLobby(LobbyCreateRequest lobbyRequest) throws LobbyAlreadyExistsException {
+        final String lobbyName = lobbyRequest.getLobbyName();
         if (lobbies.values().stream().anyMatch(savedLobby -> savedLobby.getLobbyName().equals(lobbyName))) {
             throw new LobbyAlreadyExistsException();
         }
+        Lobby lobby = lobbyRequest.toLobby();
         lobbies.put(lobbyName, lobby);
-        CompletableFuture.runAsync(() -> {
-            lobbyListSocket.broadcastUpdates();
-        });
-        return getLobbyUrl(lobby);
+        CompletableFuture.runAsync(() -> lobbyListSocket.broadcastUpdates());
+        return lobby.getLobbyUrl();
     }
 
-    public String connectToLobby(LobbyConnect connectRequest) throws LobbyNotFoundException, LobbyIsFullException {
-        final String lobbyName = connectRequest.getLobbyName();
+    public void connectToLobby(String lobbyName, LobbyConnectRequest connectRequest, Session session) throws LobbyNotFoundException, LobbyIsFullException {
         Lobby lobby = lobbies.values().stream()
                 .filter(lob -> lob.getLobbyName().equals(lobbyName))
                 .findFirst()
@@ -65,24 +61,43 @@ public class LobbyController {
         if (lobby.isFull()) {
             throw new LobbyIsFullException();
         }
-        lobby.addPlayer(connectRequest.getPlayerName());
+        lobby.addPlayer(connectRequest.getPlayerName(), session);
         CompletableFuture.runAsync(() -> {
             lobbyListSocket.broadcastUpdates();
             lobbySocket.broadcastUpdates(lobbyName);
         });
-        return getLobbyUrl(lobby);
     }
 
     public ConnectedLobby getLobbyByName(String lobbyName) {
         return lobbies.get(lobbyName).toConnectedLobby();
     }
 
-    public List<Lobby> getLobbies() {
-        return lobbies.values().stream().sorted(Comparator.comparing(Lobby::getLobbyName)).collect(Collectors.toList());
+    public List<ListedLobby> getLobbyList() {
+        return lobbies.values()
+                .stream()
+                .map(Lobby::toListedLobby)
+                .sorted(Comparator.comparing(ListedLobby::getLobbyName))
+                .collect(Collectors.toList());
     }
 
-    private String getLobbyUrl(Lobby lobby) {
-        return String.format("ws://%s:%d/lobbyJoin/%s", serverUrl, port, lobby.getLobbyName().replace(" ", "%20"));
+    public List<Session> getLobbySessions(String lobbyName) {
+        return Optional.ofNullable(lobbies.get(lobbyName))
+                .orElse(new Lobby())
+                .getPlayerSessions();
+
     }
 
+    public void removeSession(Session session, String lobbyName) {
+        lobbies.get(lobbyName).getConnectedPlayers()
+                .removeIf(player -> player.getSession().equals(session));
+        CompletableFuture.runAsync(() -> {
+            lobbyListSocket.broadcastUpdates();
+            lobbySocket.broadcastUpdates(lobbyName);
+        });
+    }
+
+    @PreDestroy
+    void shutdown() {
+        lobbies.values().forEach(Lobby::close);
+    }
 }

@@ -1,24 +1,35 @@
 package de.blank42.scorehunter.lobby.model;
 
 import com.cronutils.utils.StringUtils;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import io.quarkus.runtime.annotations.RegisterForReflection;
+import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.config.ConfigProvider;
 
+import javax.websocket.Session;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@RegisterForReflection
 public class Lobby {
 
     private String lobbyName;
     private String password;
-    private List<String> connectedPlayers;
+    private List<LobbyPlayer> connectedPlayers;
     private int maxPlayerCount;
-    private Gamemode gamemode;
+    private GameMode gameMode;
 
     public Lobby() {
         connectedPlayers = new ArrayList<>();
+    }
+
+    public Lobby(String lobbyName, String password, int maxPlayerCount, GameMode gameMode) {
+        this();
+        this.lobbyName = lobbyName;
+        this.password = password;
+        this.maxPlayerCount = maxPlayerCount;
+        this.gameMode = gameMode;
     }
 
     public String getLobbyName() {
@@ -29,19 +40,6 @@ public class Lobby {
         this.lobbyName = lobbyName;
     }
 
-    @JsonIgnore
-    public List<String> getConnectedPlayers() {
-        return connectedPlayers;
-    }
-
-    public void setConnectedPlayers(List<String> connectedPlayers) {
-        this.connectedPlayers = connectedPlayers;
-    }
-
-    public int getCurrentPlayerCount() {
-        return connectedPlayers.size();
-    }
-
     public int getMaxPlayerCount() {
         return maxPlayerCount;
     }
@@ -50,43 +48,79 @@ public class Lobby {
         this.maxPlayerCount = maxPlayerCount;
     }
 
-    @JsonSetter
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @JsonIgnore
     public String getPassword() {
         return password;
+    }
+
+    public List<LobbyPlayer> getConnectedPlayers() {
+        return connectedPlayers;
+    }
+
+    public static enum GameMode {
+        DEATHMATH,
+        SCOREHUNTER;
+    }
+
+    public void setGameMode(GameMode gamemode) {
+        this.gameMode = gamemode;
+    }
+
+    public GameMode getGameMode() {
+        return gameMode;
     }
 
     public boolean isPasswordSecured() {
         return !StringUtils.isEmpty(password);
     }
 
-    @JsonIgnore
     public boolean isFull() {
         return connectedPlayers.size() >= maxPlayerCount;
     }
 
-    public void addPlayer(String playerName) {
-        connectedPlayers.add(playerName);
+    public String getLobbyUrl() {
+        Config config = ConfigProvider.getConfig();
+        String serverUrl = config.getValue("server.url", String.class);
+        int port = config.getValue("quarkus.http.port", Integer.class);
+        return String.format("ws://%s:%d/lobby/name/%s", serverUrl, port,
+                URLEncoder.encode(lobbyName, StandardCharsets.UTF_8));
+    }
+
+    public int getCurrentPlayerCount() {
+        return connectedPlayers.size();
+    }
+
+    public List<String> getConnectedPlayerNames() {
+        return connectedPlayers.stream().map(LobbyPlayer::getPlayerName).collect(Collectors.toList());
+    }
+
+    public List<Session> getPlayerSessions() {
+        return connectedPlayers.stream().map(LobbyPlayer::getSession).collect(Collectors.toList());
     }
 
     public ConnectedLobby toConnectedLobby() {
-        return new ConnectedLobby(connectedPlayers, gamemode, maxPlayerCount);
+        return new ConnectedLobby(getConnectedPlayerNames(), gameMode, maxPlayerCount);
     }
 
-    public static enum Gamemode {
-        DEATHMATH,
-        SCOREHUNTER;
+    public ListedLobby toListedLobby() {
+        return new ListedLobby(lobbyName, getLobbyUrl(), gameMode, maxPlayerCount, getCurrentPlayerCount(),
+                isPasswordSecured());
     }
 
-    public void setGamemode(Gamemode gamemode) {
-        this.gamemode = gamemode;
+    public void addPlayer(String playerName, Session session) {
+        connectedPlayers.add(new LobbyPlayer(playerName, session));
     }
 
-    public Gamemode getGamemode() {
-        return gamemode;
+    public void close()  {
+        for (Session session : getPlayerSessions()) {
+            try {
+                session.close();
+            } catch (IOException ignored) {
+            }
+        }
     }
+
 }

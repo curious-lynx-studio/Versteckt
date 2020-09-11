@@ -1,17 +1,20 @@
 package de.blank42.scorehunter.lobby.model;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
+
 import java.util.List;
 
+@RegisterForReflection
 public class ConnectedLobby {
 
     private List<String> player;
-    private Lobby.Gamemode gamemode;
+    private Lobby.GameMode gamemode;
     private int maxPlayerCount;
 
     public ConnectedLobby() {
     }
 
-    public ConnectedLobby(List<String> player, Lobby.Gamemode gamemode, int maxPlayerCount) {
+    public ConnectedLobby(List<String> player, Lobby.GameMode gamemode, int maxPlayerCount) {
         this.player = player;
         this.gamemode = gamemode;
         this.maxPlayerCount = maxPlayerCount;
@@ -25,11 +28,11 @@ public class ConnectedLobby {
         this.player = player;
     }
 
-    public Lobby.Gamemode getGamemode() {
+    public Lobby.GameMode getGamemode() {
         return gamemode;
     }
 
-    public void setGamemode(Lobby.Gamemode gamemode) {
+    public void setGamemode(Lobby.GameMode gamemode) {
         this.gamemode = gamemode;
     }
 

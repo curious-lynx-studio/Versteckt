@@ -32,7 +32,7 @@ public class LobbyListSocket {
     public void onOpen(Session session) {
         sessions.add(session);
         try {
-            session.getAsyncRemote().sendText(MAPPER.writeValueAsString(lobbyController.getLobbies()));
+            session.getAsyncRemote().sendText(MAPPER.writeValueAsString(lobbyController.getLobbyList()));
         } catch (JsonProcessingException e) {
             LOG.error("Error processing lobby list", e);
         }
@@ -45,7 +45,7 @@ public class LobbyListSocket {
 
     public void broadcastUpdates() {
         try {
-            final String updateData = MAPPER.writeValueAsString(lobbyController.getLobbies());
+            final String updateData = MAPPER.writeValueAsString(lobbyController.getLobbyList());
             sessions.forEach(session -> session.getAsyncRemote().sendText(updateData));
         } catch (JsonProcessingException e) {
             LOG.error("Error processing lobby list", e);

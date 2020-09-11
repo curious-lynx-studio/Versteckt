@@ -1,19 +1,12 @@
 package de.blank42.scorehunter.lobby.model;
 
-public class LobbyConnect {
+import io.quarkus.runtime.annotations.RegisterForReflection;
 
-    private String lobbyName;
+@RegisterForReflection
+public class LobbyConnectRequest {
+
     private String playerName;
     private String password;
-
-
-    public String getLobbyName() {
-        return lobbyName;
-    }
-
-    public void setLobbyName(String lobbyName) {
-        this.lobbyName = lobbyName;
-    }
 
     public String getPlayerName() {
         return playerName;
