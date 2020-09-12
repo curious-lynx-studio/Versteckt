@@ -53,9 +53,6 @@ h2 {
 .row .col {
     flex: 1;
 }
-.row .col:last-child {
-    margin-left: 1em;
-}
 /* Accordion styles */
 .tabs {
     border-radius: 8px;

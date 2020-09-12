@@ -14,6 +14,11 @@ webSocket.onmessage = (message) => {
                                 `<td><div class="btn btn-primary" onclick="connectToLobby('`+lobby.lobbyUrl+`')">Join</div></td>` +
                                 '</tr>'
     });
+    if (obj.length == 0) {
+        lobbyTable.innerHTML += '<tr>' +
+                                '<td colspan="5">No Lobbys Found...</td>' +    
+                                '</tr>'
+    }
 }
 
 webSocket.onclose = function() {   
@@ -51,8 +56,12 @@ function connectToLobby(lobbyUrl) {
     };
 
     lobbyWebSocket.onmessage = (message) => {
+        if (message.data.match(/^ws/)) {
+            localStorage.setItem('gameLobbyWS', message.data);
+        } else {
         const obj = JSON.parse(message.data);
         console.log(obj);
+        }
     }
 }
 
