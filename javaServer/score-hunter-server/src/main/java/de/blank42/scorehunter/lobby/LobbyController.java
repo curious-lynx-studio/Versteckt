@@ -3,7 +3,6 @@ package de.blank42.scorehunter.lobby;
 import de.blank42.scorehunter.lobby.exception.LobbyAlreadyExistsException;
 import de.blank42.scorehunter.lobby.exception.LobbyIsFullException;
 import de.blank42.scorehunter.lobby.exception.LobbyNotFoundException;
-import de.blank42.scorehunter.lobby.exception.NotAllPlayersReadyException;
 import de.blank42.scorehunter.lobby.model.ConnectedLobby;
 import de.blank42.scorehunter.lobby.model.ListedLobby;
 import de.blank42.scorehunter.lobby.model.Lobby;
@@ -99,7 +98,8 @@ public class LobbyController {
     }
 
     public void setReadyState(String lobbyName, String playerName, boolean ready) {
-        lobbies.get(lobbyName).getConnectedPlayers()
+        Lobby lobby = lobbies.get(lobbyName);
+        lobby.getConnectedPlayers()
                 .stream()
                 .filter(player -> player.getPlayerName().equals(playerName))
                 .findFirst()
@@ -107,13 +107,17 @@ public class LobbyController {
                     player.setReady(ready);
                     CompletableFuture.runAsync(() -> lobbySocket.broadcastUpdates(lobbyName));
                 });
+        if (lobby.getMaxPlayerCount() <= lobby.getCurrentPlayerCount() && lobby.getConnectedPlayers().stream().allMatch(LobbyPlayer::isReady)) {
+            startGame(lobby);
+        }
     }
 
     public void removeSession(Session session, String lobbyName) {
         Lobby lobby = lobbies.get(lobbyName);
         lobby.getConnectedPlayers().removeIf(player -> player.getSession().equals(session));
-        Optional<LobbyPlayer> firstPlayer = lobby.getConnectedPlayers().stream().findFirst();
-        firstPlayer.ifPresentOrElse(player -> player.setLobbyLeader(true), () -> removeLobby(lobbyName));
+        if (lobby.getConnectedPlayers().isEmpty()) {
+            removeLobby(lobbyName);
+        }
         CompletableFuture.runAsync(() -> {
             lobbyListSocket.broadcastUpdates();
             lobbySocket.broadcastUpdates(lobbyName);
@@ -125,12 +129,8 @@ public class LobbyController {
     }
 
 
-    public void startGame(String lobbyName) throws NotAllPlayersReadyException {
-        Lobby lobby = lobbies.get(lobbyName);
+    public void startGame(Lobby lobby) {
         String startMessage = "Start_" + lobby.getGameUrl();
-        if (lobby.getConnectedPlayers().stream().anyMatch(player -> !player.isReady())) {
-            throw new NotAllPlayersReadyException();
-        }
         lobby.getConnectedPlayers()
                 .stream()
                 .map(LobbyPlayer::getSession)
@@ -140,6 +140,8 @@ public class LobbyController {
                     } catch (IOException ignored) {
                     }
                 }));
+        lobbies.remove(lobby.getLobbyName());
+        CompletableFuture.runAsync(() -> lobbyListSocket.broadcastUpdates());
     }
 
     @PreDestroy
