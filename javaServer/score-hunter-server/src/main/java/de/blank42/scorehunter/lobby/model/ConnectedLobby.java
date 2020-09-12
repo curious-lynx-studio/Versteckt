@@ -7,25 +7,25 @@ import java.util.List;
 @RegisterForReflection
 public class ConnectedLobby {
 
-    private List<String> player;
+    private List<LobbyPlayer> players;
     private Lobby.GameMode gamemode;
     private int maxPlayerCount;
 
     public ConnectedLobby() {
     }
 
-    public ConnectedLobby(List<String> player, Lobby.GameMode gamemode, int maxPlayerCount) {
-        this.player = player;
+    public ConnectedLobby(List<LobbyPlayer> players, Lobby.GameMode gamemode, int maxPlayerCount) {
+        this.players = players;
         this.gamemode = gamemode;
         this.maxPlayerCount = maxPlayerCount;
     }
 
-    public List<String> getPlayer() {
-        return player;
+    public List<LobbyPlayer> LobbyPlayer() {
+        return players;
     }
 
-    public void setPlayer(List<String> player) {
-        this.player = player;
+    public void setPlayer(List<LobbyPlayer> players) {
+        this.players = players;
     }
 
     public Lobby.GameMode getGamemode() {

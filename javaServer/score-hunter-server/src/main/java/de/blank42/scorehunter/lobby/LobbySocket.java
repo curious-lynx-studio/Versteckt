@@ -14,6 +14,10 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 @ApplicationScoped
 @ServerEndpoint("/lobby/name/{lobbyName}")
@@ -22,13 +26,21 @@ public class LobbySocket {
     private static final Logger LOG = LoggerFactory.getLogger(LobbySocket.class);
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final Predicate<String> READY_PATTERN = Pattern.compile("^[a-zA-Z0-9]*:ready:true|false").asPredicate();
 
     @Inject
     LobbyController lobbyController;
 
     @OnMessage
     public void connectToLobby(Session session, @PathParam("lobbyName") String lobbyName, String message) throws IOException {
+        lobbyName = decodeLobbyName(lobbyName);
         try {
+            if (READY_PATTERN.test(message)) {
+                String[] parts = message.split(":");
+                String playerName = parts[0];
+                boolean ready = Boolean.parseBoolean(parts[2]);
+                lobbyController.setReadyState(lobbyName, playerName, ready);
+            }
             LobbyConnectRequest connectRequest = MAPPER.readValue(message, LobbyConnectRequest.class);
             lobbyController.connectToLobby(lobbyName, connectRequest, session);
             session.getAsyncRemote().sendText(MAPPER.writeValueAsString(lobbyController.getLobbyByName(lobbyName)));
@@ -41,12 +53,12 @@ public class LobbySocket {
 
     @OnClose
     public void removeSession(Session session, @PathParam("lobbyName") String lobbyName) {
+        lobbyName = decodeLobbyName(lobbyName);
         lobbyController.removeSession(session, lobbyName);
         broadcastUpdates(lobbyName);
     }
 
     public void broadcastUpdates(String lobbyName)  {
-        //TODO: Add ready state for player
         try {
             final String lobbyUpdate = MAPPER.writeValueAsString(lobbyController.getLobbyByName(lobbyName));
             lobbyController.getLobbySessions(lobbyName).forEach(session ->
@@ -55,5 +67,9 @@ public class LobbySocket {
         } catch (JsonProcessingException e) {
             LOG.error("Error processing lobby data", e);
         }
+    }
+
+    private String decodeLobbyName(String lobbyName) {
+        return URLDecoder.decode(lobbyName, StandardCharsets.UTF_8);
     }
 }

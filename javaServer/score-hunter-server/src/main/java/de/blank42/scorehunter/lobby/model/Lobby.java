@@ -36,22 +36,6 @@ public class Lobby {
         return lobbyName;
     }
 
-    public void setLobbyName(String lobbyName) {
-        this.lobbyName = lobbyName;
-    }
-
-    public int getMaxPlayerCount() {
-        return maxPlayerCount;
-    }
-
-    public void setMaxPlayerCount(int maxPlayerCount) {
-        this.maxPlayerCount = maxPlayerCount;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -93,16 +77,12 @@ public class Lobby {
         return connectedPlayers.size();
     }
 
-    public List<String> getConnectedPlayerNames() {
-        return connectedPlayers.stream().map(LobbyPlayer::getPlayerName).collect(Collectors.toList());
-    }
-
     public List<Session> getPlayerSessions() {
         return connectedPlayers.stream().map(LobbyPlayer::getSession).collect(Collectors.toList());
     }
 
     public ConnectedLobby toConnectedLobby() {
-        return new ConnectedLobby(getConnectedPlayerNames(), gameMode, maxPlayerCount);
+        return new ConnectedLobby(connectedPlayers, gameMode, maxPlayerCount);
     }
 
     public ListedLobby toListedLobby() {
@@ -111,7 +91,7 @@ public class Lobby {
     }
 
     public void addPlayer(String playerName, Session session) {
-        connectedPlayers.add(new LobbyPlayer(playerName, session));
+        connectedPlayers.add(new LobbyPlayer(playerName, session, !connectedPlayers.isEmpty()));
     }
 
     public void close()  {
