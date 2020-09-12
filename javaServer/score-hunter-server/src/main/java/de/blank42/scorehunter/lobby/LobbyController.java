@@ -79,7 +79,11 @@ public class LobbyController {
     }
 
     public ConnectedLobby getLobbyByName(String lobbyName) {
-        return lobbies.get(lobbyName).toConnectedLobby();
+        Lobby lobby = lobbies.get(lobbyName);
+        if (lobby != null) {
+            return lobby.toConnectedLobby();
+        }
+        return null;
     }
 
     public List<ListedLobby> getLobbyList() {
@@ -132,7 +136,7 @@ public class LobbyController {
 
 
     public void startGame(Lobby lobby) {
-        String startMessage = "Start_" + lobby.getGameUrl();
+        String startMessage = lobby.getGameUrl();
         lobby.getConnectedPlayers()
                 .stream()
                 .map(LobbyPlayer::getSession)

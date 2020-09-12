@@ -2,6 +2,7 @@ package de.blank42.scorehunter.lobby;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.blank42.scorehunter.lobby.model.ConnectedLobby;
 import de.blank42.scorehunter.lobby.model.LobbyConnectRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,10 +62,13 @@ public class LobbySocket {
 
     public void broadcastUpdates(String lobbyName)  {
         try {
-            final String lobbyUpdate = MAPPER.writeValueAsString(lobbyController.getLobbyByName(lobbyName));
-            lobbyController.getLobbySessions(lobbyName).forEach(session ->
-                    session.getAsyncRemote().sendText(lobbyUpdate)
-            );
+            ConnectedLobby lobby = lobbyController.getLobbyByName(lobbyName);
+            if (lobby != null) {
+                final String lobbyUpdate = MAPPER.writeValueAsString(lobby);
+                lobbyController.getLobbySessions(lobbyName).forEach(session ->
+                        session.getAsyncRemote().sendText(lobbyUpdate)
+                );
+            }
         } catch (JsonProcessingException e) {
             LOG.error("Error processing lobby data", e);
         }
