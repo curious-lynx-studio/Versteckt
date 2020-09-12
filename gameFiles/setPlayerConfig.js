@@ -1,6 +1,5 @@
 $(document).ready(function(){ 
     var name = localStorage.getItem('playerName');
-    console.log(name)
     if (name != false) {
         document.getElementById('nameInput').value = name;
     }
