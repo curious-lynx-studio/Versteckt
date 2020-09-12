@@ -59,12 +59,46 @@
                         <input  class="accordeon" type="checkbox" id="chck1">
                         <label class="tab-label" for="chck1">Host your own lobby:</label>
                         <div class="tab-content">
+
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroup-sizing-default">LobbyName:</span>
                             </div>
-                            <input type="text" class="form-control" aria-describedby="inputGroup-sizing-default">
+                            <input type="text" class="form-control" id="lobbyNameToSet" aria-describedby="inputGroup-sizing-default">
                           </div>
+
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="inputGroup-sizing-default">Password:</span>
+                            </div>
+                            <input type="text" class="form-control" aria-describedby="inputGroup-sizing-default" id="password">
+                          </div>
+
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <label class="input-group-text" for="inputGroupSelect01">Players:</label>
+                            </div>
+                            <select class="custom-select" id="selectPlayerCount">
+                              <option selected>Choose...</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                            </select>
+                          </div>
+
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <label class="input-group-text" for="inputGroupSelect01">Game Mode:</label>
+                            </div>
+                            <select class="custom-select" id="selectMode">
+                              <option selected>Choose...</option>
+                              <option value="DEATHMATCH">Deathmatch</option>
+                              <option value="SCOREHUNTER">ScoreHunter</option>
+                            </select>
+                          </div>
+
+                          <div class="btn btn-primary" onclick="startLobby()">Start Lobby<div></div>
                         </div>
                       </span>
                     </div>

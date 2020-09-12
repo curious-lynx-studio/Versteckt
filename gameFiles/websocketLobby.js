@@ -58,5 +58,24 @@ function connectToLobby(lobbyUrl) {
 
 function sendReady() {
     var playerName = localStorage.getItem('playerName');
-    lobbyWebSocket.send(playerName+':ready:false');
+    lobbyWebSocket.send(playerName+':ready:true');
+}
+
+function startLobby() {
+    xhr = new XMLHttpRequest(); 
+    var url = "http://blank42.de:9998/lobby/create"; 
+    xhr.open("POST", url, true); 
+    xhr.setRequestHeader("Content-type", "application/json"); 
+    xhr.onreadystatechange = function () {  
+        if (xhr.readyState == 4 && xhr.status == 200) { 
+            var json = JSON.parse(xhr.responseText); 
+            console.log(json.email + ", " + json.name) 
+        } 
+    } 
+    var gameMode = document.getElementById("selectMode").value;
+    var lobbyName = document.getElementById("lobbyNameToSet").value;
+    var maxPlayerCount = document.getElementById("selectPlayerCount").value;
+    var password = document.getElementById("password").value;
+    var data = JSON.stringify({gameMode:gameMode, lobbyName:lobbyName, maxPlayerCount:maxPlayerCount, password:password}); 
+    xhr.send(data); 
 }
