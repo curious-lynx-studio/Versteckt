@@ -33,6 +33,7 @@ public class LobbySocket {
 
     @OnMessage
     public void connectToLobby(Session session, @PathParam("lobbyName") String lobbyName, String message) throws IOException {
+        LOG.info("Lobby socket received message {}", message);
         lobbyName = decodeLobbyName(lobbyName);
         try {
             if (READY_PATTERN.test(message)) {
@@ -43,7 +44,6 @@ public class LobbySocket {
             }
             LobbyConnectRequest connectRequest = MAPPER.readValue(message, LobbyConnectRequest.class);
             lobbyController.connectToLobby(lobbyName, connectRequest, session);
-            session.getAsyncRemote().sendText(MAPPER.writeValueAsString(lobbyController.getLobbyByName(lobbyName)));
         } catch (Exception e) {
             LOG.error("Error connecting to lobby");
             session.close();

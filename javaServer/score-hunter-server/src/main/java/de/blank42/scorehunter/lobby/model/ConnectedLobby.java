@@ -20,7 +20,7 @@ public class ConnectedLobby {
         this.maxPlayerCount = maxPlayerCount;
     }
 
-    public List<LobbyPlayer> LobbyPlayer() {
+    public List<LobbyPlayer> getPlayers() {
         return players;
     }
 
