@@ -109,6 +109,8 @@ public class LobbyController {
                 });
         if (lobby.getMaxPlayerCount() <= lobby.getCurrentPlayerCount() && lobby.getConnectedPlayers().stream().allMatch(LobbyPlayer::isReady)) {
             startGame(lobby);
+        } else {
+            CompletableFuture.runAsync(() -> lobbySocket.broadcastUpdates(lobbyName));
         }
     }
 
