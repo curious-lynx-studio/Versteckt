@@ -7,6 +7,8 @@ import javax.websocket.Session;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RegisterForReflection
 public class GameData {
@@ -35,6 +37,10 @@ public class GameData {
         players.put(id, new Player(id, playerSession));
     }
 
+    public Player getPlayerByName(String playerName) {
+        return players.get(playerName);
+    }
+
     public void updateData(Player playerUpdate) {
         Player playerToUpdate = players.get(playerUpdate.getId());
         playerToUpdate.updateData(playerUpdate);
@@ -44,8 +50,11 @@ public class GameData {
         players.remove(playerToRemove.getId());
     }
 
-    public void calculateBombDamage(Position bombPosition) {
-        players.values().forEach(player -> player.updateBombDamage(bombPosition));
+    public Stream<BombDamage> calculateBombDamage(Bomb explodedBomb) {
+        return players.values()
+                .stream()
+                .map(player -> player.updateBombDamage(explodedBomb));
     }
+
 
 }

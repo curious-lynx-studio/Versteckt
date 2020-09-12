@@ -129,16 +129,22 @@ public class Player {
         return wsSession.equals(otherSession);
     }
 
-    public void updateBombDamage(Position bombPosition) {
+    public BombDamage updateBombDamage(Bomb explodedBomb) {
+        Position bombPosition = new Position(explodedBomb.getX(), explodedBomb.getY());
         double distanceToBomb = bombPosition.getDistance(x, y);
         System.out.println(distanceToBomb);
+        int damage;
         if (distanceToBomb < 42) {
-            health = 0;
-            return;
+            damage = 100;
+        } else {
+            damage = 128 - (int) (1.5 * distanceToBomb);
+            damage = Math.max(damage, 0);
         }
-        int damage = 128 -  (int) (1.5 * distanceToBomb);
-        if (damage > 0) {
-            health -= Math.min(damage, health);
-        }
+        health -= Math.min(damage, health);
+        return new BombDamage(explodedBomb.getPlantedBy(), damage);
+    }
+
+    public void regenerateHealth(int damageDealt) {
+        health = Math.min(100, health + ((int) (damageDealt * .8)));
     }
 }

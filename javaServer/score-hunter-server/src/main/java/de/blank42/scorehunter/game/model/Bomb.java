@@ -10,6 +10,7 @@ public class Bomb {
 
     private int x;
     private int y;
+    private String plantedBy;
     private State state;
 
     @JsonIgnore
@@ -36,17 +37,25 @@ public class Bomb {
         this.y = y;
     }
 
+    public String getPlantedBy() {
+        return plantedBy;
+    }
+
+    public void setPlantedBy(String plantedBy) {
+        this.plantedBy = plantedBy;
+    }
+
     public State getState() {
         return state;
     }
 
-    public Position updateState() {
+    public Bomb updateState() {
         long now = System.currentTimeMillis();
         if (now - timeUpdated > 1000L && state != State.EXPLODED) {
             timeUpdated = now;
             state = state.getNextState();
             if (state == State.EXPLODED) {
-                return new Position(x, y);
+                return this;
             }
         }
         return null;

@@ -84,7 +84,12 @@ public class GameController {
         gameData.getBombs().stream()
                 .map(Bomb::updateState)
                 .filter(Objects::nonNull)
-                .forEach(gameData::calculateBombDamage);
+                .flatMap(gameData::calculateBombDamage)
+                .forEach(bombDamage -> {
+                    Player playerToUpdate = gameData.getPlayerByName(bombDamage.getPlantedBy());
+                    playerToUpdate.regenerateHealth(bombDamage.getDamageDealt());
+                    //TODO: Implement scoreboard
+                });
         gameData.getBombs().removeIf(Bomb::toRemove);
     }
 
