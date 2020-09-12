@@ -1,5 +1,5 @@
 var socketName = localStorage.getItem('gameLobbyWS');
-var webSocket = new WebSocket("ws://blank42.de:9998/socketName");
+var webSocket = new WebSocket(socketName);
 let id= "";
 let lastOtherClientArray;
 let playerHealth = 100;
