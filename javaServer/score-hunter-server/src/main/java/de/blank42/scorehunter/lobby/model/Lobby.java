@@ -49,12 +49,8 @@ public class Lobby {
         SCOREHUNTER;
     }
 
-    public void setGameMode(GameMode gamemode) {
-        this.gameMode = gamemode;
-    }
-
-    public GameMode getGameMode() {
-        return gameMode;
+    public int getMaxPlayerCount() {
+        return maxPlayerCount;
     }
 
     public boolean isPasswordSecured() {
@@ -100,7 +96,7 @@ public class Lobby {
     }
 
     public void addPlayer(String playerName, Session session) {
-        connectedPlayers.add(new LobbyPlayer(playerName, session, !connectedPlayers.isEmpty()));
+        connectedPlayers.add(new LobbyPlayer(playerName, session));
     }
 
     public void close()  {

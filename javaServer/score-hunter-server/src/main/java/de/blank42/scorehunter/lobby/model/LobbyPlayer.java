@@ -9,7 +9,6 @@ import javax.websocket.Session;
 public class LobbyPlayer {
 
     private String playerName;
-    private boolean lobbyLeader;
     private boolean ready;
 
     @JsonIgnore
@@ -18,10 +17,9 @@ public class LobbyPlayer {
     public LobbyPlayer() {
     }
 
-    public LobbyPlayer(String playerName, Session session, boolean lobbyLeader) {
+    public LobbyPlayer(String playerName, Session session) {
         this.playerName = playerName;
         this.session = session;
-        this.lobbyLeader = lobbyLeader;
         this.ready = false;
     }
 
@@ -31,14 +29,6 @@ public class LobbyPlayer {
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
-    }
-
-    public boolean isLobbyLeader() {
-        return lobbyLeader;
-    }
-
-    public void setLobbyLeader(boolean lobbyLeader) {
-        this.lobbyLeader = lobbyLeader;
     }
 
     public boolean isReady() {
