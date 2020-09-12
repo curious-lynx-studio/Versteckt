@@ -37,7 +37,7 @@ webSocket.onmessage = (message) => {
         }
         lastOtherClientArray = obj['players'];
 
-        if(gameStart === true) {www
+        if(gameStart === true) {
             spawnTheBoss();
             gameStart = false;
         }
