@@ -2,6 +2,7 @@ var webSocket = new WebSocket("ws://blank42.de:9998/positions");
 let id= "";
 let lastOtherClientArray;
 let playerHealth = 100;
+let gameStart = true;
 
 webSocket.onmessage = (message) => {
     if (message.data.match(/^id=/)) {
@@ -35,6 +36,11 @@ webSocket.onmessage = (message) => {
             });
         }
         lastOtherClientArray = obj['players'];
+
+        if(gameStart === true) {www
+            spawnTheBoss();
+            gameStart = false;
+        }
     }
 }
 
@@ -86,7 +92,7 @@ function sendBombDropToServer(x,y) {
     y = y.slice(0, -2); 
     x = parseInt(x, 10);
     y = parseInt(y, 10);
-    let data = {bombs:{x: x, y: y}};
+    let data = {bombs:{x: x, y: y}, playerId:id};
     webSocket.send(JSON.stringify(data));
 }
 

@@ -1,7 +1,3 @@
-$(document).ready(function(){ 
-    spawnTheBoss();
-}) 
-
 function spawnTheBoss() {
     var bossUrug = document.createElement("div");
     bossUrug.id = "bossUrug";
