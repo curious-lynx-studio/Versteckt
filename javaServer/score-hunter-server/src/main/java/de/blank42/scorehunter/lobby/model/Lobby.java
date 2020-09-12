@@ -73,6 +73,15 @@ public class Lobby {
                 URLEncoder.encode(lobbyName, StandardCharsets.UTF_8));
     }
 
+
+    public String getGameUrl() {
+        Config config = ConfigProvider.getConfig();
+        String serverUrl = config.getValue("server.url", String.class);
+        int port = config.getValue("quarkus.http.port", Integer.class);
+        return String.format("ws://%s:%d/game/%s", serverUrl, port,
+                URLEncoder.encode(lobbyName, StandardCharsets.UTF_8));
+    }
+
     public int getCurrentPlayerCount() {
         return connectedPlayers.size();
     }

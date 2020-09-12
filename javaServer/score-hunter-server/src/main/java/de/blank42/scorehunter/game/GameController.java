@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.blank42.scorehunter.game.model.Bomb;
 import de.blank42.scorehunter.game.model.GameData;
 import de.blank42.scorehunter.game.model.Player;
-import io.quarkus.scheduler.Scheduled;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +16,6 @@ import javax.websocket.Session;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 
 @ApplicationScoped
 public class GameController {
@@ -71,16 +69,24 @@ public class GameController {
                 .ifPresent(gameData::removePlayer);
     }
 
-    @Scheduled(every = "10s", delay = 60, delayUnit = TimeUnit.SECONDS)
-    void removeUnusedSessions() {
+    private String getGameDataAsString() {
+        String result = "{bombs:[], players:[]}";
+        try {
+            result = DEFAULT_MAPPER.writeValueAsString(gameData);
+        } catch (JsonProcessingException e) {
+            LOG.info("Error serializing game data", e);
+        }
+        return result;
+    }
+
+    public void removeUnusedSessions() {
         gameData.getPlayers()
                 .stream()
                 .filter(Player::isInactive)
                 .forEach(Player::closeConnection);
     }
 
-    @Scheduled(every = "0.1s")
-    void updateBombs() {
+    public void updateBombs() {
         gameData.getBombs().stream()
                 .map(Bomb::updateState)
                 .filter(Objects::nonNull)
@@ -91,16 +97,6 @@ public class GameController {
                     //TODO: Implement scoreboard
                 });
         gameData.getBombs().removeIf(Bomb::toRemove);
-    }
-
-    private String getGameDataAsString() {
-        String result = "{bombs:[], players:[]}";
-        try {
-            result = DEFAULT_MAPPER.writeValueAsString(gameData);
-        } catch (JsonProcessingException e) {
-            LOG.info("Error serializing game data", e);
-        }
-        return result;
     }
 
     @PreDestroy

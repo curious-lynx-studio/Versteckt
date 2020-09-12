@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.blank42.scorehunter.lobby.exception.LobbyAlreadyExistsException;
 import de.blank42.scorehunter.lobby.exception.LobbyIsFullException;
 import de.blank42.scorehunter.lobby.exception.LobbyNotFoundException;
+import de.blank42.scorehunter.lobby.exception.NotAllPlayersReadyException;
 import de.blank42.scorehunter.lobby.model.Lobby;
 import de.blank42.scorehunter.lobby.model.LobbyConnectRequest;
 import de.blank42.scorehunter.lobby.model.LobbyCreateRequest;
@@ -29,6 +30,15 @@ public class LobbyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String createLobby(LobbyCreateRequest lobby) throws LobbyAlreadyExistsException {
         return lobbyController.addLobby(lobby);
+    }
+
+    @POST
+    @Path("/startGame")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String startGame(String gameToStart) throws NotAllPlayersReadyException {
+        lobbyController.startGame(gameToStart);
+        return "Game is starting!";
     }
 
 }

@@ -9,7 +9,9 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
+import java.util.concurrent.TimeUnit;
 
+@Deprecated(forRemoval = true)
 @ApplicationScoped
 @ServerEndpoint("/positions")
 public class MessageSocket {
@@ -35,5 +37,15 @@ public class MessageSocket {
     @Scheduled(every = "0.01s")
     public void sendUpdates() {
         gameController.sendUpdate();
+    }
+
+    @Scheduled(every = "10s", delay = 60, delayUnit = TimeUnit.SECONDS)
+    void removeUnusedSessions() {
+        gameController.removeUnusedSessions();
+    }
+
+    @Scheduled(every = "0.1s")
+    void updateBombs() {
+        gameController.updateBombs();
     }
 }

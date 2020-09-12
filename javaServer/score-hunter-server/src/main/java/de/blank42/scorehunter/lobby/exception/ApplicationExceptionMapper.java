@@ -8,13 +8,14 @@ import javax.ws.rs.ext.Provider;
 public class ApplicationExceptionMapper implements ExceptionMapper<Exception> {
     @Override
     public Response toResponse(Exception e) {
-        Response.ResponseBuilder response ;
+        Response.ResponseBuilder response;
         if (e instanceof LobbyAlreadyExistsException) {
-            response = Response.status(Response.Status.CONFLICT).entity(e.getMessage());
+            response = Response.status(Response.Status.CONFLICT);
+        } else if (e instanceof NotAllPlayersReadyException){
+            response = Response.status(Response.Status.BAD_REQUEST);
         } else {
-            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage());
+            response = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
         }
-
-        return response.build();
+        return response.entity(e.getMessage()).build();
     }
 }

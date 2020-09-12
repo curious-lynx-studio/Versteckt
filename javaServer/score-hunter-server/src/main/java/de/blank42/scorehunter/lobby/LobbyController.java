@@ -16,6 +16,7 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.websocket.Session;
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -114,10 +115,23 @@ public class LobbyController {
         lobbies.remove(lobbyName);
     }
 
+
+    public void startGame(String lobbyName) {
+        Lobby lobby = lobbies.get(lobbyName);
+        String startMessage = "Start_" + lobby.getGameUrl();
+        lobby.getConnectedPlayers()
+                .stream()
+                .map(LobbyPlayer::getSession)
+                .forEach(session -> session.getAsyncRemote().sendText(startMessage, result -> {
+                    try {
+                        session.close();
+                    } catch (IOException ignored) {
+                    }
+                }));
+    }
+
     @PreDestroy
     void shutdown() {
         lobbies.values().forEach(Lobby::close);
     }
-
-
 }
