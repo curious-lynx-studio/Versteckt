@@ -58,6 +58,7 @@ function connectToLobby(lobbyUrl) {
     lobbyWebSocket.onmessage = (message) => {
         if (message.data.match(/^ws/)) {
             localStorage.setItem('gameLobbyWS', message.data);
+            window.open("game.html","_self");
         } else {
         const obj = JSON.parse(message.data);
         console.log(obj);
