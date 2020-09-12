@@ -45,7 +45,7 @@ public class Lobby {
     }
 
     public static enum GameMode {
-        DEATHMATH,
+        DEATHMATCH,
         SCOREHUNTER;
     }
 

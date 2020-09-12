@@ -11,6 +11,8 @@ import de.blank42.scorehunter.lobby.model.LobbyConnectRequest;
 import de.blank42.scorehunter.lobby.model.LobbyCreateRequest;
 import de.blank42.scorehunter.lobby.model.LobbyPlayer;
 import io.quarkus.security.UnauthorizedException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -28,6 +30,8 @@ import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class LobbyController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(LobbyController.class);
 
     Map<String, Lobby> lobbies;
 
@@ -54,17 +58,21 @@ public class LobbyController {
     }
 
     public void connectToLobby(String lobbyName, LobbyConnectRequest connectRequest, Session session) throws LobbyNotFoundException, LobbyIsFullException {
+        LOG.info("Received connect request for lobby {} from {}", lobbyName, connectRequest.getPlayerName());
         Lobby lobby = lobbies.values().stream()
                 .filter(lob -> lob.getLobbyName().equals(lobbyName))
                 .findFirst()
                 .orElseThrow(LobbyNotFoundException::new);
         if (lobby.isPasswordSecured() && !lobby.getPassword().equals(connectRequest.getPassword())) {
+            LOG.error("Wrong password");
             throw new UnauthorizedException("Wrong password");
         }
         if (lobby.isFull()) {
+            LOG.error("Lobby is full");
             throw new LobbyIsFullException();
         }
         lobby.addPlayer(connectRequest.getPlayerName(), session);
+        LOG.info("Connect successful");
         CompletableFuture.runAsync(() -> {
             lobbyListSocket.broadcastUpdates();
             lobbySocket.broadcastUpdates(lobbyName);
