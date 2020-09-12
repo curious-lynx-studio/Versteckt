@@ -3,6 +3,7 @@ package de.blank42.scorehunter.lobby;
 import de.blank42.scorehunter.lobby.exception.LobbyAlreadyExistsException;
 import de.blank42.scorehunter.lobby.exception.LobbyIsFullException;
 import de.blank42.scorehunter.lobby.exception.LobbyNotFoundException;
+import de.blank42.scorehunter.lobby.exception.NotAllPlayersReadyException;
 import de.blank42.scorehunter.lobby.model.ConnectedLobby;
 import de.blank42.scorehunter.lobby.model.ListedLobby;
 import de.blank42.scorehunter.lobby.model.Lobby;
@@ -116,9 +117,12 @@ public class LobbyController {
     }
 
 
-    public void startGame(String lobbyName) {
+    public void startGame(String lobbyName) throws NotAllPlayersReadyException {
         Lobby lobby = lobbies.get(lobbyName);
         String startMessage = "Start_" + lobby.getGameUrl();
+        if (lobby.getConnectedPlayers().stream().anyMatch(player -> !player.isReady())) {
+            throw new NotAllPlayersReadyException();
+        }
         lobby.getConnectedPlayers()
                 .stream()
                 .map(LobbyPlayer::getSession)
