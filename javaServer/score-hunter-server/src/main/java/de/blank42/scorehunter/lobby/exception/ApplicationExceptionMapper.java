@@ -11,8 +11,6 @@ public class ApplicationExceptionMapper implements ExceptionMapper<Exception> {
         Response.ResponseBuilder response;
         if (e instanceof LobbyAlreadyExistsException) {
             response = Response.status(Response.Status.CONFLICT);
-        } else if (e instanceof NotAllPlayersReadyException){
-            response = Response.status(Response.Status.BAD_REQUEST);
         } else {
             response = Response.status(Response.Status.INTERNAL_SERVER_ERROR);
         }

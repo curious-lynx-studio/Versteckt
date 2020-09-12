@@ -41,9 +41,10 @@ public class LobbySocket {
                 String playerName = parts[0];
                 boolean ready = Boolean.parseBoolean(parts[2]);
                 lobbyController.setReadyState(lobbyName, playerName, ready);
+            } else {
+                LobbyConnectRequest connectRequest = MAPPER.readValue(message, LobbyConnectRequest.class);
+                lobbyController.connectToLobby(lobbyName, connectRequest, session);
             }
-            LobbyConnectRequest connectRequest = MAPPER.readValue(message, LobbyConnectRequest.class);
-            lobbyController.connectToLobby(lobbyName, connectRequest, session);
         } catch (Exception e) {
             LOG.error("Error connecting to lobby");
             session.close();
