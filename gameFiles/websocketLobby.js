@@ -78,8 +78,8 @@ function startLobby() {
     xhr.setRequestHeader("Content-type", "application/json"); 
     xhr.onreadystatechange = function () {  
         if (xhr.readyState == 4 && xhr.status == 200) { 
-            var json = JSON.parse(xhr.responseText); 
-            console.log(json.email + ", " + json.name) 
+            var lobbyUrl = xhr.responseText; 
+            connectToLobby(lobbyUrl);
         } 
     } 
     var gameMode = document.getElementById("selectMode").value;
