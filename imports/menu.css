@@ -19,7 +19,8 @@ h4 {
 }
 
 table {
-    color: black !important;
+    color: white !important;
+    text-align: left;
 }
 
 .table-dark {
@@ -55,9 +56,7 @@ h2 {
 }
 /* Accordion styles */
 .tabs {
-    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
 }
 .tab {
     width: 100%;
@@ -68,7 +67,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     padding: 1em;
-    background: darkred;
+    background: #4a0c0f;
     font-weight: bold;
     cursor: pointer;
    /* Icon */
@@ -86,7 +85,7 @@ h2 {
 .tab-content {
     max-height: 0;
     padding: 0 1em;
-    color: darkred;
+    color: #4a0c0f;
     background:#755d5da6;
     transition: all 0.35s;
 }
@@ -95,14 +94,14 @@ h2 {
     justify-content: flex-end;
     padding: 1em;
     font-size: 0.75em;
-    background: darkred;
+    background: #4a0c0f;
     cursor: pointer;
 }
 .tab-close:hover {
-    background: darkred;
+    background: #4a0c0f;
 }
 input:checked + .tab-label {
-    background: darkred;
+    background: #4a0c0f;
 }
 input:checked + .tab-label::after {
     transform: rotate(90deg);
@@ -115,4 +114,13 @@ input:checked ~ .tab-content {
 .spinner-border {
     width: 8rem;
     height: 8rem;
+}
+
+.banner {
+    background-image: url(../gameAssets/gameName.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 100px;
+    width: 100%;
 }
