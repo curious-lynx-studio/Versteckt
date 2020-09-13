@@ -92,8 +92,10 @@ public class GameController {
                 .filter(Objects::nonNull)
                 .flatMap(gameData::calculateBombDamage)
                 .forEach(bombDamage -> {
-                    Player playerToUpdate = gameData.getPlayerByName(bombDamage.getPlantedBy());
-                    playerToUpdate.regenerateHealth(bombDamage.getDamageDealt());
+                    if (!bombDamage.getPlantedBy().equals(bombDamage.getGivenTo().getName())) {
+                        Player playerToUpdate = gameData.getPlayerByName(bombDamage.getPlantedBy());
+                        playerToUpdate.regenerateHealth(bombDamage.getDamageDealt());
+                    }
                     //TODO: Implement scoreboard
                 });
         gameData.getBombs().removeIf(Bomb::toRemove);

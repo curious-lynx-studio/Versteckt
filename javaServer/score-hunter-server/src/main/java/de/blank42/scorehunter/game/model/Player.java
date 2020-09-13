@@ -140,7 +140,7 @@ public class Player {
             damage = Math.max(damage, 0);
         }
         health -= Math.min(damage, health);
-        return new BombDamage(explodedBomb.getPlantedBy(), damage);
+        return new BombDamage(explodedBomb.getPlantedBy(),this, damage);
     }
 
     public void regenerateHealth(int damageDealt) {
