@@ -132,7 +132,6 @@ public class Player {
     public BombDamage updateBombDamage(Bomb explodedBomb) {
         Position bombPosition = new Position(explodedBomb.getX(), explodedBomb.getY());
         double distanceToBomb = bombPosition.getDistance(x, y);
-        System.out.println(distanceToBomb);
         int damage;
         if (distanceToBomb < 42) {
             damage = 100;

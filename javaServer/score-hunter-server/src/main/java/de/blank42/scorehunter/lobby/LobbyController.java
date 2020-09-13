@@ -15,8 +15,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.websocket.Session;
 import java.io.IOException;
 import java.util.Comparator;
@@ -27,7 +27,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-@ApplicationScoped
+@Singleton
 public class LobbyController {
 
     private static final Logger LOG = LoggerFactory.getLogger(LobbyController.class);
@@ -46,13 +46,16 @@ public class LobbyController {
     }
 
     public String addLobby(LobbyCreateRequest lobbyRequest) throws LobbyAlreadyExistsException {
+        LOG.info("Start creating lobby {}", lobbyRequest.getLobbyName());
         final String lobbyName = lobbyRequest.getLobbyName();
         if (lobbies.values().stream().anyMatch(savedLobby -> savedLobby.getLobbyName().equals(lobbyName))) {
+            LOG.info("Creation stopped, lobby does already exist");
             throw new LobbyAlreadyExistsException();
         }
         Lobby lobby = lobbyRequest.toLobby();
         lobbies.put(lobbyName, lobby);
         CompletableFuture.runAsync(() -> lobbyListSocket.broadcastUpdates());
+        LOG.info("Lobby successfully created");
         return lobby.getLobbyUrl();
     }
 

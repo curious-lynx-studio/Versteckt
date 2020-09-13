@@ -34,7 +34,7 @@ public class LobbyListSocket {
         try {
             session.getAsyncRemote().sendText(MAPPER.writeValueAsString(lobbyController.getLobbyList()));
         } catch (JsonProcessingException e) {
-            LOG.error("Error processing lobby list", e);
+            LOG.error("Error processing lobby list");
         }
     }
 
@@ -45,10 +45,11 @@ public class LobbyListSocket {
 
     public void broadcastUpdates() {
         try {
+            LOG.info("Sending lobby update");
             final String updateData = MAPPER.writeValueAsString(lobbyController.getLobbyList());
             sessions.forEach(session -> session.getAsyncRemote().sendText(updateData));
         } catch (JsonProcessingException e) {
-            LOG.error("Error processing lobby list", e);
+            LOG.error("Error processing lobby list");
         }
     }
 }
