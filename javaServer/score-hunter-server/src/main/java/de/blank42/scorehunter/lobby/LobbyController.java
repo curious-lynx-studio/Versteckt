@@ -1,5 +1,6 @@
 package de.blank42.scorehunter.lobby;
 
+import de.blank42.scorehunter.game.GameSocket;
 import de.blank42.scorehunter.lobby.exception.LobbyAlreadyExistsException;
 import de.blank42.scorehunter.lobby.exception.LobbyIsFullException;
 import de.blank42.scorehunter.lobby.exception.LobbyNotFoundException;
@@ -40,6 +41,9 @@ public class LobbyController {
     @Inject
     LobbyListSocket lobbyListSocket;
 
+    @Inject
+    GameSocket gameSocket;
+
     @PostConstruct
     void init() {
         lobbies = new ConcurrentHashMap<>();
@@ -48,7 +52,8 @@ public class LobbyController {
     public String addLobby(LobbyCreateRequest lobbyRequest) throws LobbyAlreadyExistsException {
         LOG.info("Start creating lobby {}", lobbyRequest.getLobbyName());
         final String lobbyName = lobbyRequest.getLobbyName();
-        if (lobbies.values().stream().anyMatch(savedLobby -> savedLobby.getLobbyName().equals(lobbyName))) {
+        if (lobbies.values().stream().anyMatch(savedLobby -> savedLobby.getLobbyName().equals(lobbyName))
+                || gameSocket.getRunningGames().stream().anyMatch(runningLobbyName -> runningLobbyName.equals(lobbyName))) {
             LOG.info("Creation stopped, lobby does already exist");
             throw new LobbyAlreadyExistsException();
         }
@@ -139,7 +144,9 @@ public class LobbyController {
 
 
     public void startGame(Lobby lobby) {
+        LOG.info("Game {} starting", lobby.getLobbyName());
         String startMessage = lobby.getGameUrl();
+        gameSocket.createController(lobby.getLobbyName(), lobby.getGameMode());
         lobby.getConnectedPlayers()
                 .stream()
                 .map(LobbyPlayer::getSession)

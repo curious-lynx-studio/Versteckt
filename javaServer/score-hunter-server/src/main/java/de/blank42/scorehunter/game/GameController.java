@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.blank42.scorehunter.game.model.Bomb;
 import de.blank42.scorehunter.game.model.GameData;
 import de.blank42.scorehunter.game.model.Player;
+import de.blank42.scorehunter.lobby.model.Lobby;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,8 +31,14 @@ public class GameController {
     private GameData gameData;
 
     @PostConstruct
+    //TODO: Move to constructor once MessageSocket is removed
     void init() {
         gameData = new GameData(new ConcurrentHashMap<>(), new ArrayList<>());
+    }
+
+    //TODO: Move to constructor once MessageSocket is removed
+    public void setGameMode(Lobby.GameMode gameMode) {
+        gameData.setGameMode(gameMode);
     }
 
     public void addPlayer(Session playerSession) {
@@ -70,7 +77,7 @@ public class GameController {
     }
 
     private String getGameDataAsString() {
-        String result = "{bombs:[], players:[]}";
+        String result = "{bombs:[], players:[], gameMode:\"\"}";
         try {
             result = DEFAULT_MAPPER.writeValueAsString(gameData);
         } catch (JsonProcessingException e) {
@@ -92,7 +99,7 @@ public class GameController {
                 .filter(Objects::nonNull)
                 .flatMap(gameData::calculateBombDamage)
                 .forEach(bombDamage -> {
-                    if (!bombDamage.getPlantedBy().equals(bombDamage.getGivenTo().getName())) {
+                    if (!bombDamage.getPlantedBy().equals(bombDamage.getGivenTo().getId())) {
                         Player playerToUpdate = gameData.getPlayerByName(bombDamage.getPlantedBy());
                         playerToUpdate.regenerateHealth(bombDamage.getDamageDealt());
                     }
