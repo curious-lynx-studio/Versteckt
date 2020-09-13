@@ -49,6 +49,11 @@ public class Lobby {
         SCOREHUNTER;
     }
 
+    public GameMode getGameMode() {
+        return gameMode;
+    }
+
+
     public int getMaxPlayerCount() {
         return maxPlayerCount;
     }

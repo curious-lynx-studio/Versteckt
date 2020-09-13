@@ -34,7 +34,6 @@ public class LobbySocket {
 
     @OnMessage
     public void connectToLobby(Session session, @PathParam("lobbyName") String lobbyName, String message) throws IOException {
-        LOG.info("Lobby socket received message {}", message);
         lobbyName = decodeLobbyName(lobbyName);
         try {
             if (READY_PATTERN.test(message)) {

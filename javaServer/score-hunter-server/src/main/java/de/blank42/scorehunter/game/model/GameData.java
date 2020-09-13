@@ -1,6 +1,7 @@
 package de.blank42.scorehunter.game.model;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import de.blank42.scorehunter.lobby.model.Lobby;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 import javax.websocket.Session;
@@ -15,6 +16,7 @@ public class GameData {
 
     private Map<String, Player> players;
     private List<Bomb> bombs;
+    private Lobby.GameMode gameMode;
 
     public GameData() {
     }
@@ -31,6 +33,14 @@ public class GameData {
 
     public List<Bomb> getBombs() {
         return bombs;
+    }
+
+    public void setGameMode(Lobby.GameMode gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public Lobby.GameMode getGameMode() {
+        return gameMode;
     }
 
     public void addPlayer(String id, Session playerSession) {
@@ -55,6 +65,5 @@ public class GameData {
                 .stream()
                 .map(player -> player.updateBombDamage(explodedBomb));
     }
-
 
 }
