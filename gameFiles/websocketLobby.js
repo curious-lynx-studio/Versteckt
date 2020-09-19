@@ -61,7 +61,7 @@ function connectToLobby(lobbyUrl) {
             window.open("game.html","_self");
         } else {
         const obj = JSON.parse(message.data);
-        console.log(obj);
+        localStorage.setItem('gameMode', obj.gamemode);
         }
     }
 }

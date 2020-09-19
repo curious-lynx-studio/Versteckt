@@ -1,4 +1,5 @@
 var socketName = localStorage.getItem('gameLobbyWS');
+var gameMode = localStorage.getItem('gameMode');
 var webSocket = new WebSocket(socketName);
 let id= "";
 let lastOtherClientArray;
@@ -39,7 +40,12 @@ webSocket.onmessage = (message) => {
         lastOtherClientArray = obj['players'];
 
         if(gameStart === true) {
-            spawnTheBoss();
+            if (gameMode == "DEATHMATCH") {
+                console.log("Deathmatch")
+            }
+            if (gameMode == "SCOREHUNTER") {
+                spawnTheBoss();
+            }
             gameStart = false;
         }
     }
