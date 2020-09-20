@@ -47,6 +47,7 @@ function connectToLobby(lobbyUrl) {
                     <br><br><br>
                     <div class="btn btn-primary" onclick="sendReady()">Ready?<div>
                 </div>
+                <div id="readyPlayers"></div>
             </div> 
         `;
     };
@@ -62,6 +63,12 @@ function connectToLobby(lobbyUrl) {
         } else {
         const obj = JSON.parse(message.data);
         localStorage.setItem('gameMode', obj.gamemode);
+        console.log(obj);
+        document.getElementById('readyPlayers').innerHTML = '';
+        obj.players.forEach(player => {
+            console.log(player.ready);
+            document.getElementById('readyPlayers').innerHTML += player.playerName +'  :  '+ player.ready + '<br>';
+        });
         }
     }
 }
