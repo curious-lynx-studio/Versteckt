@@ -8,8 +8,6 @@ async function playerDeathFunction() {
     document.getElementById("player").className = "playerDeath";
     await sleep(200);
     document.getElementById("gameOverScreen").style.visibility = "visible";
-    await sleep(2000);
-    window.open("index.html","_self");
 }
 
 function otherPlayerDeathFunction(id) {

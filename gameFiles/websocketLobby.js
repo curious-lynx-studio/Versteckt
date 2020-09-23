@@ -37,7 +37,7 @@ function connectToLobby(lobbyUrl) {
         let data = {playerName: playerName, password: password};
         lobbyWebSocket.send(JSON.stringify(data));
         document.getElementById("body").innerHTML = `
-            <div class="container">
+            <div class="container center">
                 <div class="jumbotron mainJumbotron">
                     <h4>Wait for all players to be ready.</h4>
                     <br><br>
@@ -45,10 +45,10 @@ function connectToLobby(lobbyUrl) {
                         <span class="sr-only"></span>
                     </div>
                     <br><br><br>
-                    <div class="btn btn-primary" onclick="sendReady()">Ready?<div>
+                    <div class="btn btn-primary btn-block spacer" onclick="sendReady()">Ready?<div>
                 </div>
-                <div id="readyPlayers"></div>
             </div> 
+            <div id="readyPlayers"></div>
         `;
     };
 
@@ -67,7 +67,11 @@ function connectToLobby(lobbyUrl) {
         document.getElementById('readyPlayers').innerHTML = '';
         obj.players.forEach(player => {
             console.log(player.ready);
-            document.getElementById('readyPlayers').innerHTML += player.playerName +'  :  '+ player.ready + '<br>';
+            if(player.ready == true) {
+                document.getElementById('readyPlayers').innerHTML += '<div class="alert alert-secondary">'+player.playerName +'  :  ✅<br></div>';
+            } else {
+                document.getElementById('readyPlayers').innerHTML += '<div class="alert alert-secondary">'+player.playerName +'  :  ❌<br></div>';
+            }
         });
         }
     }

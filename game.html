@@ -16,15 +16,17 @@
         <link rel="preload" href="gameFiles/bossUrug.js" as="script">
     </head>
     <body>
-        <div id="gameOverScreen" class="gameOverScreen"><h1 class="gameOverText">YOU DIED</h1></div>
-        <div id="gameArea" class="gameArea">
-            <div id="player" class="player"></div>
-        </div>
-        <div id="gameInfoBar" class="gameInfoBar d-flex justify-content-between">
+        <div class="fullWindow">
+            <div id="gameInfoBar" class="gameInfoBar d-flex justify-content-between">
                 <div id="bombCount" class="bombCountBar d-flex justify-content-start"></div>
                 <div id="playerHealth" class="healthBarOutline">
                     <div id="playerInnerHealth" class="healthBarInline"></div>
                 </div>
+            </div>
+            <div id="gameOverScreen" class="gameOverScreen"><h1 class="gameOverText">YOU DIED</h1></div>
+            <div id="gameArea" class="gameArea">
+                <div id="player" class="player"></div>
+            </div>
         </div>
     </body>
     <script type="text/javascript" src="gameFiles/websocketGame.js"></script>

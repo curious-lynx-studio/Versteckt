@@ -124,3 +124,11 @@ input:checked ~ .tab-content {
     height: 100px;
     width: 100%;
 }
+
+.spacer {
+    margin-bottom: 40px;
+}
+
+.center {
+    margin-top: 15%;
+}

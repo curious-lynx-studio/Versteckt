@@ -1,3 +1,15 @@
+body {
+    overflow:hidden;
+}
+
+.fullWindow {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
 .gameArea {
     display: block;
     margin: 0 auto;
