@@ -65,12 +65,14 @@ function connectToLobby(lobbyUrl) {
         localStorage.setItem('gameMode', obj.gamemode);
         console.log(obj);
         document.getElementById('readyPlayers').innerHTML = '';
-        obj.players.forEach(player => {
-            console.log(player.ready);
+        obj.players.forEach((player, index) => {
             if(player.ready == true) {
                 document.getElementById('readyPlayers').innerHTML += '<div class="alert alert-secondary">'+player.playerName +'  :  ✅<br></div>';
             } else {
                 document.getElementById('readyPlayers').innerHTML += '<div class="alert alert-secondary">'+player.playerName +'  :  ❌<br></div>';
+            }
+            if(player.playerName === localStorage.getItem('playerName')) {
+                localStorage.setItem('playerModel', index)
             }
         });
         }

@@ -2,7 +2,6 @@
     height: 50px;
     width: 32px;
     position: relative;
-    background-image: url(../gameAssets/Character/blue_down.png);
     background-repeat: no-repeat;
     background-position: bottom;
     color: white;
@@ -14,12 +13,75 @@
     height: 50px;
     width: 32px;
     position: absolute;
-    background-image: url(../gameAssets/Character/red_down.png);
     background-repeat: no-repeat;
     background-position: bottom;
     color: white;
     display: flex;
     justify-content: center;
+}
+
+.playerRed--Down{
+    background-image: url(../gameAssets/Character/red_down.png);
+}
+
+.playerBlue--Down{
+    background-image: url(../gameAssets/Character/blue_down.png);
+}
+
+.playerGreen--Down{
+    background-image: url(../gameAssets/Character/green_down.png);
+}
+
+.playerYellow--Down{
+    background-image: url(../gameAssets/Character/yellow_down.png);
+}
+
+.playerRed--Up{
+    background-image: url(../gameAssets/Character/red_up.png);
+}
+
+.playerBlue--Up{
+    background-image: url(../gameAssets/Character/blue_up.png);
+}
+
+.playerGreen--Up{
+    background-image: url(../gameAssets/Character/green_up.png);
+}
+
+.playerYellow--Up{
+    background-image: url(../gameAssets/Character/yellow_up.png);
+}
+
+.playerRed--Left{
+    background-image: url(../gameAssets/Character/red_left.png);
+}
+
+.playerBlue--Left{
+    background-image: url(../gameAssets/Character/blue_left.png);
+}
+
+.playerGreen--Left{
+    background-image: url(../gameAssets/Character/green_left.png);
+}
+
+.playerYellow--Left{
+    background-image: url(../gameAssets/Character/yellow_left.png);
+}
+
+.playerRed--Right{
+    background-image: url(../gameAssets/Character/red_right.png);
+}
+
+.playerBlue--Right{
+    background-image: url(../gameAssets/Character/blue_right.png);
+}
+
+.playerGreen--Right{
+    background-image: url(../gameAssets/Character/green_right.png);
+}
+
+.playerYellow--Right{
+    background-image: url(../gameAssets/Character/yellow_right.png);
 }
 
 .bomb--one {

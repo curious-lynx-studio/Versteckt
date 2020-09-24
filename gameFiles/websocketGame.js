@@ -12,12 +12,12 @@ webSocket.onmessage = (message) => {
         var positionSendLoop = setInterval(sendData, 10);
     } else {
         const obj = JSON.parse(message.data);
-        obj['players'].forEach(user => {
+        obj['players'].forEach((user, index) => {
             if(user.id != id) {
                 if(document.getElementById(user.id)){
                     updatePlayerObj(user);
                 } else {
-                    createPlayerObj(user);
+                    createPlayerObj(user, index);
                 }
             } else {
                 updateOwnHelthbar(user);
@@ -68,7 +68,7 @@ function updatePlayerObj(user) {
     }
 }
 
-function createPlayerObj(user) {
+function createPlayerObj(user, index) {
     const x = user.x + "px";
     const y = user.y + "px";
     const otherClient = document.createElement("DIV");
@@ -78,6 +78,19 @@ function createPlayerObj(user) {
     otherClient.style.left = user.x + "px";
     otherClient.style.top = user.y + "px";
     document.getElementById("gameArea").appendChild(otherClient);
+    const otherClientId = document.getElementById(user.id);
+    if (index == 0) {
+        otherClientId.classList.add('playerRed--down')
+    }
+    if (index == 1) {
+        otherClientId.classList.add('playerBlue--down')
+    }
+    if (index == 2) {
+        otherClientId.classList.add('playerGreen--down')
+    }
+    if (index == 3) {
+        otherClientId.classList.add('playerYellow--down')
+    }
 }
 
 function deleteObject(element) {
