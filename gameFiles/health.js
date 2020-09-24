@@ -13,3 +13,10 @@ async function playerDeathFunction() {
 function otherPlayerDeathFunction(id) {
     document.getElementById(id).className = "playerDeath";
 }
+
+function updateOwnHelthbar(user) {
+    document.getElementById("playerInnerHealth").style.width = user.health + '%';
+    if (user.health <= 0) {
+        playerDeathFunction();
+    }
+}
