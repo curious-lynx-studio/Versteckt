@@ -67,9 +67,9 @@ function connectToLobby(lobbyUrl) {
         document.getElementById('readyPlayers').innerHTML = '';
         obj.players.forEach((player, index) => {
             if(player.ready == true) {
-                document.getElementById('readyPlayers').innerHTML += '<div class="alert alert-secondary">'+player.playerName +'  :  ✅<br></div>';
+                document.getElementById('readyPlayers').innerHTML += '<div class="alert alert-secondary d-flex justify-content-between"><div class="playerIconBox playerModel'+index+'"></div><div class="playerNameReady">'+player.playerName +'  :  ✅</div></div><br>';
             } else {
-                document.getElementById('readyPlayers').innerHTML += '<div class="alert alert-secondary">'+player.playerName +'  :  ❌<br></div>';
+                document.getElementById('readyPlayers').innerHTML += '<div class="alert alert-secondary d-flex justify-content-between"><div class="playerIconBox playerModel'+index+'"></div><div class="playerNameReady">'+player.playerName +'  :  ❌</div></div><br>';
             }
             if(player.playerName === localStorage.getItem('playerName')) {
                 localStorage.setItem('playerModel', index)

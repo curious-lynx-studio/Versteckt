@@ -21,10 +21,12 @@ function setPlayerModelClass() {
 }
 
 function logKey(e) {
-    char.classList.remove(playerModelClass+'--left');
-    char.classList.remove(playerModelClass+'--right');
-    char.classList.remove(playerModelClass+'--up');
-    char.classList.remove(playerModelClass+'--down');
+    if (e.keyCode === 100 || e.keyCode === 97 || e.keyCode === 119 || e.keyCode === 115) {
+        char.classList.remove(playerModelClass+'--left');
+        char.classList.remove(playerModelClass+'--right');
+        char.classList.remove(playerModelClass+'--up');
+        char.classList.remove(playerModelClass+'--down');
+    }
     if (e.keyCode === 97) {
         char.classList.add(playerModelClass+'--left')
     }

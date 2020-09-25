@@ -136,3 +136,30 @@ input:checked ~ .tab-content {
     margin-right: -50%;
     transform: translate(-50%, -50%);
 }
+
+.playerIconBox {
+    height: 32px;
+    width: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.playerModel0 {
+    background-image: url(../gameAssets/Character/red_down.png);
+}
+
+.playerModel1 {
+    background-image: url(../gameAssets/Character/blue_down.png);
+}
+
+.playerModel2 {
+    background-image: url(../gameAssets/Character/green_down.png);
+}
+
+.playerModel3 {
+    background-image: url(../gameAssets/Character/yellow_down.png);
+}
+
+.playerNameReady {
+    font-size: large;
+}
