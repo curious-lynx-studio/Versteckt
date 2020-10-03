@@ -1,28 +1,36 @@
-$(function () {
-    var pane = $('#gameArea'),
-    box = $('#player'),
-    wh = pane.width() - box.width(),
-    wv = pane.height() - box.height(),
-    d = {},
-    x = 5;
-    
-    function newh(v,a,b) {
-        var n = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0);
-        return n < 0 ? 0 : n > wh ? wh : n;
-    }
-    
-    function newv(v,a,b) {
-        var n = parseInt(v, 10) - (d[a] ? x : 0) + (d[b] ? x : 0);
-        return n < 0 ? 0 : n > wv ? wv : n;
-    }
-    
-    $(window).keydown(function(e) { d[e.which] = true; });
-    $(window).keyup(function(e) { d[e.which] = false; });
-    
-    setInterval(function() {
-        box.css({
-            left: function(i,v) { return newh(v, 65, 68); },
-            top: function(i,v) { return newv(v, 87, 83); }
-        });
-    }, 20);
+$(document).ready(function(){ 
+    setInterval(function () {
+        // get position of div
+        var x = parseInt(p1.style.left, 10),
+            y = parseInt(p1.style.top, 10);
+        
+        // update position
+        // left/right
+        if (keys[keyCodes.left]) {
+            x -= 1;
+        } else if (keys[keyCodes.right]) {
+            x += 1;
+        }
+        // up/down
+        if (keys[keyCodes.up]) {
+            y -= 1;
+        } else if (keys[keyCodes.down]) {
+            y += 1;
+        }
+        // set div position
+        p1.style.left = x + 'px';
+        p1.style.top = y + 'px';
+    }, 1/30);
+});
+
+var p1 = document.getElementById('player'),
+keyCodes = { left: 'KeyA', up: 'KeyW', right: 'KeyD', down: 'KeyS' },
+keys = [];
+
+window.addEventListener('keydown', function (evt) {
+    keys[evt.code] = true;
+});
+
+window.addEventListener('keyup', function (evt) {
+    keys[evt.code] = false;
 });
