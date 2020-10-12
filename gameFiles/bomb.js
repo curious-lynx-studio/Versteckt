@@ -43,7 +43,8 @@ function sendBombDropToServer(x,y) {
   y = y.slice(0, -2); 
   x = parseInt(x, 10);
   y = parseInt(y, 10);
-  let data = {bombs:{x: x, y: y, plantedBy:id}};
+  //TODO: Change bombs to bomb
+  let data = {bomb:{x: x, y: y, plantedBy:id}};
   webSocket.send(JSON.stringify(data));
 }
 

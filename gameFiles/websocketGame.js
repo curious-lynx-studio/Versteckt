@@ -52,7 +52,7 @@ function sendData() {
     x = x.substring(0, x.length - 2);
     y = y.substring(0, y.length - 2);
     var playerName = localStorage.getItem('playerName');
-    let data = {id: id, x: x, y: y, name: playerName, character: 0, health: playerHealth};
+    let data = {player:{id: id, x: x, y: y, name: playerName, character: 0, health: playerHealth}};
     webSocket.send(JSON.stringify(data));
 }
 

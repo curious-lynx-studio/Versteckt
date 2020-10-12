@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GO Websocket Test</title>
+</head>
+<body>
+    <p id="idParagraph"></p>
+    <button onclick="sendMessage()">Send id</button>
+</body>
+<script>
+    let ws = new WebSocket("ws://localhost:8080/ws")
+    let id = Math.floor(Math.random() * 100_000);
+
+    function sendMessage() {
+        console.log("Sending data")
+        ws.send(JSON.stringify({id: id}))
+    }
+
+    window.onload = () => {
+        document.getElementById("idParagraph").innerHTML += "ID: " + id
+    }
+
+    ws.onmessage = (event) => {
+        console.log(event.data)
+    }
+</script>
+</html>

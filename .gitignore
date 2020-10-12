@@ -1,2 +1,5 @@
 nodeServer/node_modules
 .idea
+*.iml
+goServer/cmd
+!goServer/cmd/main.go

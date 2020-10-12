@@ -1,4 +1,4 @@
-var webSocket = new WebSocket("ws://blank42.de:9998/lobbyList");
+var webSocket = new WebSocket("ws://localhost:8080/lobbyList");
 var lobbyWebSocket;
 
 webSocket.onmessage = (message) => {
@@ -86,7 +86,7 @@ function sendReady() {
 
 function startLobby() {
     xhr = new XMLHttpRequest(); 
-    var url = "http://blank42.de:9998/lobby/create"; 
+    var url = "http://localhost:8080/lobby/create";
     xhr.open("POST", url, true); 
     xhr.setRequestHeader("Content-type", "application/json"); 
     xhr.onreadystatechange = function () {  
