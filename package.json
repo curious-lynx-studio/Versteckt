@@ -1,0 +1,26 @@
+{
+  "name": "ScoreHunter",
+  "version": "1.0.0",
+  "description": "Bomberman like game with JS -> Electron + Websocket Multiplayer. Just some Project to learn more about the technology.",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^10.1.5",
+    "electron-builder": "^22.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valplusplusle/ScoreHunter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valplusplusle/ScoreHunter/issues"
+  },
+  "homepage": "https://github.com/valplusplusle/ScoreHunter#readme"
+}
