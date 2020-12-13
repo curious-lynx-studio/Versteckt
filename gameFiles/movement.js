@@ -1,4 +1,4 @@
-$(document).ready(function(){ 
+document.addEventListener("DOMContentLoaded", function(event) { 
     setInterval(function () {
         // get position of div
         var x = parseInt(p1.style.left, 10),

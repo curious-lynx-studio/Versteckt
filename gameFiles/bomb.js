@@ -1,7 +1,7 @@
-$(document).ready(function(){ 
+document.addEventListener("DOMContentLoaded", function(event) { 
   getNewBomb();
   drawBombCounter();
-}) 
+});
 
 document.addEventListener('keydown', logKey);
 

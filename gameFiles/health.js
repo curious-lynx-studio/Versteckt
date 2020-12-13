@@ -2,7 +2,6 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
   
-
 async function playerDeathFunction() {
     document.removeEventListener('keypress', logKey);
     document.getElementById("player").className = "playerDeath";

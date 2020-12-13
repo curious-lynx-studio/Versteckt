@@ -1,9 +1,9 @@
-$(document).ready(function(){ 
+document.addEventListener("DOMContentLoaded", function(event) { 
     var name = localStorage.getItem('playerName');
     if (name != false) {
         document.getElementById('nameInput').value = name;
     }
-}) 
+});
 
 function setPlayerName() {
     const name = document.getElementById('nameInput').value;

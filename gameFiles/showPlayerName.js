@@ -1,4 +1,6 @@
-$(document).ready(function(){ showPlayerName(); })
+document.addEventListener("DOMContentLoaded", function(event) { 
+    showPlayerName();
+});
 
 function showPlayerName() {
     var char = document.getElementById("player");
