@@ -20,99 +20,84 @@
         <div class="spacertop"></div>
         <div class="container">
           <br><br><br>
-          <div class="jumbotron mainJumbotron">
-            <div class="banner"></div>
-          </div>
+            <div class="banner d-flex justify-content-center">Welcome to Score Hunter</div>
         </div>    
-          
-        <div class="container">
-          <div class="jumbotron mainJumbotron">
+      </main>
+
+        <div id="characterSettings" class="menuButton d-flex justify-content-center">
             <div class="input-group mb-3">
               <input type="text" id="nameInput" class="form-control" placeholder="Set Your Username" maxlength="10" aria-describedby="button-addon2">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button" id="button-addon2" onclick="setPlayerName()">Set</button>
+                <button class="btn btn-primary menubtnsize" type="button" id="button-addon2" onclick="setPlayerName()">Set</button>
               </div>
             </div>
-          </div>
-        </div>  
+        </div>
 
-          <div class="container colorTest">
-            <div class="jumbotron mainJumbotron">
+        <div id="hostLobby" class="menuButtonLobby d-flex justify-content-center">
+          <div class="tab-content">
 
-              <div class="hideAccordeonInput">
-                <div class="row">
-                  <div class="col">
-                    <div class="tabs">
-                      <span class="tab">
-                        <input  class="accordeon" type="checkbox" id="chck1">
-                        <label class="tab-label" for="chck1">Host your own lobby:</label>
-                        <div class="tab-content">
-
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroup-sizing-default">LobbyName:</span>
-                            </div>
-                            <input type="text" class="form-control" id="lobbyNameToSet" aria-describedby="inputGroup-sizing-default">
-                          </div>
-
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text" id="inputGroup-sizing-default">Password:</span>
-                            </div>
-                            <input type="text" class="form-control" aria-describedby="inputGroup-sizing-default" id="password">
-                          </div>
-
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <label class="input-group-text" for="inputGroupSelect01">Players:</label>
-                            </div>
-                            <select class="custom-select" id="selectPlayerCount">
-                              <option selected>Choose...</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                            </select>
-                          </div>
-
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <label class="input-group-text" for="inputGroupSelect01">Game Mode:</label>
-                            </div>
-                            <select class="custom-select" id="selectMode">
-                              <option selected>Choose...</option>
-                              <option value="DEATHMATCH">Deathmatch</option>
-                              <option value="SCOREHUNTER">ScoreHunter</option>
-                            </select>
-                          </div>
-
-                          <div class="btn btn-primary" onclick="startLobby()">Start Lobby<div></div>
-                        </div>
-                      </span>
-                    </div>
+                <div class="input-group" style="margin-bottom: 2px;">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">LobbyName:</span>
                   </div>
+                  <input type="text" class="form-control" id="lobbyNameToSet" aria-describedby="inputGroup-sizing-default">
                 </div>
+
+                <div class="input-group" style="margin-bottom: 2px;">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">Password:</span>
+                  </div>
+                  <input type="text" class="form-control" aria-describedby="inputGroup-sizing-default" id="password">
+                </div>
+
+                <div class="input-group" style="margin-bottom: 2px;">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text input-group-text-lobbycreator" for="inputGroupSelect01">Players:</label>
+                  </div>
+                  <select class="custom-select" id="selectPlayerCount">
+                    <option selected>Choose...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 2px;">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text input-group-text-lobbycreator" for="inputGroupSelect01">Game Mode:</label>
+                  </div>
+                  <select class="custom-select" id="selectMode">
+                    <option selected>Choose...</option>
+                    <option value="DEATHMATCH">Deathmatch</option>
+                    <option value="SCOREHUNTER">ScoreHunter</option>
+                  </select>
+                </div>
+
+                <div class="btn btn-primary" style="width: 100%;" onclick="startLobby()">Start Lobby<div></div>
               </div>
-
-              <br>
-
-              <table class="table table-dark table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Lobby Name</th>
-                    <th scope="col">Players</th>
-                    <th scope="col">Mode</th>
-                    <th scope="col">Pwd</th>
-                    <th scope="col">Join</th>
-                  </tr>
-                </thead>
-                <tbody id="lobbyTable">
-                </tbody>
-              </table>
-            </div>
           </div>
         </div>
-      </main>
+
+        <div id="joinLobby" class="menuButtonJoinLobby d-flex justify-content-center">
+            <table class="table table-sm table-dark table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Lobby Name</th>
+                  <th scope="col">Players</th>
+                  <th scope="col">Mode</th>
+                  <th scope="col">Pwd</th>
+                  <th scope="col">Join</th>
+                </tr>
+              </thead>
+              <tbody id="lobbyTable">
+              </tbody>
+            </table>
+        </div>
+
+
+        
+      
   </body>
   <script type="text/javascript" src="gameFiles/websocketLobby.js"></script>
 </html>

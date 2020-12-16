@@ -30,6 +30,7 @@ table {
 
 body {
     /* background-image: url("../gameAssets/menu_bg.png"); */
+    background-color: #45283c;
 }
 
 
@@ -88,6 +89,7 @@ h2 {
     color: #4a0c0f;
     background:#755d5da6;
     transition: all 0.35s;
+    border-radius: 0 !important;
 }
 .tab-close {
     display: flex;
@@ -117,12 +119,66 @@ input:checked ~ .tab-content {
 }
 
 .banner {
-    background-image: url(../gameAssets/gameName.png);
+    background-image: url(../gameAssets/ui/backgroundBox2.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     height: 100px;
-    width: 100%;
+    width: 1000px;
+    margin: auto;
+    margin-bottom: 30px;
+    padding-top: 25px;
+    font-size: xx-large;
+}
+
+.menuButton {
+    background-image: url(../gameAssets/ui/backgroundBox2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 100px;
+    width: 800px;
+    margin: auto;
+    margin-bottom: 20px;
+    padding-top: 32px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.menuButtonLobby {
+    background-image: url(../gameAssets/ui/backgroundBox3.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 250px;
+    width: 800px;
+    margin: auto;
+    margin-bottom: 20px;
+    padding-top: 32px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.menuButtonJoinLobby {
+    background-image: url(../gameAssets/ui/backgroundBox4.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 400px;
+    width: 800px;
+    margin: auto;
+    margin-bottom: 20px;
+    padding-top: 32px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.input-group {
+    width: 700px;
+}
+
+.menubtnsize {
+    height: 35px;
 }
 
 .spacer {
@@ -162,4 +218,24 @@ input:checked ~ .tab-content {
 
 .playerNameReady {
     font-size: large;
+}
+
+.form-control {
+    border-radius: 0 !important;
+}
+
+.custom-select {
+    border-radius: 0 !important;
+}
+
+.input-group-text {
+    border-radius: 0 !important;
+}
+
+.btn {
+    border-radius: 0 !important;
+}
+
+.input-group-text-lobbycreator {
+    width: 150px;
 }
