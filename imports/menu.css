@@ -239,3 +239,25 @@ input:checked ~ .tab-content {
 .input-group-text-lobbycreator {
     width: 150px;
 }
+
+.lobbyTableContainer {
+    height: 335px;
+    width: 750px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #45283c;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #4a0c0f;
+    border-radius: 0px;
+    border: 3px solid #4a0c0f;
+}

@@ -1,4 +1,4 @@
-var socketName = localStorage.getItem('gameLobbyWS');
+var socketName = "ws:localhost:9998";
 var gameMode = localStorage.getItem('gameMode');
 var webSocket = new WebSocket(socketName);
 let id= "";
