@@ -29,8 +29,12 @@ table {
 }
 
 body {
-    /* background-image: url("../gameAssets/menu_bg.png"); */
+    background-image: url(../gameAssets/background.png);
     background-color: #45283c;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-repeat-x: inherit;
+    background-size: contain;
 }
 
 
