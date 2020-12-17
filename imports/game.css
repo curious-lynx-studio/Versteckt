@@ -1,13 +1,19 @@
 body {
     overflow:hidden;
+    background-color: white !important;
+    zoom: 200%;
 }
 
 .fullWindow {
+    width: 400px;
+    height: 300px;
+    overflow: hidden;
     position: absolute;
     top: 45%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    border: solid 1px black;
 }
 
 .gameArea {
@@ -17,64 +23,8 @@ body {
     height: 600px;
     border:1px solid #000;
     overflow: hidden;
-    position: relative;
+    position: absolute;
     background-image: url(../gameAssets/Background.png);
     background-repeat: no-repeat;
     background-size: contain;
-}
-
-
-
-.gameInfoBar {
-    display: block;
-    margin: 0 auto;
-    width: 960px;
-    height: 30px;
-}
-
-.bombIcon {
-    width: 25px;
-    height: 25px;
-    background-image: url(../gameAssets/bomb/bomb_01.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.bombCountBar {
-    width: 100px;
-    height: 25px;
-}
-
-.healthBarOutline {
-    height: 25px;
-    width: 200px;
-    padding: 2px;
-    -webkit-box-shadow:inset 0px 0px 0px 2px #fff;
-    -moz-box-shadow:inset 0px 0px 0px 2px #fff;
-    box-shadow:inset 0px 0px 0px 2px #fff;
-    margin-right: 3px;
-    overflow: hidden;
-}
-
-.healthBarInline {
-    height: 21px;
-    background-color: darkred;
-}
-
-
-
-.gameOverScreen {
-    padding-top: 30%;
-    visibility: hidden;
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.808);
-    color: darkred;
-    z-index: 99999999;
-    text-align: center;
-}
-
-.gameOverText {
-    color: darkred;
 }

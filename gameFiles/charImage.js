@@ -1,4 +1,4 @@
-let playerModel = localStorage.getItem('playerModel');
+let playerModel = 0;
 document.addEventListener('keypress', logKey);
 var char = document.getElementById("player");
 playerModelClass = '';

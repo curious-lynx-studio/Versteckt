@@ -1,9 +1,7 @@
 var socketName = "ws:localhost:9998";
-var gameMode = localStorage.getItem('gameMode');
 var webSocket = new WebSocket(socketName);
 let id= "";
 let lastOtherClientArray;
-let playerHealth = 100;
 let gameStart = true;
 
 webSocket.onmessage = (message) => {
@@ -63,9 +61,6 @@ function updatePlayerObj(user) {
     otherClient.innerHTML = user.name;
     otherClient.style.left = x;
     otherClient.style.top = y;
-    if (user.health <= 0) {
-        otherPlayerDeathFunction(user.id);
-    }
 }
 
 function createPlayerObj(user, index) {

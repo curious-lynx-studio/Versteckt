@@ -4,6 +4,7 @@ var cors = require('cors');
 var fs = require('fs');
 var http = require('http');
 var https = require('https');
+const WebSocket = require('ws');
 
 //globalVariables
 var lobbyArray = [];
@@ -11,6 +12,16 @@ var lobbyArray = [];
 // server definition
 var app = express();
 app.use(cors());
+
+// create WebsocketServer
+const wss = new WebSocket.Server({ port: 1337 });
+
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+  ws.send('something');
+});
 
 // http & https cert settings
 const httpServer = http.createServer(app);
