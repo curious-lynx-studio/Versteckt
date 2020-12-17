@@ -15,7 +15,7 @@ app.use(cors());
 // http & https cert settings
 const httpServer = http.createServer(app);
 httpServer.listen(3000, () => {
-  console.log('HTTP Server running on port 80');
+  console.log('HTTP Server running');
 });
 
 // const httpsServer = https.createServer({
@@ -39,8 +39,10 @@ app.get('/getLobby', function (req, res, next) {
 })
 
 app.post('/newLobby', function (req, res, next) {
+  var uniqueId = makeid(6)
   console.log('create new Lobby');
-  createLobby(req.body)
+  createLobby(req.body, uniqueId)
+  res.json(JSON.stringify(uniqueId));
 })
 
 // functions
@@ -54,8 +56,7 @@ function makeid(length) {
   return result;
 }
 
-function createLobby(jsonData) {
-    var uniqueId = makeid(6)
+function createLobby(jsonData, uniqueId) {
     var lobby = {   id: uniqueId, 
                     name: jsonData.name, 
                     players: jsonData.players, 

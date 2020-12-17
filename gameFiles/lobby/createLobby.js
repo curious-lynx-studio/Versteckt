@@ -23,5 +23,10 @@ function startLobby() {
     postData('http://localhost:3000/newLobby', { name: lobbyName, players: lobbyPlayerCount, mode: lobbyGameMode })
     .then(data => {
         console.log(data); // JSON data parsed by `data.json()` call
+        joinOwnGame(data);
     });
+}
+
+function joinOwnGame(data) {
+  window.location = "./game.html?id="+data;
 }

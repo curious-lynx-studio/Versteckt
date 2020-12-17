@@ -1,3 +1,6 @@
 function joinGame() {
-    console.log('test');
+    var code = document.getElementById('gameCode').value
+    setPlayerName();
+    
+    window.location = "./game.html?id="+code;
 }
