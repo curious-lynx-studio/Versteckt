@@ -1,18 +1,23 @@
 body {
     overflow:hidden;
     background-color: white !important;
-    zoom: 200%;
+}
+
+.mainWindow {
+    width: 550px;
+    height: 300px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
 .fullWindow {
     width: 400px;
     height: 300px;
     overflow: hidden;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
     border: solid 1px black;
 }
 
@@ -21,10 +26,20 @@ body {
     margin: 0 auto;
     width: 960px;
     height: 600px;
-    border:1px solid #000;
     overflow: hidden;
     position: absolute;
     background-image: url(../gameAssets/Background.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
+}
+
+.menu {
+    width: 150px;
+    height: 300px;
+    z-index: 1000;
+    background-color: white;
+    background-image: url(../gameAssets/ui/backgroundBox5.png);
+    background-repeat: no-repeat;
+    background-size: inherit;
+    background-position: center;
 }

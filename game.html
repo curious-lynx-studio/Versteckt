@@ -4,8 +4,8 @@
         <link rel="stylesheet" type="text/css" href="imports/boss.css">
         <link rel="stylesheet" type="text/css" href="imports/player.css">
         <link href="imports/bootstrap.min.css" rel="stylesheet" >
-        <meta name="viewport" content="width=device-width, initial-scale=1.5">
-
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.5"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
         <link rel="preload" href="imports/game.css" as="style">
         <link rel="preload" href="imports/player.css" as="style">
         <link rel="preload" href="gameFiles/movement.js" as="script">
@@ -14,10 +14,15 @@
 
     </head>
     <body>
+        <div class="mainWindow d-flex justify-content-center">
         <div class="fullWindow">
             <div id="gameArea" class="gameArea">
                 <div id="player" class="player"></div>
             </div>
+        </div>
+        <div class="menu">
+
+        </div>
         </div>
     </body>
     <script type="text/javascript" src="gameFiles/movement.js"></script>
