@@ -4,8 +4,10 @@ body {
 }
 
 .mainWindow {
-    width: 550px;
-    height: 300px;
+    width: 100vw;
+    height: 100vh;
+    max-width: 1200px;
+    max-height: 900px;
     overflow: hidden;
     position: absolute;
     top: 50%;
@@ -15,17 +17,18 @@ body {
 }
 
 .fullWindow {
-    width: 400px;
-    height: 300px;
+    width: 70%;
+    height: 100%;
     overflow: hidden;
     border: solid 1px black;
+    position: relative;
 }
 
 .gameArea {
     display: block;
     margin: 0 auto;
-    width: 768px;
-    height: 640px;
+    width: 900px;
+    height: 800px;
     overflow: hidden;
     position: absolute;
     background-image: url(../gameAssets/Background.png);
@@ -34,12 +37,12 @@ body {
 }
 
 .menu {
-    width: 150px;
-    height: 300px;
+    width: 30%;
+    height: 100%;
     z-index: 1000;
     background-color: white;
     background-image: url(../gameAssets/ui/backgroundBox5.png);
     background-repeat: no-repeat;
-    background-size: inherit;
+    background-size: cover;
     background-position: center;
 }

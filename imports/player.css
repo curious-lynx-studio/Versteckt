@@ -7,8 +7,8 @@
     color: white;
     display: flex;
     justify-content: center;
-    left: 190px;
-    top: 130px;
+    left: 50%;
+    top: 45%;
 }
 
 .otherClient {
