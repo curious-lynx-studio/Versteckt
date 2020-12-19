@@ -1,9 +1,10 @@
 .player {
     height: 50px;
-    width: 32px;
+    width: 25px;
     position: relative;
     background-repeat: no-repeat;
     background-position: bottom;
+    background-size: contain;
     color: white;
     display: flex;
     justify-content: center;
@@ -13,10 +14,11 @@
 
 .otherClient {
     height: 50px;
-    width: 32px;
+    width: 25px;
     position: absolute;
     background-repeat: no-repeat;
     background-position: bottom;
+    background-size: contain;
     color: white;
     display: flex;
     justify-content: center;

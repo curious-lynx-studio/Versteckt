@@ -21,7 +21,7 @@ function canMoveLeft() {
 
 function canMoveRight() {
     x = parseInt(p1.style.left, 10);
-    if (x >= 920) {
+    if (x >= 900) {
         return false;
     } else {
         return true;
@@ -39,7 +39,7 @@ function canMoveUp() {
 
 function canMoveDown() {
     y = parseInt(p1.style.top, 10);
-    if (y >= 550) {
+    if (y >= 800) {
         return false;
     } else {
         return true;
