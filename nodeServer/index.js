@@ -18,7 +18,7 @@ const wss = new WebSocket.Server({ port: 1337 });
 
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
+    filterObjectToCorrectLobby(message);
   });
   ws.send('something');
 });
@@ -26,7 +26,7 @@ wss.on('connection', function connection(ws) {
 // http & https cert settings
 const httpServer = http.createServer(app);
 httpServer.listen(3000, () => {
-  console.log('HTTP Server running');
+  console.log('Lobby Server running');
 });
 
 // const httpsServer = https.createServer({
@@ -71,7 +71,23 @@ function createLobby(jsonData, uniqueId) {
     var lobby = {   id: uniqueId, 
                     name: jsonData.name, 
                     players: jsonData.players, 
-                    mode: jsonData.mode
+                    mode: jsonData.mode,
+                    data: []
                 }
     lobbyArray.push(lobby);
+}
+
+function filterObjectToCorrectLobby(receivedPlayerMsg) {
+  let msg = JSON.parse(receivedPlayerMsg);
+  lobbyArray.forEach(lobby => {
+    if(lobby.id == msg.gameId) {
+      console.log(lobby);
+      let playerIndex = lobby.data.findIndex(x => x.playerId === msg.playerId);
+      if(playerIndex == -1) {
+        lobby.data.push(msg);
+      } else {
+        lobby.data[playerIndex] = msg;
+      }
+    }
+  });
 }
