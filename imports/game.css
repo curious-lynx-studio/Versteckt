@@ -23,6 +23,8 @@ body {
 }
 
 .gameArea {
+    left: 25vw;
+    top: 20vh;
     display: block;
     margin: 0 auto;
     width: 768px;
