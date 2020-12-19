@@ -19,6 +19,14 @@ const wss = new WebSocket.Server({ port: 1337 });
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     filterObjectToCorrectLobby(message);
+
+    let msg = JSON.parse(message);
+    lobbyArray.forEach(lobby => {
+      if(lobby.id == msg.gameId) {
+        ws.send(JSON.stringify(lobby));
+      }
+    });
+
   });
   ws.send('something');
 });

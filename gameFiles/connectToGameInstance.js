@@ -21,7 +21,20 @@ function makeid(length) {
 webSocket.onmessage = (message) => {
     if (firstMessage == 0) {
         firstMessage = 1;
-        let positionSendLoop = setInterval(sendData, 10);
+        let playerDataSendLoop = setInterval(sendData, 10);
+    } else {
+        const obj = JSON.parse(message.data);
+
+        obj['data'].forEach((player, index) => {
+            if(player.playerId != playerId) {
+                if(document.getElementById(playerId.id)){
+                    updatePlayerObj(player);
+                } else {
+                    createPlayerObj(player);
+                }
+            }
+        });
+
     }
 }
 
@@ -37,4 +50,27 @@ function sendData() {
     y = y.substring(0, y.length - 2);
     let data = {gameId: gameId, playerId: playerId, x: x, y: y, name: playerName, characterModel: 0};
     webSocket.send(JSON.stringify(data));
+}
+
+function createPlayerObj(player, index) {
+    const x = player.x + "px";
+    const y = player.y + "px";
+    const otherClient = document.createElement("DIV");
+    otherClient.className = "otherClient";
+    otherClient.id = player.playerId;
+    otherClient.innerHTML = player.name;
+    otherClient.style.left = player.x + "px";
+    otherClient.style.top = player.y + "px";
+    document.getElementById("gameArea").appendChild(otherClient);
+    const otherClientId = document.getElementById(player.id);
+    otherClientId.classList.add('playerRed--down')
+}
+
+function updatePlayerObj(player) {
+    const x = player.x + "px";
+    const y = player.y + "px";
+    const otherClient = document.getElementById(player.playerId);
+    otherClient.innerHTML = player.name;
+    otherClient.style.left = x;
+    otherClient.style.top = y;
 }

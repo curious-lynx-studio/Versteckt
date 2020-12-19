@@ -2,15 +2,10 @@ var p1 = document.getElementById('player');
 keyCodes = { left: 'KeyA', up: 'KeyW', right: 'KeyD', down: 'KeyS' };
 keys = [];
 
-const fs = require('fs');
-
 // read JSON object from file
-fs.readFile('./maps/mapBlock.json', 'utf-8', (err, data) => {
-    if (err) {
-        throw err;
-    }
+function start() {
     // parse JSON object
-    const blockedCoords = JSON.parse(data.toString());
+    const blockedCoords = JSON.parse(map);
 
     function canMove(testIfCanMove) {
         let blockedValue = true;
@@ -75,7 +70,7 @@ fs.readFile('./maps/mapBlock.json', 'utf-8', (err, data) => {
         world.style.left = xWorld + 'px';
         world.style.top = yWorld + 'px';
     }, 1/30);
-});
+}
 
 // keyboard Eventlistener
 window.addEventListener('keydown', function (evt) {
@@ -86,3 +81,4 @@ window.addEventListener('keyup', function (evt) {
     keys[evt.code] = false;
 });
 
+start();
