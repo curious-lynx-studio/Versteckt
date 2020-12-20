@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Bomberman like game with JS -> Electron + Websocket Multiplayer. Just some Project to learn more about the technology.",
   "main": "main.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
@@ -22,6 +21,7 @@
   },
   "homepage": "https://github.com/valplusplusle/ScoreHunter#readme",
   "devDependencies": {
+    "electron": "^11.1.0",
     "electron-builder": "^22.9.1"
   }
 }
