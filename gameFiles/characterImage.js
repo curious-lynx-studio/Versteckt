@@ -1,0 +1,1 @@
+let actualImage = '0'
