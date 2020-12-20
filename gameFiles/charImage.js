@@ -7,6 +7,7 @@ function setPlayerModelClass() {
     if (playerModel == 'hunter') {
         char.classList.add(playerModel+'--down');
     } else {
+        char.className = "player";
         char.classList.add(playerModel);
     }    
 }
