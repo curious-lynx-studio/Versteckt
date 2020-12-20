@@ -73,7 +73,6 @@ function updatePlayerObj(player) {
     otherClient.innerHTML = player.name;
     otherClient.style.left = x;
     otherClient.style.top = y;
-    otherClient.className = "";
-    otherClient.classList.add("otherClient");
+    otherClient.className = "otherClient";
     otherClient.classList.add(player.characterModel);
 }

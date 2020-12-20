@@ -26,8 +26,8 @@ function start() {
         var p1 = document.getElementById('player');
         var world = document.getElementById('gameArea');
         // get position of div
-        var x = parseInt(p1.offsetLeft, 10);
-        var y = parseInt(p1.offsetTop, 10);
+        var x = (parseInt(p1.offsetLeft, 10)) + 10;
+        var y = (parseInt(p1.offsetTop, 10)) + 40;
         var xWorld = parseInt(world.offsetLeft, 10);
         var yWorld = parseInt(world.offsetTop, 10);
     
@@ -64,8 +64,8 @@ function start() {
             }
         }
         // set div position
-        p1.style.left = x + 'px';
-        p1.style.top = y + 'px';
+        p1.style.left = x-10 + 'px';
+        p1.style.top = y-40 + 'px';
     
         world.style.left = xWorld + 'px';
         world.style.top = yWorld + 'px';
