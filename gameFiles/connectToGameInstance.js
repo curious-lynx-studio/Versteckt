@@ -27,7 +27,7 @@ webSocket.onmessage = (message) => {
 
         obj['data'].forEach((player, index) => {
             if(player.playerId != playerId) {
-                if(document.getElementById(playerId.id)){
+                if(document.getElementById(player.playerId)){
                     updatePlayerObj(player);
                 } else {
                     createPlayerObj(player);
@@ -62,7 +62,7 @@ function createPlayerObj(player, index) {
     otherClient.style.left = player.x + "px";
     otherClient.style.top = player.y + "px";
     document.getElementById("gameArea").appendChild(otherClient);
-    const otherClientId = document.getElementById(player.id);
+    const otherClientId = document.getElementById(player.playerId);
     otherClientId.classList.add('playerRed--down')
 }
 
