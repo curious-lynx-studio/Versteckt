@@ -60,6 +60,9 @@
     100%  {background-image: url(../gameAssets/Character/killed_03.png);}
 }
 
+.hunter {
+    background-image: url(../gameAssets/Character/red_down.png);
+}
 .prop0 {
     background-image: url(../gameAssets/PropObjects/prop0.png);
 }
