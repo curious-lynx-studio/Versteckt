@@ -48,7 +48,7 @@ function sendData() {
     var y = document.getElementById("player").style.top;
     x = x.substring(0, x.length - 2);
     y = y.substring(0, y.length - 2);
-    let data = {gameId: gameId, playerId: playerId, x: x, y: y, name: playerName, characterModel: 0};
+    let data = {gameId: gameId, playerId: playerId, x: x, y: y, name: playerName, characterModel: playerModel};
     webSocket.send(JSON.stringify(data));
 }
 
@@ -63,7 +63,7 @@ function createPlayerObj(player, index) {
     otherClient.style.top = player.y + "px";
     document.getElementById("gameArea").appendChild(otherClient);
     const otherClientId = document.getElementById(player.playerId);
-    otherClientId.classList.add('playerRed--down')
+    otherClientId.classList.add(player.characterModel);
 }
 
 function updatePlayerObj(player) {
@@ -73,4 +73,7 @@ function updatePlayerObj(player) {
     otherClient.innerHTML = player.name;
     otherClient.style.left = x;
     otherClient.style.top = y;
+    otherClient.className = "";
+    otherClient.classList.add("otherClient");
+    otherClient.classList.add(player.characterModel);
 }

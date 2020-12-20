@@ -24,98 +24,20 @@
     justify-content: center;
 }
 
-.playerRed--Down{
+.hunter--Down{
     background-image: url(../gameAssets/Character/red_down.png);
 }
 
-.playerBlue--Down{
-    background-image: url(../gameAssets/Character/blue_down.png);
-}
-
-.playerGreen--Down{
-    background-image: url(../gameAssets/Character/green_down.png);
-}
-
-.playerYellow--Down{
-    background-image: url(../gameAssets/Character/yellow_down.png);
-}
-
-.playerRed--Up{
+.hunter--Up{
     background-image: url(../gameAssets/Character/red_up.png);
 }
 
-.playerBlue--Up{
-    background-image: url(../gameAssets/Character/blue_up.png);
-}
-
-.playerGreen--Up{
-    background-image: url(../gameAssets/Character/green_up.png);
-}
-
-.playerYellow--Up{
-    background-image: url(../gameAssets/Character/yellow_up.png);
-}
-
-.playerRed--Left{
+.hunter--Left{
     background-image: url(../gameAssets/Character/red_left.png);
 }
 
-.playerBlue--Left{
-    background-image: url(../gameAssets/Character/blue_left.png);
-}
-
-.playerGreen--Left{
-    background-image: url(../gameAssets/Character/green_left.png);
-}
-
-.playerYellow--Left{
-    background-image: url(../gameAssets/Character/yellow_left.png);
-}
-
-.playerRed--Right{
+.hunter--Right{
     background-image: url(../gameAssets/Character/red_right.png);
-}
-
-.playerBlue--Right{
-    background-image: url(../gameAssets/Character/blue_right.png);
-}
-
-.playerGreen--Right{
-    background-image: url(../gameAssets/Character/green_right.png);
-}
-
-.playerYellow--Right{
-    background-image: url(../gameAssets/Character/yellow_right.png);
-}
-
-.bomb--one {
-    background-image: url(../gameAssets/bomb/bomb_01.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.bomb--two {
-    background-image: url(../gameAssets/bomb/bomb_02.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.bomb--three {
-    background-image: url(../gameAssets/bomb/bomb_03.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.bomb--explo {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url(../gameAssets/bomb/explo_03.png);
-}
-
-.bomb {
-    position: absolute;
-    width: 25px;
-    height: 25px;
 }
 
 .playerDeath {
@@ -136,4 +58,20 @@
     0%   {background-image: url(../gameAssets/Character/killed_01.png);}
     50%  {background-image: url(../gameAssets/Character/killed_02.png);}
     100%  {background-image: url(../gameAssets/Character/killed_03.png);}
+}
+
+.prop0 {
+    background-image: url(../gameAssets/PropObjects/prop0.png);
+}
+.prop1 {
+    background-image: url(../gameAssets/PropObjects/prop1.png);
+}
+.prop2 {
+    background-image: url(../gameAssets/PropObjects/prop2.png);
+}
+.prop3 {
+    background-image: url(../gameAssets/PropObjects/prop3.png);
+}
+.prop4 {
+    background-image: url(../gameAssets/PropObjects/prop4.png);
 }

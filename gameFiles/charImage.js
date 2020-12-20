@@ -1,53 +1,40 @@
-let playerModel = 0;
+let playerModel = 'hunter';
 document.addEventListener('keypress', logKey);
 var char = document.getElementById("player");
-playerModelClass = '';
 setPlayerModelClass();
 
 function setPlayerModelClass() {
-    if (playerModel == '0') {
-        playerModelClass = 'playerRed';
-        char.classList.add(playerModelClass+'--down');
-    }
-    if (playerModel == '1') {
-        playerModelClass = 'playerBlue';
-        char.classList.add(playerModelClass);
-    }
-    if (playerModel == '2') {
-        playerModelClass = 'playerGreen';
-        char.classList.add(playerModelClass);
-    }
-    if (playerModel == '3') {
-        playerModelClass = 'playerYellow';
-        char.classList.add(playerModelClass);
-    }
-    
+    if (playerModel == 'hunter') {
+        char.classList.add(playerModel+'--down');
+    } else {
+        char.classList.add(playerModel);
+    }    
 }
 
-function playerModelChange(newModelNumber) {
-    playerModel = newModelNumber;
+function playerModelChange(newModelId) {
+    playerModel = newModelId;
     setPlayerModelClass();
 }
 
 function logKey(e) {
-    if(playerModel == 0) {
+    if(playerModel == 'hunter') {
         if (e.keyCode === 100 || e.keyCode === 97 || e.keyCode === 119 || e.keyCode === 115) {
-            char.classList.remove(playerModelClass+'--left');
-            char.classList.remove(playerModelClass+'--right');
-            char.classList.remove(playerModelClass+'--up');
-            char.classList.remove(playerModelClass+'--down');
+            char.classList.remove(playerModel+'--left');
+            char.classList.remove(playerModel+'--right');
+            char.classList.remove(playerModel+'--up');
+            char.classList.remove(playerModel+'--down');
         }
         if (e.keyCode === 97) {
-            char.classList.add(playerModelClass+'--left')
+            char.classList.add(playerModel+'--left')
         }
         if (e.keyCode === 100) {
-            char.classList.add(playerModelClass+'--right')
+            char.classList.add(playerModel+'--right')
         }
         if (e.keyCode === 119) {
-            char.classList.add(playerModelClass+'--up')
+            char.classList.add(playerModel+'--up')
         }
         if (e.keyCode === 115) {
-            char.classList.add(playerModelClass+'--down')
+            char.classList.add(playerModel+'--down')
         }
     }
 }
