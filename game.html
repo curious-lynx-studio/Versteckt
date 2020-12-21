@@ -1,7 +1,6 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="imports/game.css">
-        <link rel="stylesheet" type="text/css" href="imports/boss.css">
         <link rel="stylesheet" type="text/css" href="imports/player.css">
         <link href="imports/bootstrap.min.css" rel="stylesheet" >
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,20 +9,24 @@
         <link rel="preload" href="gameFiles/movement.js" as="script">
         <link rel="preload" href="gameFiles/charImage.js" as="script">
         <link rel="preload" href="gameFiles/showPlayerName.js" as="script">
-
     </head>
     <body>
         <div class="mainWindow">
-        <div class="fullWindow">
-            <div id="gameArea" class="gameArea">
-                <div id="player" class="player"></div>
+            <div class="fullWindow">
+                <div id="gameArea" class="gameArea">
+                    <div id="player" class="player"></div>
+                </div>
             </div>
         </div>
-        <!-- <div class="menu">
-
-        </div> -->
+        <div class="propMenuBar d-flex justify-content-around">
+            <div class="propBtn prop0" onclick="playerModelChange('prop0')"></div>
+            <div class="propBtn prop1" onclick="playerModelChange('prop1')"></div>
+            <div class="propBtn prop2" onclick="playerModelChange('prop2')"></div>
+            <div class="propBtn prop3" onclick="playerModelChange('prop3')"></div>
+            <div class="propBtn prop4" onclick="playerModelChange('prop4')"></div>
         </div>
     </body>
+    <script type="text/javascript" src="maps/mapBlock.js"></script>
     <script type="text/javascript" src="gameFiles/movement.js"></script>
     <script type="text/javascript" src="gameFiles/connectToGameInstance.js"></script>
     <script type="text/javascript" src="gameFiles/charImage.js"></script>
