@@ -32,7 +32,6 @@ wss.on('connection', function connection(ws) {
       filterObjectToCorrectLobby(playerSocket)
     }
 
-    let msg = JSON.parse(message);
     lobbyArray.forEach(lobby => {
       if(lobby.id == msg.gameId) {
         ws.send(JSON.stringify(lobby));
