@@ -5,8 +5,8 @@
 }
 
 .btn-primary {
-    background-color: darkred;
-    border-color: darkred;
+    background-color: #505454;
+    border-color: white;
 }
 
 .btn-primary:hover {
@@ -29,8 +29,7 @@ table {
 }
 
 body {
-    background-image: url(../gameAssets/background.png);
-    background-color: #45283c;
+    background-color: black;
     background-position: bottom;
     background-repeat: no-repeat;
     background-repeat-x: inherit;
@@ -123,7 +122,6 @@ input:checked ~ .tab-content {
 }
 
 .banner {
-    background-image: url(../gameAssets/ui/backgroundBox2.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -133,6 +131,9 @@ input:checked ~ .tab-content {
     margin-bottom: 30px;
     padding-top: 25px;
     font-size: xx-large;
+    background-color: #a7a7a78f;
+    border: solid 1px #fff;
+    color: black;
 }
 
 .menuButton {
@@ -150,7 +151,6 @@ input:checked ~ .tab-content {
 }
 
 .menuButtonLobby {
-    background-image: url(../gameAssets/ui/backgroundBox3.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -161,6 +161,8 @@ input:checked ~ .tab-content {
     padding-top: 32px;
     padding-left: 50px;
     padding-right: 50px;
+    background-color: #a7a7a78f;
+    border: solid 1px #fff;
 }
 
 .menuButtonJoinLobby {
@@ -248,4 +250,9 @@ input:checked ~ .tab-content {
     background-color: #4a0c0f;
     border-radius: 0px;
     border: 3px solid #4a0c0f;
+}
+
+.container {
+    z-index: 999;
+    position: relative;
 }
