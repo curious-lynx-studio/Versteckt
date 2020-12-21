@@ -17,8 +17,20 @@ app.use(cors());
 const wss = new WebSocket.Server({ port: 1337 });
 
 wss.on('connection', function connection(ws) {
+  let playerSocket = new SocketContainer(ws);
+
   ws.on('message', function incoming(message) {
-    filterObjectToCorrectLobby(message);
+    let msg = JSON.parse(message);
+    if (typeof msg !== undefined){
+      playerSocket.mostRecentMessage = msg;
+    }
+
+    if(playerSocket.associatedID === -1){
+      associatePlayer(playerSocket);
+    }
+    else{
+      filterObjectToCorrectLobby(playerSocket)
+    }
 
     let msg = JSON.parse(message);
     lobbyArray.forEach(lobby => {
@@ -26,10 +38,16 @@ wss.on('connection', function connection(ws) {
         ws.send(JSON.stringify(lobby));
       }
     });
-
   });
+
   ws.send('something');
+
+  ws.on('close', function(){
+    handleConnectionClosed(playerSocket);
+  })
 });
+
+
 
 // http & https cert settings
 const httpServer = http.createServer(app);
@@ -78,19 +96,30 @@ function makeid(length) {
 function createLobby(jsonData, uniqueId) {
     var lobby = {   id: uniqueId, 
                     name: jsonData.name, 
-                    players: jsonData.players, 
+                    playerCount: jsonData.players, 
                     mode: jsonData.mode,
+                    players: [],
                     data: []
                 }
     lobbyArray.push(lobby);
 }
 
-function filterObjectToCorrectLobby(receivedPlayerMsg) {
-  let msg = JSON.parse(receivedPlayerMsg);
+function associatePlayer(playerSocket){;
+  playerSocket.associatedID = playerSocket.mostRecentMessage.playerId;
+  lobbyArray.forEach(lobby => {
+    if(lobby.id===playerSocket.mostRecentMessage.gameId){
+      lobby.players.push(playerSocket.associatedID);
+    }
+  })
+}
+
+//check, whether player wants to cheat via changing player name (compare sent name with socket-associated name)
+function filterObjectToCorrectLobby(player) {
+  let msg = player.mostRecentMessage;
   lobbyArray.forEach(lobby => {
     if(lobby.id == msg.gameId) {
       console.log(lobby);
-      let playerIndex = lobby.data.findIndex(x => x.playerId === msg.playerId);
+      let playerIndex = lobby.data.findIndex(x => x.playerId === player.associatedID);
       if(playerIndex == -1) {
         lobby.data.push(msg);
       } else {
@@ -98,4 +127,29 @@ function filterObjectToCorrectLobby(receivedPlayerMsg) {
       }
     }
   });
+}
+//contains socket and corresponding data
+class SocketContainer{
+  associatedID = -1;
+  socket;
+  mostRecentMessage;
+  constructor(socket){
+    this.socket = socket;
+  }
+}
+
+function handleConnectionClosed(playerSocket){
+  let lastMessage = playerSocket.mostRecentMessage;
+  lobbyArray.forEach(lobby => {
+    if(lobby.id===lastMessage.gameId){
+      lobby.players.pop(playerSocket.associatedID)
+      console.log("player "+playerSocket.associatedID+" has been removed from the game")
+
+      if (lobby.players.length < 1){
+        lobbyArray.pop(lobby);
+        console.log("lobby closed (no player in lobby)")
+      }
+    }
+  })
+
 }
