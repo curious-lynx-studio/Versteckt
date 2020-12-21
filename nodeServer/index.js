@@ -136,10 +136,14 @@ function handleConnectionClosed(playerSocket){
   let lastMessage = playerSocket.mostRecentMessage;
   lobbyArray.forEach(lobby => {
     if(lobby.id===lastMessage.gameId){
-      console.log(playerSocket.associatedID)
       lobby.players.pop(playerSocket.associatedID)
+      console.log("player "+playerSocket.associatedID+" has been removed from the game")
+
+      if (lobby.players.length < 1){
+        lobbyArray.pop(lobby);
+        console.log("lobby closed (no player in lobby)")
+      }
     }
   })
 
-  console.log("player "+playerSocket.associatedID+" has been removed from the game")
 }
