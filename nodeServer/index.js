@@ -18,6 +18,7 @@ const wss = new WebSocket.Server({ port: 1337 });
 
 wss.on('connection', function connection(ws) {
   let playerSocket = new SocketContainer(ws);
+  let playerErrors = [];
 
   ws.on('message', function incoming(message) {
     let msg = JSON.parse(message);
@@ -34,6 +35,7 @@ wss.on('connection', function connection(ws) {
 
     lobbyArray.forEach(lobby => {
       if(lobby.id == msg.gameId) {
+        lobby.player_errors.push(playerErrors);
         ws.send(JSON.stringify(lobby));
       }
     });
@@ -97,6 +99,7 @@ function createLobby(jsonData, uniqueId) {
                     name: jsonData.name, 
                     playerCount: jsonData.players, 
                     mode: jsonData.mode,
+                    player_errors: [],
                     players: [],
                     data: []
                 }
@@ -117,7 +120,12 @@ function filterObjectToCorrectLobby(player) {
   let msg = player.mostRecentMessage;
   lobbyArray.forEach(lobby => {
     if(lobby.id == msg.gameId) {
-      console.log(lobby);
+      //check whether lobby is full
+      if (lobby.playerCount >= lobby.players.length){
+        
+      }
+
+      //console.log(lobby);
       let playerIndex = lobby.data.findIndex(x => x.playerId === player.associatedID);
       if(playerIndex == -1) {
         lobby.data.push(msg);
