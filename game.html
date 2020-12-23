@@ -9,9 +9,12 @@
         <link rel="preload" href="gameFiles/movement.js" as="script">
         <link rel="preload" href="gameFiles/charImage.js" as="script">
         <link rel="preload" href="gameFiles/showPlayerName.js" as="script">
+        <link rel="preload" href="gameFiles/showLobbyCode.js" as="script">
     </head>
     <body>
         <div class="mainWindow">
+            <a href="index.html"><div id="leaveGame" class="leaveGame">Leave Game</div></a>
+            <div id="lobbyCode" class="lobbyCode"></div>
             <div class="fullWindow">
                 <div id="gameArea" class="gameArea">
                     <div id="player" class="player"></div>
@@ -31,4 +34,5 @@
     <script type="text/javascript" src="gameFiles/connectToGameInstance.js"></script>
     <script type="text/javascript" src="gameFiles/charImage.js"></script>
     <script type="text/javascript" src="gameFiles/showPlayerName.js"></script>
+    <script type="text/javascript" src="gameFiles/showLobbyCode.js"></script>
 </html>

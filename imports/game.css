@@ -68,3 +68,37 @@ body {
     background-position: center;
     background-size: contain;
 }
+
+.lobbyCode {
+    position: absolute;
+    top: 1px;
+    margin: auto;
+    width: 200px;
+    height: 35px;
+    background-color: #000000a1;
+    right: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px white;
+    padding: 3px;
+    text-align: center;
+    font-size: large;
+    z-index: 9999;
+}
+
+.leaveGame {
+    position: absolute;
+    top: 1px;
+    margin: auto;
+    width: 200px;
+    height: 35px;
+    background-color: #000000a1;
+    left: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px white;
+    padding: 3px;
+    text-align: center;
+    font-size: large;
+    z-index: 9999;
+}
