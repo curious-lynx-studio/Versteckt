@@ -6,7 +6,6 @@ let firstMessage = 0;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var gameId = urlParams.get('id').slice(1,-1);
-console.log(gameId)
 
 function makeid(length) {
     var result           = '';
