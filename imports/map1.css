@@ -1,0 +1,54 @@
+.gameArea {
+    left: 25vw;
+    top: 20vh;
+    display: block;
+    margin: 0 auto;
+    width: 768px;
+    height: 640px;
+    overflow: hidden;
+    position: absolute;
+    background-image: url(../maps/map1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.prop0 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop0.png);
+}
+.prop1 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop1.png);
+}
+.prop2 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop2.png);
+}
+.prop3 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop3.png);
+}
+.prop4 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop4.png);
+}
+.prop5 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop5.png);
+}
+.prop6 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop6.png);
+}
+.prop7 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop7.png);
+}
+.prop8 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop8.png);
+}
+.prop9 {
+    background-size: 32px !important;
+    background-image: url(../gameAssets/PropObjects/prop9.png);
+}

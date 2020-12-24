@@ -22,20 +22,6 @@ body {
     position: relative;
 }
 
-.gameArea {
-    left: 25vw;
-    top: 20vh;
-    display: block;
-    margin: 0 auto;
-    width: 768px;
-    height: 640px;
-    overflow: hidden;
-    position: absolute;
-    background-image: url(../maps/map1.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .menu {
     width: 30%;
     height: 100%;
@@ -52,7 +38,7 @@ body {
     bottom: 0;
     margin: auto;
     width: 600px;
-    height: 80px;
+    height: 66px;
     background-color: #000000a1;
     left: 0;
     right: 0;
