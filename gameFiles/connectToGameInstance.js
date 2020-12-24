@@ -6,6 +6,7 @@ let firstMessage = 0;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var gameId = urlParams.get('id').slice(1,-1);
+const clientsOnline = [];
 
 function makeid(length) {
     var result           = '';
@@ -30,10 +31,19 @@ webSocket.onmessage = (message) => {
                     updatePlayerObj(player);
                 } else {
                     createPlayerObj(player);
+                    clientsOnline.push(player);
                 }
             }
         });
 
+        if ((obj['data'].player.length - 1) != clientsOnline.length) {
+            clientsOnline.forEach(element => {
+                const exists = obj['data'].filter(obj => obj.id === element.id);
+                if (exists == false) {
+                    deleteObject(element.playerId);
+                }
+            });
+        }
     }
 }
 
@@ -74,4 +84,8 @@ function updatePlayerObj(player) {
     otherClient.style.top = y;
     otherClient.className = "otherClient";
     otherClient.classList.add(player.characterModel);
+}
+
+function deleteObject(element) {
+    document.getElementById(element.id).remove();
 }
