@@ -36,7 +36,7 @@ webSocket.onmessage = (message) => {
             }
         });
 
-        if ((obj['data'].player.length - 1) != clientsOnline.length) {
+        if ((obj['data'].length - 1) != clientsOnline.length) {
             clientsOnline.forEach(element => {
                 const exists = obj['data'].filter(obj => obj.id === element.id);
                 if (exists == false) {
