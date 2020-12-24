@@ -69,7 +69,7 @@ function start() {
     
         world.style.left = xWorld + 'px';
         world.style.top = yWorld + 'px';
-    }, 1/30);
+    }, 7);
 }
 
 // keyboard Eventlistener
