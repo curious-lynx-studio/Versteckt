@@ -7,6 +7,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var gameId = urlParams.get('id').slice(1,-1);
 const clientsOnline = [];
+const playerObjects = [];
 
 function makeid(length) {
     var result           = '';
@@ -34,6 +35,9 @@ webSocket.onmessage = (message) => {
                     clientsOnline.push(player);
                 }
             }
+            if (player.objects.length > 0) {
+                drawObjects(player.objects);
+            }
         });
 
         if ((obj['data'].length - 1) != clientsOnline.length) {
@@ -57,7 +61,13 @@ function sendData() {
     var y = document.getElementById("player").style.top;
     x = x.substring(0, x.length - 2);
     y = y.substring(0, y.length - 2);
-    let data = {gameId: gameId, playerId: playerId, x: x, y: y, name: playerName, characterModel: playerModel};
+    let data = {    gameId: gameId, 
+                    playerId: playerId, 
+                    x: x, y: y, 
+                    name: playerName, 
+                    characterModel: playerModel,
+                    objects: playerObjects
+                };
     webSocket.send(JSON.stringify(data));
 }
 
@@ -88,4 +98,30 @@ function updatePlayerObj(player) {
 
 function deleteObject(element) {
     document.getElementById(element.id).remove();
+}
+
+function placeObject(objectClass) {
+    var x = document.getElementById("player").style.left;
+    var y = document.getElementById("player").style.top;
+    x = x.substring(0, x.length - 2);
+    y = y.substring(0, y.length - 2);
+    let objectId = 'fakeObject-' + makeid(8);
+    let object = {x: x, y: y, objectId: objectId, objectClass: objectClass};
+    if (playerObjects.length < 20) {
+        playerObjects.push(object);
+    }
+}
+
+function drawObjects(data) {
+    data.forEach(objectToDraw => {
+        if (!document.getElementById(objectToDraw.objectId)) {
+            const objectSpawn = document.createElement("DIV");
+            objectSpawn.className = 'object ' + objectToDraw.objectClass;
+            objectSpawn.id = objectToDraw.objectId;
+            objectSpawn.style.left = objectToDraw.x + "px";
+            objectSpawn.style.top = objectToDraw.y + "px";
+            document.getElementById("gameArea").appendChild(objectSpawn);
+        }
+    });
+    
 }

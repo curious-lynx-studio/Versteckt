@@ -117,7 +117,7 @@ function filterObjectToCorrectLobby(player) {
   let msg = player.mostRecentMessage;
   lobbyArray.forEach(lobby => {
     if(lobby.id == msg.gameId) {
-      console.log(lobby);
+      console.log(lobby.data);
       let playerIndex = lobby.data.findIndex(x => x.playerId === player.associatedID);
       if(playerIndex == -1) {
         lobby.data.push(msg);
