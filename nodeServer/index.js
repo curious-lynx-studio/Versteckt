@@ -35,10 +35,12 @@ wss.on('connection', function connection(ws) {
 
     lobbyArray.forEach(lobby => {
       if(lobby.id == msg.gameId) {
-        lobby.player_errors.push(playerErrors);
+        lobby.playerErrors.push(playerSocket.playerErrors);
         ws.send(JSON.stringify(lobby));
       }
     });
+    lobby.playerErrors = [];
+    playerSocket.playerErrors = [];
   });
 
   ws.send('something');
@@ -99,7 +101,7 @@ function createLobby(jsonData, uniqueId) {
                     name: jsonData.name, 
                     playerCount: jsonData.players, 
                     mode: jsonData.mode,
-                    player_errors: [],
+                    playerErrors: [],
                     players: [],
                     data: []
                 }
@@ -122,7 +124,7 @@ function filterObjectToCorrectLobby(player) {
     if(lobby.id == msg.gameId) {
       //check whether lobby is full
       if (lobby.playerCount >= lobby.players.length){
-        
+        player.playerErrors.push("err_lobby_full");
       }
 
       //console.log(lobby);
@@ -140,6 +142,7 @@ class SocketContainer{
   associatedID = -1;
   socket;
   mostRecentMessage;
+  playerErrors = [];
   constructor(socket){
     this.socket = socket;
   }
