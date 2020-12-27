@@ -38,8 +38,8 @@ wss.on('connection', function connection(ws) {
         lobby.playerErrors.push(playerSocket.playerErrors);
         ws.send(JSON.stringify(lobby));
       }
+      lobby.playerErrors = [];
     });
-    lobby.playerErrors = [];
     playerSocket.playerErrors = [];
   });
 
@@ -127,7 +127,7 @@ function filterObjectToCorrectLobby(player) {
         player.playerErrors.push("err_lobby_full");
       }
 
-      //console.log(lobby);
+      console.log(lobby);
       let playerIndex = lobby.data.findIndex(x => x.playerId === player.associatedID);
       if(playerIndex == -1) {
         lobby.data.push(msg);
@@ -154,11 +154,18 @@ function handleConnectionClosed(playerSocket){
     if(lobby.id===lastMessage.gameId){
       lobby.players.pop(playerSocket.associatedID)
       console.log("player "+playerSocket.associatedID+" has been removed from the game")
-
       if (lobby.players.length < 1){
         lobbyArray.pop(lobby);
         console.log("lobby closed (no player in lobby)")
       }
+
+      let unusedEntry;
+      lobby.data.forEach(entry => {
+        if(entry.playerId == playerSocket.associatedID){
+          unusedEntry = entry;
+        }
+      });
+      lobby.data.pop(unusedEntry);
     }
   })
 
