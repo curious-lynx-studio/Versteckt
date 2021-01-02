@@ -96,6 +96,7 @@ function createLobby(jsonData, uniqueId) {
     var lobby = {   id: uniqueId, 
                     name: jsonData.name, 
                     map: jsonData.map,
+                    admin: '',
                     players: [],
                     data: []
                 }
@@ -116,9 +117,11 @@ function filterObjectToCorrectLobby(player) {
   let msg = player.mostRecentMessage;
   lobbyArray.forEach(lobby => {
     if(lobby.id == msg.gameId) {
-      console.log(lobby.data);
       let playerIndex = lobby.data.findIndex(x => x.playerId === player.associatedID);
       if(playerIndex == -1) {
+        if (lobby.data.length == 0) {
+          lobby.admin = playerIndex;
+        }
         lobby.data.push(msg);
       } else {
         lobby.data[playerIndex] = msg;
