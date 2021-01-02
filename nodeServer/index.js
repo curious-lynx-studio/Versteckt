@@ -95,8 +95,7 @@ function makeid(length) {
 function createLobby(jsonData, uniqueId) {
     var lobby = {   id: uniqueId, 
                     name: jsonData.name, 
-                    playerCount: jsonData.players, 
-                    mode: jsonData.mode,
+                    map: jsonData.map,
                     players: [],
                     data: []
                 }

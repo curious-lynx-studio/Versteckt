@@ -25,7 +25,7 @@ webSocket.onmessage = (message) => {
         let playerDataSendLoop = setInterval(sendData, 10);
     } else {
         const obj = JSON.parse(message.data);
-
+        // setMap(obj);
         obj['data'].forEach((player, index) => {
             if(player.playerId != playerId) {
                 if(document.getElementById(player.playerId)){
@@ -122,6 +122,19 @@ function drawObjects(data) {
             objectSpawn.style.top = objectToDraw.y + "px";
             document.getElementById("gameArea").appendChild(objectSpawn);
         }
-    });
-    
+    }); 
+}
+
+function setMap(data) {
+    if (data.map == '1') {
+        var linkElement = this.document.createElement('link');
+        linkElement.setAttribute('rel', 'stylesheet');
+        linkElement.setAttribute('type', 'text/css');
+        linkElement.setAttribute('href', 'imports/map1.css');
+
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        script.setAttribute("src", "maps/mapBlock.js");
+        document.getElementsByTagName("head")[0].appendChild(script);
+    }
 }
