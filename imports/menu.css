@@ -154,8 +154,8 @@ input:checked ~ .tab-content {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    height: 250px;
-    width: 800px;
+    height: 335px;
+    width: 900px;
     margin: auto;
     margin-bottom: 20px;
     padding-top: 32px;
@@ -177,10 +177,6 @@ input:checked ~ .tab-content {
     padding-top: 32px;
     padding-left: 50px;
     padding-right: 50px;
-}
-
-.input-group {
-    width: 700px;
 }
 
 .menubtnsize {
@@ -255,4 +251,15 @@ input:checked ~ .tab-content {
 .container {
     z-index: 999;
     position: relative;
+}
+
+.seperator {
+    height: 190px;
+    width: 1px;
+    background-color: black;
+}
+
+.alertsInMenu {
+    border: 0 !important;
+    border-radius: none !important;
 }

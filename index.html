@@ -20,9 +20,19 @@
 
       <div class="banner d-flex justify-content-center" style="margin-top: 10px;">Welcome to Score Hunter</div> 
 
-      <div id="hostLobby" class="menuButtonLobby d-flex justify-content-center">
+      <div id="playerName" class="menuButtonLobby d-flex justify-content-center">
         <div class="tab-content">
-
+          <div class="input-group" style="margin-bottom: 2px;">
+            <div class="input-group-prepend">
+              <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">Enter Name:</span>
+            </div>
+            <input type="text" id="nameInput" class="form-control" placeholder="Set Your Username" maxlength="10" aria-describedby="button-addon2">
+          </div>
+          <br>
+          <hr>
+          <div class="d-flex justify-content-between" style="width: 800px">
+            <div class="hostGame" style="width: 45%;">
+              <div class="alert alert-secondary alertsInMenu">Host Game:</div>
               <div class="input-group" style="margin-bottom: 2px;">
                 <div class="input-group-prepend">
                   <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">LobbyName:</span>
@@ -32,54 +42,36 @@
 
               <div class="input-group" style="margin-bottom: 2px;">
                 <div class="input-group-prepend">
-                  <label class="input-group-text input-group-text-lobbycreator" for="inputGroupSelect01">Players:</label>
+                  <label class="input-group-text input-group-text-lobbycreator" for="inputGroupSelect01">Map:</label>
                 </div>
-                <select class="custom-select" id="selectPlayerCount">
-                  <option selected>Choose...</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
+                <select class="custom-select" id="lobbyMap">
+                  <option value="1" selected>Office</option>
                 </select>
               </div>
 
+              <div class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="startLobby()">Start Lobby<div></div>
+            </div>
+            </div>
+
+            <div class="seperator"></div>
+
+            <div class="joinGame" style="width: 45%;">
+              <div class="alert alert-secondary alertsInMenu">Join Game:</div>
               <div class="input-group" style="margin-bottom: 2px;">
                 <div class="input-group-prepend">
-                  <label class="input-group-text input-group-text-lobbycreator" for="inputGroupSelect01">Game Mode:</label>
+                  <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">Enter Game Code:</span>
                 </div>
-                <select class="custom-select" id="selectMode">
-                  <option selected>Choose...</option>
-                  <option value="1">FindMe</option>
-                </select>
+                <input type="text" class="form-control" id="gameCode" aria-describedby="inputGroup-sizing-default">
               </div>
-
-              <div class="btn btn-primary" style="width: 100%; margin-top: 35px;" onclick="startLobby()">Start Lobby<div></div>
+    
+              <div class="btn btn-primary" style="width: 100%; margin-top: 46px;" onclick="joinGame(); setPlayerName()">Join Game<div></div>
+              </div>
             </div>
+          </div>
+
         </div>
       </div>
 
-      <div id="joinLobby" class="menuButtonLobby d-flex justify-content-center" style="padding-top: 32px;">
-        <div class="tab-content">
-
-          <div class="input-group" style="margin-bottom: 2px;">
-            <div class="input-group-prepend">
-              <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">Enter Name:</span>
-            </div>
-            <input type="text" id="nameInput" class="form-control" placeholder="Set Your Username" maxlength="10" aria-describedby="button-addon2">
-          </div>
-
-          <div class="input-group" style="margin-bottom: 2px;">
-            <div class="input-group-prepend">
-              <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">Enter Game Code:</span>
-            </div>
-            <input type="text" class="form-control" id="gameCode" aria-describedby="inputGroup-sizing-default">
-          </div>
-
-          <div class="btn btn-primary" style="width: 100%; margin-top: 70px;" onclick="joinGame(); setPlayerName()">Join Game<div></div>
-        </div>
-    </div>
-  </div>
-  
     </div>
 
       <div class="wrapper">        
