@@ -120,7 +120,7 @@ function filterObjectToCorrectLobby(player) {
       let playerIndex = lobby.data.findIndex(x => x.playerId === player.associatedID);
       if(playerIndex == -1) {
         if (lobby.data.length == 0) {
-          lobby.admin = playerIndex;
+          lobby.admin = player.associatedID;
         }
         lobby.data.push(msg);
       } else {

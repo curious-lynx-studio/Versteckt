@@ -3,6 +3,7 @@ var webSocket = new WebSocket(socketName);
 var playerName = localStorage.getItem('playerName');
 let playerId = playerName + makeid(6);
 let firstMessage = 0;
+let playerAdminState = false;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var gameId = urlParams.get('id').slice(1,-1);
@@ -26,6 +27,9 @@ webSocket.onmessage = (message) => {
     } else {
         const obj = JSON.parse(message.data);
         // setMap(obj);
+        if (obj.admin == playerId) {
+            playerAdminState = true;
+        }
         obj['data'].forEach((player, index) => {
             if(player.playerId != playerId) {
                 if(document.getElementById(player.playerId)){
