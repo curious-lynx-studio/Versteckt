@@ -261,5 +261,5 @@ input:checked ~ .tab-content {
 
 .alertsInMenu {
     border: 0 !important;
-    border-radius: none !important;
+    border-radius: 0 !important;
 }
