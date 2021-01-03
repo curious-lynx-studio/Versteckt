@@ -147,3 +147,7 @@ function setMap(data) {
 function showAdminConsole() {
     document.getElementById('adminBar').style.display = 'block';
 }
+
+function startRound() {
+    // here the websocket must send the start round to trigger the game state
+}
