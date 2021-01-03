@@ -53,20 +53,6 @@ body {
     background-position: center;
 }
 
-.propMenuBar {
-    position: absolute;
-    bottom: 0;
-    margin: auto;
-    width: 600px;
-    height: 66px;
-    background-color: #000000a1;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    border: solid 1px white;
-}
-
 .propBtn {
     width: 70px;
     height: 70px;
@@ -109,6 +95,21 @@ body {
     z-index: 9999;
 }
 
+.propMenuBar {
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    width: 600px;
+    height: 66px;
+    background-color: #000000a1;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px white;
+    visibility: hidden;
+}
+
 .placeObjectsBar {
     position: absolute;
     width: 66px;
@@ -122,4 +123,21 @@ body {
     margin-top: -300px;
     overflow-x: hidden;
     overflow-y: scroll;
+    display: none;
+}
+
+.adminBar {
+    position: absolute;
+    width: 66px;
+    height: 400px;
+    background-color: #000000a1;
+    left: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px white;
+    top: 50%;
+    margin-top: -300px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: none;
 }

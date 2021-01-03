@@ -27,8 +27,9 @@ webSocket.onmessage = (message) => {
     } else {
         const obj = JSON.parse(message.data);
         // setMap(obj);
-        if (obj.admin == playerId) {
+        if (obj.admin == playerId && playerAdminState == false) {
             playerAdminState = true;
+            showAdminConsole();
         }
         obj['data'].forEach((player, index) => {
             if(player.playerId != playerId) {
@@ -141,4 +142,8 @@ function setMap(data) {
         script.setAttribute("src", "maps/mapBlock.js");
         document.getElementsByTagName("head")[0].appendChild(script);
     }
+}
+
+function showAdminConsole() {
+    document.getElementById('adminBar').style.display = 'block';
 }
