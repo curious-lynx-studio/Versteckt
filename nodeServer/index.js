@@ -21,22 +21,29 @@ wss.on('connection', function connection(ws) {
 
   ws.on('message', function incoming(message) {
     let msg = JSON.parse(message);
-    if (typeof msg !== undefined){
-      playerSocket.mostRecentMessage = msg;
+    switch (msg.messageType) {
+      case 'startGame':
+        startGameForLobby(msg);
+        break;
+      default:
+        if (typeof msg !== undefined){
+          playerSocket.mostRecentMessage = msg;
+        }
+    
+        if(playerSocket.associatedID === -1){
+          associatePlayer(playerSocket);
+        }
+        else{
+          filterObjectToCorrectLobby(playerSocket)
+        }
+    
+        lobbyArray.forEach(lobby => {
+          if(lobby.id == msg.gameId) {
+            ws.send(JSON.stringify(lobby));
+          }
+        });
+        break;
     }
-
-    if(playerSocket.associatedID === -1){
-      associatePlayer(playerSocket);
-    }
-    else{
-      filterObjectToCorrectLobby(playerSocket)
-    }
-
-    lobbyArray.forEach(lobby => {
-      if(lobby.id == msg.gameId) {
-        ws.send(JSON.stringify(lobby));
-      }
-    });
   });
 
   ws.send('something');
@@ -93,10 +100,14 @@ function makeid(length) {
 }
 
 function createLobby(jsonData, uniqueId) {
-    var lobby = {   id: uniqueId, 
+    var lobby = {   
+                    id: uniqueId, 
                     name: jsonData.name, 
                     map: jsonData.map,
                     admin: '',
+                    gamePhase: 0,
+                    seeker: [],
+                    hiding: [],
                     players: [],
                     data: []
                 }
@@ -144,6 +155,7 @@ function handleConnectionClosed(playerSocket){
   lobbyArray.forEach(lobby => {
     if(lobby.id===lastMessage.gameId){
       lobby.players.pop(playerSocket.associatedID)
+      // remove the player object from the data array
       console.log("player "+playerSocket.associatedID+" has been removed from the game")
 
       if (lobby.players.length < 1){
@@ -153,4 +165,16 @@ function handleConnectionClosed(playerSocket){
     }
   })
 
+}
+
+function startGameForLobby(msg) {
+  lobbyArray.forEach(lobby => {
+    if(lobby.id == msg.gameId && lobby.data.length > 1) {
+      lobby.gamePhase = 1;
+      console.log(lobby);
+      let playerCount = lobby.data.length;
+      let seekerNumber = Math.round(playerCount / 6);
+      if (seekerNumber == 0) { seekerNumber = 1 };
+    }
+  });
 }

@@ -66,7 +66,9 @@ function sendData() {
     var y = document.getElementById("player").style.top;
     x = x.substring(0, x.length - 2);
     y = y.substring(0, y.length - 2);
-    let data = {    gameId: gameId, 
+    let data = {    
+                    messageType: 'playerUpdate',
+                    gameId: gameId, 
                     playerId: playerId, 
                     x: x, y: y, 
                     name: playerName, 
@@ -149,5 +151,9 @@ function showAdminConsole() {
 }
 
 function startRound() {
-    // here the websocket must send the start round to trigger the game state
+    let data = {    
+                    messageType: 'startGame',
+                    gameId: gameId
+                };
+    webSocket.send(JSON.stringify(data));
 }
