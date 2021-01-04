@@ -163,10 +163,22 @@ body {
     height: 5000px;
     position: absolute;
     border-radius: 100%;
-    border: 2371px solid #000000f2;
+    border: 2371px solid #000000;
     top: 50%;
     left: 50.5%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    display: none;
+}
+
+.seekerWaitView{
+    position: absolute;
+    width: 5000px;
+    height: 5000px;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
     display: none;
 }

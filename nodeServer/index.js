@@ -71,6 +71,7 @@ httpServer.listen(3000, () => {
 
 // body parse function
 var bodyParser = require('body-parser');
+const { clearInterval } = require("timers");
 app.use(bodyParser.json({limit: '200mb'}));
 app.use(bodyParser.urlencoded({limit: '200mb', extended: true}));
 app.use(bodyParser.text({ limit: '200mb' }));
@@ -106,6 +107,7 @@ function createLobby(jsonData, uniqueId) {
                     map: jsonData.map,
                     admin: '',
                     gamePhase: 0,
+                    gameCountdown: 0,
                     seeker: [],
                     hiding: [],
                     players: [],
@@ -189,6 +191,18 @@ function startGameForLobby(msg) {
           lobby.hiding.push(player.playerId);
         }
       });
+
+      // start game countdown
+      lobby.gameCountdown = 30;
+
+      let timerId = setInterval(function() {
+        if (lobby.gameCountdown == 0) {
+          lobby.gamePhase = 2;
+          clearInterval(timerId);
+        } else {
+          lobby.gameCountdown = lobby.gameCountdown - 1;
+        }
+      }, 1000);
     }
   });
 }

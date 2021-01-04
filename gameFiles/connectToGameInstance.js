@@ -27,7 +27,6 @@ webSocket.onmessage = (message) => {
         let playerDataSendLoop = setInterval(sendData, 10);
     } else {
         const obj = JSON.parse(message.data);
-
         // check if player is admin
         if (obj.admin == playerId && playerAdminState == false) {
             playerAdminState = true;
@@ -200,6 +199,14 @@ function hideSeekView() {
     document.getElementById('seekerView').style.display = 'none';
 }
 
+function showSeekWaitView() {
+    document.getElementById('seekerWaitView').style.display = 'block';
+}
+
+function hideSeekWaitView() {
+    document.getElementById('seekerWaitView').style.display = 'none';
+}
+
 
 function startRound() {
     let data = {    
@@ -216,13 +223,13 @@ function prepareFirstGamePhase(seeker, hiding) {
     if (seeker.includes(playerId)) {
         hidePropBar();
         hidePlaceObjectsBar();
-        showSeekView();
+        showSeekWaitView();
         document.getElementById('gameState').innerHTML = "You are Seeker!";
     }
     if (hiding.includes(playerId)) {
         showPropBar();
         showPlaceObjectsBar();
-        hideSeekView();
+        hideSeekWaitView();
         document.getElementById('gameState').innerHTML = "You have to hide!";
     }
 }
