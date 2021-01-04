@@ -157,3 +157,15 @@ body {
     overflow-y: hidden;
     display: none;
 }
+
+.seekerView{
+    width: 5000px;
+    height: 5000px;
+    position: absolute;
+    border-radius: 100%;
+    border: 2371px solid #000000f2;
+    top: 53%;
+    left: 50.5%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}

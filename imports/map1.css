@@ -1,6 +1,6 @@
 .gameArea {
-    left: 25vw;
-    top: 20vh;
+    /* left: 25vw;
+    top: 20vh; */
     display: block;
     margin: 0 auto;
     width: 768px;
@@ -10,6 +10,11 @@
     background-image: url(../maps/map1.png);
     background-repeat: no-repeat;
     background-size: cover;
+
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
 .prop0 {
