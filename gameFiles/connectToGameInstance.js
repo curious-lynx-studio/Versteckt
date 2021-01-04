@@ -47,8 +47,9 @@ webSocket.onmessage = (message) => {
 
         if ((obj['data'].length - 1) != clientsOnline.length) {
             clientsOnline.forEach(element => {
-                const exists = obj['data'].filter(obj => obj.id === element.id);
+                const exists = obj['data'].filter(obj => obj.id === element.playerId);
                 if (exists == false) {
+                    clientsOnline.pop(element);
                     deleteObject(element.playerId);
                 }
             });
@@ -104,7 +105,11 @@ function updatePlayerObj(player) {
 }
 
 function deleteObject(element) {
-    document.getElementById(element.id).remove();
+    try {
+        document.getElementById(element).remove();
+    } catch (error) {
+        
+    }
 }
 
 function placeObject(objectClass) {
