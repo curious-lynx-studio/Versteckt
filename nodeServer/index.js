@@ -173,7 +173,22 @@ function startGameForLobby(msg) {
       console.log(lobby);
       let playerCount = lobby.data.length;
       let seekerNumber = Math.round(playerCount / 6);
-      if (seekerNumber == 0) { seekerNumber = 1 };
+      if (seekerNumber < 1) { seekerNumber = 1 };
+
+      // get all random seeker into the seeker array
+      let seekerArray = lobby.data;
+      let shuffled = seekerArray.sort(function(){return .5 - Math.random()});
+      let selected=shuffled.slice(0,seekerNumber);
+      selected.forEach(player => {
+        lobby.seeker.push(player.playerId);
+      });
+
+      // get all hiding player to the hiding array
+      lobby.data.forEach(player => {
+        if(!lobby.seeker.includes(player.playerId)) {
+          lobby.hiding.push(player.playerId);
+        }
+      });
     }
   });
 }
