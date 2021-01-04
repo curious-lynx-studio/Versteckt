@@ -3,6 +3,7 @@ var webSocket = new WebSocket(socketName);
 var playerName = localStorage.getItem('playerName');
 let playerId = playerName + makeid(6);
 let firstMessage = 0;
+let gamePhase = 0;
 let playerAdminState = false;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -26,11 +27,27 @@ webSocket.onmessage = (message) => {
         let playerDataSendLoop = setInterval(sendData, 10);
     } else {
         const obj = JSON.parse(message.data);
-        // setMap(obj);
+
+        // check if player is admin
         if (obj.admin == playerId && playerAdminState == false) {
             playerAdminState = true;
             showAdminConsole();
         }
+
+        // check if game starts
+        if(obj.gamePhase != gamePhase && obj.seeker.length > 0) {
+            gamePhase = obj.gamePhase;
+            switch (obj.gamePhase) {
+                case 1:
+                    prepareFirstGamePhase(obj.seeker, obj.hiding);
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+
+        // process other player data
         obj['data'].forEach((player, index) => {
             if(player.playerId != playerId) {
                 if(document.getElementById(player.playerId)){
@@ -45,6 +62,7 @@ webSocket.onmessage = (message) => {
             }
         });
 
+        // remove offline players
         if ((obj['data'].length - 1) != clientsOnline.length) {
             clientsOnline.forEach(element => {
                 const exists = obj['data'].filter(obj => obj.id === element.playerId);
@@ -58,7 +76,6 @@ webSocket.onmessage = (message) => {
 }
 
 webSocket.onclose = function() {   
-    // websocket is closed.
     console.log("Connection is closed..."); 
 };
 
@@ -155,10 +172,44 @@ function showAdminConsole() {
     document.getElementById('adminBar').style.display = 'block';
 }
 
+function hideAdminConsole() {
+    document.getElementById('adminBar').style.display = 'none';
+}
+
+function showPropBar() {
+    document.getElementById('propMenuBar').style.visibility = 'visible';
+}
+
+function hidePropBar() {
+    document.getElementById('propMenuBar').style.visibility = 'hidden';
+}
+
+function showPlaceObjectsBar() {
+    document.getElementById('placeObjectsBar').style.display = 'block';
+}
+
+function hidePlaceObjectsBar() {
+    document.getElementById('placeObjectsBar').style.display = 'none';
+}
+
 function startRound() {
     let data = {    
                     messageType: 'startGame',
                     gameId: gameId
                 };
     webSocket.send(JSON.stringify(data));
+}
+
+function prepareFirstGamePhase(seeker, hiding) {
+    if(playerAdminState) {
+        hideAdminConsole();
+    }
+    if (seeker.includes(playerId)) {
+        hidePropBar();
+        hidePlaceObjectsBar();
+    }
+    if (hiding.includes(playerId)) {
+        showPropBar();
+        showPlaceObjectsBar();
+    }
 }
