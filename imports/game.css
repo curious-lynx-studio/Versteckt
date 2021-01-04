@@ -79,7 +79,7 @@ body {
 }
 
 .gameState {
-    position: static;
+    position: relative;
     top: 1px;
     margin: auto;
     width: 200px;
@@ -164,8 +164,9 @@ body {
     position: absolute;
     border-radius: 100%;
     border: 2371px solid #000000f2;
-    top: 53%;
+    top: 50%;
     left: 50.5%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    display: none;
 }

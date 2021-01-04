@@ -192,6 +192,15 @@ function hidePlaceObjectsBar() {
     document.getElementById('placeObjectsBar').style.display = 'none';
 }
 
+function showSeekView() {
+    document.getElementById('seekerView').style.display = 'block';
+}
+
+function hideSeekView() {
+    document.getElementById('seekerView').style.display = 'none';
+}
+
+
 function startRound() {
     let data = {    
                     messageType: 'startGame',
@@ -207,11 +216,13 @@ function prepareFirstGamePhase(seeker, hiding) {
     if (seeker.includes(playerId)) {
         hidePropBar();
         hidePlaceObjectsBar();
+        showSeekView();
         document.getElementById('gameState').innerHTML = "You are Seeker!";
     }
     if (hiding.includes(playerId)) {
         showPropBar();
         showPlaceObjectsBar();
+        hideSeekView();
         document.getElementById('gameState').innerHTML = "You have to hide!";
     }
 }
