@@ -207,9 +207,11 @@ function prepareFirstGamePhase(seeker, hiding) {
     if (seeker.includes(playerId)) {
         hidePropBar();
         hidePlaceObjectsBar();
+        document.getElementById('gameState').innerHTML = "You are Seeker!";
     }
     if (hiding.includes(playerId)) {
         showPropBar();
         showPlaceObjectsBar();
+        document.getElementById('gameState').innerHTML = "You have to hide!";
     }
 }
