@@ -198,6 +198,25 @@ function startGameForLobby(msg) {
       let timerId = setInterval(function() {
         if (lobby.gameCountdown == 0) {
           lobby.gamePhase = 2;
+          startSecondGamePhase(lobby.id);
+          clearInterval(timerId);
+        } else {
+          lobby.gameCountdown = lobby.gameCountdown - 1;
+        }
+      }, 1000);
+    }
+  });
+}
+
+function startSecondGamePhase(lobbyId) {
+  lobbyArray.forEach(lobby => {
+    if(lobby.id == lobbyId && lobby.gamePhase == 2) {
+      // init second game phase with 300 seconds
+      lobby.gameCountdown = 300;
+
+      let timerId = setInterval(function() {
+        if (lobby.gameCountdown == 0) {
+          lobby.gamePhase = 3;
           clearInterval(timerId);
         } else {
           lobby.gameCountdown = lobby.gameCountdown - 1;
