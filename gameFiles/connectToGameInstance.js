@@ -4,6 +4,7 @@ var playerName = localStorage.getItem('playerName');
 let playerId = playerName + makeid(6);
 let firstMessage = 0;
 let gamePhase = 0;
+let actualGameCounter = 0;
 let playerAdminState = false;
 let seekerStatus = false;
 const queryString = window.location.search;
@@ -32,6 +33,16 @@ webSocket.onmessage = (message) => {
         if (obj.admin == playerId && playerAdminState == false) {
             playerAdminState = true;
             showAdminConsole();
+        }
+
+        if (obj.gameCountdown != actualGameCounter) {
+            actualGameCounter = obj.gameCountdown;
+            if (obj.gameCountdown != 0) {
+                document.getElementById('timer').innerHTML = obj.gameCountdown;
+            } else {
+                document.getElementById('timer').innerHTML = '';
+            }
+            
         }
 
         // check if game starts
@@ -237,14 +248,14 @@ function prepareFirstGamePhase(seeker, hiding) {
         hidePropBar();
         hidePlaceObjectsBar();
         showSeekWaitView();
-        document.getElementById('gameState').innerHTML = "You are Seeker!";
+        document.getElementById('actualState').innerHTML = "You are Seeker!";
     }
     if (hiding.includes(playerId)) {
         seekerStatus = false;
         showPropBar();
         showPlaceObjectsBar();
         hideSeekWaitView();
-        document.getElementById('gameState').innerHTML = "You have to hide!";
+        document.getElementById('actualState').innerHTML = "You have to hide!";
     }
 }
 
@@ -258,13 +269,13 @@ function prepareSecondGamePhase(seeker, hiding) {
         hidePlaceObjectsBar();
         hideSeekWaitView();
         showSeekView();
-        document.getElementById('gameState').innerHTML = "Go and Seek!";
+        document.getElementById('actualState').innerHTML = "Go and Seek!";
     }
     if (hiding.includes(playerId)) {
         seekerStatus = false;
         hidePropBar();
         hidePlaceObjectsBar();
         hideSeekWaitView();
-        document.getElementById('gameState').innerHTML = "Good Luck!";
+        document.getElementById('actualState').innerHTML = "Good Luck!";
     }
 }

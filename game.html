@@ -26,7 +26,10 @@
         <div class="seekerView" id="seekerView"></div>
         <a href="index.html"><div id="leaveGame" class="leaveGame">Leave Game</div></a>
         <div id="lobbyCode" class="lobbyCode"></div>
-        <div id="gameState" class="gameState">waiting for host...</div>
+        <div id="gameState" class="d-flex justify-content-between gameState">
+            <div id="actualState" style="width: 80%;">waiting for host...</div>
+            <div id="timer" style="width: 20%;"></div>
+        </div>
         <div class="propMenuBar d-flex justify-content-around" id="propMenuBar">
             <div class="propBtn prop0" onclick="playerModelChange('prop0')"></div>
             <div class="propBtn prop1" onclick="playerModelChange('prop1')"></div>
