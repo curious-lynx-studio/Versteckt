@@ -184,6 +184,8 @@ function startGameForLobby(msg) {
       lobby.seeker = [];
       lobby.hiding = [];
       lobby.uncovered = [];
+      lobby.hitCounter = 0;
+      lobby.maxAllowedHits = 0;
       let playerCount = lobby.data.length;
       let seekerNumber = Math.round(playerCount / 6);
       if (seekerNumber < 1) { seekerNumber = 1 };
@@ -204,7 +206,7 @@ function startGameForLobby(msg) {
       });
 
       // start game countdown
-      lobby.gameCountdown = 10;
+      lobby.gameCountdown = 30;
 
       let timerId = setInterval(function() {
         if (lobby.gameCountdown == 0) {
@@ -225,17 +227,18 @@ function startSecondGamePhase(lobbyId) {
   lobbyArray.forEach(lobby => {
     if(lobby.id == lobbyId && lobby.gamePhase == 2) {
       // init second game phase with 300 seconds
-      lobby.gameCountdown = 20;
+      lobby.gameCountdown = 300;
       let timerId = setInterval(function() {
         lobbyArray.forEach(realLobby => {
           if (realLobby.id == lobby.id) {
             if (realLobby.gamePhase != 2) {
               lobby.gameCountdown = 0;
+              lobby.gamePhase = realLobby.gamePhase;
               clearInterval(timerId);
             }
           }
         });
-        if (lobby.gameCountdown == 0) {
+        if (lobby.gameCountdown == 0 && lobby.gamePhase == 2) {
           lobby.gamePhase = 3;
           clearInterval(timerId);
         } else {
@@ -251,10 +254,10 @@ function trueClick(msg) {
   lobbyArray.forEach(lobby => {
     console.log(lobby);
     if(lobby.id == msg.gameId && lobby.gamePhase == 2) {
-      if(!lobby.uncovered.includes(msg.playerId)) {
+      if(!lobby.uncovered.includes(msg.clickedId)) {
         lobby.hitCounter = lobby.hitCounter + 1;
-        lobby.uncovered.push(msg.playerId);
-        if (lobby.hitCounter >= lobby.maxAllowedHits) {
+        lobby.uncovered.push(msg.clickedId);
+        if (lobby.hitCounter > lobby.maxAllowedHits) {
           lobby.gamePhase = 3; // hiding wins
         }
         if (lobby.seeker.length == lobby.uncovered.length) {
@@ -270,7 +273,7 @@ function falseClick(msg) {
     console.log(lobby);
     if(lobby.id == msg.gameId && lobby.gamePhase == 2) {
         lobby.hitCounter = lobby.hitCounter + 1;
-        if (lobby.hitCounter >= lobby.maxAllowedHits) {
+        if (lobby.hitCounter > lobby.maxAllowedHits) {
           lobby.gamePhase = 3; // hiding wins
         }
     }

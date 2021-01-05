@@ -7,6 +7,8 @@ let gamePhase = 0;
 let actualGameCounter = 0;
 let playerAdminState = false;
 let seekerStatus = false;
+let lobbyMaxAllowedHits = 0;
+let lobbyHitCounter = 0;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var gameId = urlParams.get('id').slice(1,-1);
@@ -36,14 +38,24 @@ webSocket.onmessage = (message) => {
             showAdminConsole();
         }
 
+        // show time count down
         if (obj.gameCountdown != actualGameCounter) {
             actualGameCounter = obj.gameCountdown;
-            if (obj.gameCountdown != 0) {
+            if (obj.gameCountdown > 0) {
                 document.getElementById('timer').innerHTML = obj.gameCountdown;
             } else {
                 document.getElementById('timer').innerHTML = '';
             }
-            
+        }
+
+        // show hit count down
+        if (obj.maxAllowedHits != lobbyMaxAllowedHits) {
+            lobbyMaxAllowedHits = obj.maxAllowedHits;
+            document.getElementById('maxHits').innerHTML = lobbyMaxAllowedHits;
+        }
+        if (obj.hitCounter != lobbyHitCounter) {
+            lobbyHitCounter = obj.hitCounter;
+            document.getElementById('hitsClicked').innerHTML = lobbyHitCounter;
         }
 
         // check if game starts

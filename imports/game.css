@@ -144,17 +144,19 @@ body {
 
 .adminBar {
     position: absolute;
-    width: 66px;
-    height: 400px;
+    bottom: 0;
+    margin: auto;
+    width: 600px;
+    height: 66px;
     background-color: #000000a1;
-    left: 1px;
+    left: 0;
+    right: 0;
     margin-left: auto;
     margin-right: auto;
     border: solid 1px white;
-    top: 50%;
-    margin-top: -300px;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    text-align: center;
+    padding-top: 7px;
+    font-size: xx-large;
     display: none;
 }
 

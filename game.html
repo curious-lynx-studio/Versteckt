@@ -29,6 +29,12 @@
         <div id="gameState" class="d-flex justify-content-between gameState">
             <div id="actualState" style="width: 80%;">waiting for host...</div>
             <div id="timer" style="width: 20%;"></div>
+            <div class="d-flex justify-content-between">
+                <div id="hitsLabel">HIT: </div>
+                <div id="hitsClicked">-</div>
+                <div>/</div>
+                <div id="maxHits">-</div>
+            </div>
         </div>
         <div class="propMenuBar d-flex justify-content-around" id="propMenuBar">
             <div class="propBtn prop0" onclick="playerModelChange('prop0')"></div>
@@ -55,6 +61,7 @@
             <div class="propBtn prop9" onclick="placeObject('prop9')"></div>
         </div>
         <div class="adminBar" id="adminBar" onclick="startRound()">
+            START ROUND
         </div>
     </body>
     <script type="text/javascript" src="maps/mapBlock.js"></script>
