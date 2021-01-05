@@ -5,6 +5,7 @@ let playerId = playerName + makeid(6);
 let firstMessage = 0;
 let gamePhase = 0;
 let playerAdminState = false;
+let seekerStatus = false;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var gameId = urlParams.get('id').slice(1,-1);
@@ -39,6 +40,10 @@ webSocket.onmessage = (message) => {
             switch (obj.gamePhase) {
                 case 1:
                     prepareFirstGamePhase(obj.seeker, obj.hiding);
+                    break;
+                
+                case 2:
+                    prepareSecondGamePhase(obj.seeker, obj.hiding);
                     break;
             
                 default:
@@ -118,6 +123,13 @@ function updatePlayerObj(player) {
     otherClient.style.top = y;
     otherClient.className = "otherClient";
     otherClient.classList.add(player.characterModel);
+
+    // show or hide names if you are the seeker or not
+    if (seekerStatus == true) {
+        otherClient.style.fontSize = '0';
+    } else {
+        otherClient.style.fontSize = '14';
+    }
 }
 
 function deleteObject(element) {
@@ -221,15 +233,38 @@ function prepareFirstGamePhase(seeker, hiding) {
         hideAdminConsole();
     }
     if (seeker.includes(playerId)) {
+        seekerStatus = true;
         hidePropBar();
         hidePlaceObjectsBar();
         showSeekWaitView();
         document.getElementById('gameState').innerHTML = "You are Seeker!";
     }
     if (hiding.includes(playerId)) {
+        seekerStatus = false;
         showPropBar();
         showPlaceObjectsBar();
         hideSeekWaitView();
         document.getElementById('gameState').innerHTML = "You have to hide!";
+    }
+}
+
+function prepareSecondGamePhase(seeker, hiding) {
+    if(playerAdminState) {
+        hideAdminConsole();
+    }
+    if (seeker.includes(playerId)) {
+        seekerStatus = true;
+        hidePropBar();
+        hidePlaceObjectsBar();
+        hideSeekWaitView();
+        showSeekView();
+        document.getElementById('gameState').innerHTML = "Go and Seek!";
+    }
+    if (hiding.includes(playerId)) {
+        seekerStatus = false;
+        hidePropBar();
+        hidePlaceObjectsBar();
+        hideSeekWaitView();
+        document.getElementById('gameState').innerHTML = "Good Luck!";
     }
 }
