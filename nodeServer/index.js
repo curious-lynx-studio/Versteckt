@@ -257,7 +257,7 @@ function trueClick(msg) {
       if(!lobby.uncovered.includes(msg.clickedId)) {
         lobby.hitCounter = lobby.hitCounter + 1;
         lobby.uncovered.push(msg.clickedId);
-        if (lobby.hitCounter > lobby.maxAllowedHits) {
+        if (lobby.hitCounter >= lobby.maxAllowedHits) {
           lobby.gamePhase = 3; // hiding wins
         }
         if (lobby.seeker.length == lobby.uncovered.length) {
@@ -273,7 +273,7 @@ function falseClick(msg) {
     console.log(lobby);
     if(lobby.id == msg.gameId && lobby.gamePhase == 2) {
         lobby.hitCounter = lobby.hitCounter + 1;
-        if (lobby.hitCounter > lobby.maxAllowedHits) {
+        if (lobby.hitCounter >= lobby.maxAllowedHits) {
           lobby.gamePhase = 3; // hiding wins
         }
     }

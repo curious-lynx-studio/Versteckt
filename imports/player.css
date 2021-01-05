@@ -22,6 +22,11 @@
     color: white;
     display: flex;
     justify-content: center;
+    z-index: 10;
+}
+
+.otherClient:hover {
+    border: 1px solid red;
 }
 
 .object {
@@ -34,6 +39,10 @@
     color: white;
     display: flex;
     justify-content: center;
+}
+
+.object:hover {
+    border: 1px solid red;
 }
 
 .hunter--Down{
