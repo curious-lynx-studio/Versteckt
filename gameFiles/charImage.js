@@ -3,18 +3,31 @@ document.addEventListener('keypress', logKey);
 var char = document.getElementById("player");
 setPlayerModelClass();
 
-function setPlayerModelClass() {
+function setPlayerModelClass(oldModel) {
     if (playerModel == 'hunter') {
-        char.classList.add(playerModel+'--down');
+        try {
+            char.classList.remove(oldModel);
+            char.classList.add(playerModel+'--down'); 
+        } catch (error) {}
     } else {
-        char.className = "player";
-        char.classList.add(playerModel);
+        try {
+            char.className = "player";
+            char.classList.remove(oldModel);
+            char.classList.add(playerModel);
+        } catch (error) {}
     }    
 }
 
 function playerModelChange(newModelId) {
+    let oldModel = playerModel;
     playerModel = newModelId;
-    setPlayerModelClass();
+    setPlayerModelClass(oldModel);
+}
+
+function resetPlayerModel() {
+    let oldModel = playerModel;
+    playerModel = 'hunter';
+    setPlayerModelClass(oldModel);
 }
 
 function logKey(e) {

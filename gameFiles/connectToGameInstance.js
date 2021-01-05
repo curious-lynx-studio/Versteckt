@@ -342,4 +342,5 @@ function resetEverything() {
         showAdminConsole();
     }
     hideSeekView();
+    resetPlayerModel();
 }
