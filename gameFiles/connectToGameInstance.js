@@ -263,6 +263,7 @@ function startRound() {
 }
 
 function prepareFirstGamePhase(seeker, hiding) {
+    removeOldObjects();
     if(playerAdminState) {
         hideAdminConsole();
     }
@@ -343,4 +344,10 @@ function resetEverything() {
     }
     hideSeekView();
     resetPlayerModel();
+}
+
+function removeOldObjects() {
+    document.querySelectorAll('.object').forEach(function(a){
+        a.remove()
+    })
 }

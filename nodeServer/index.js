@@ -206,7 +206,7 @@ function startGameForLobby(msg) {
       });
 
       // start game countdown
-      lobby.gameCountdown = 30;
+      lobby.gameCountdown = 5;
 
       let timerId = setInterval(function() {
         if (lobby.gameCountdown == 0) {
