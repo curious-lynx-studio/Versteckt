@@ -11,7 +11,8 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var gameId = urlParams.get('id').slice(1,-1);
 const clientsOnline = [];
-const playerObjects = [];
+let playerObjects = [];
+let seekerList = [];
 
 function makeid(length) {
     var result           = '';
@@ -55,6 +56,14 @@ webSocket.onmessage = (message) => {
                 
                 case 2:
                     prepareSecondGamePhase(obj.seeker, obj.hiding);
+                    break;
+
+                case 3:
+                    hidingWins(obj);
+                    break;
+                
+                case 4:
+                    seekerWins(obj);
                     break;
             
                 default:
@@ -120,6 +129,7 @@ function createPlayerObj(player, index) {
     otherClient.innerHTML = player.name;
     otherClient.style.left = player.x + "px";
     otherClient.style.top = player.y + "px";
+    otherClient.onclick=function(){clickedObject(true, player.playerId)}
     document.getElementById("gameArea").appendChild(otherClient);
     const otherClientId = document.getElementById(player.playerId);
     otherClientId.classList.add(player.characterModel);
@@ -158,7 +168,7 @@ function placeObject(objectClass) {
     y = y.substring(0, y.length - 2);
     let objectId = 'fakeObject-' + makeid(8);
     let object = {x: x, y: y, objectId: objectId, objectClass: objectClass};
-    if (playerObjects.length < 20) {
+    if (playerObjects.length < 30) {
         playerObjects.push(object);
     }
 }
@@ -171,6 +181,7 @@ function drawObjects(data) {
             objectSpawn.id = objectToDraw.objectId;
             objectSpawn.style.left = objectToDraw.x + "px";
             objectSpawn.style.top = objectToDraw.y + "px";
+            objectSpawn.onclick=function(){clickedObject(false, '')}
             document.getElementById("gameArea").appendChild(objectSpawn);
         }
     }); 
@@ -260,6 +271,7 @@ function prepareFirstGamePhase(seeker, hiding) {
 }
 
 function prepareSecondGamePhase(seeker, hiding) {
+    seekerList = seeker;
     if(playerAdminState) {
         hideAdminConsole();
     }
@@ -278,4 +290,44 @@ function prepareSecondGamePhase(seeker, hiding) {
         hideSeekWaitView();
         document.getElementById('actualState').innerHTML = "Good Luck!";
     }
+}
+
+function clickedObject(state, id) {
+    if (seekerList.includes(playerId)) { 
+        if(state) {
+            let data = {    
+                messageType: 'trueClick',
+                clickedId: id,
+                gameId: gameId
+            };
+            webSocket.send(JSON.stringify(data));
+        }
+        if(!state) {
+            let data = {    
+                messageType: 'falseClick',
+                clickedId: 'false',
+                gameId: gameId
+            };
+            webSocket.send(JSON.stringify(data));
+        }
+    }
+}
+
+function hidingWins() {
+    document.getElementById('actualState').innerHTML = "Team Hide WON!";
+    resetEverything();
+}
+
+function seekerWins() {
+    document.getElementById('actualState').innerHTML = "Team Seek WON!";
+    resetEverything();
+}
+
+function resetEverything() {
+    seekerStatus = false;
+    playerObjects = [];
+    if(playerAdminState) {
+        showAdminConsole();
+    }
+    hideSeekView();
 }

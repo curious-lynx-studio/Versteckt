@@ -25,6 +25,12 @@ wss.on('connection', function connection(ws) {
       case 'startGame':
         startGameForLobby(msg);
         break;
+      case 'trueClick':
+        trueClick(msg);
+        break;
+      case 'falseClick':
+        falseClick(msg);
+        break;
       default:
         if (typeof msg !== undefined){
           playerSocket.mostRecentMessage = msg;
@@ -108,8 +114,11 @@ function createLobby(jsonData, uniqueId) {
                     admin: '',
                     gamePhase: 0,
                     gameCountdown: 0,
+                    hitCounter: 0,
+                    maxAllowedHits: 0,
                     seeker: [],
                     hiding: [],
+                    uncovered: [],
                     players: [],
                     data: []
                 }
@@ -172,7 +181,9 @@ function startGameForLobby(msg) {
   lobbyArray.forEach(lobby => {
     if(lobby.id == msg.gameId && lobby.data.length > 1) {
       lobby.gamePhase = 1;
-      console.log(lobby);
+      lobby.seeker = [];
+      lobby.hiding = [];
+      lobby.uncovered = [];
       let playerCount = lobby.data.length;
       let seekerNumber = Math.round(playerCount / 6);
       if (seekerNumber < 1) { seekerNumber = 1 };
@@ -193,11 +204,13 @@ function startGameForLobby(msg) {
       });
 
       // start game countdown
-      lobby.gameCountdown = 30;
+      lobby.gameCountdown = 10;
 
       let timerId = setInterval(function() {
         if (lobby.gameCountdown == 0) {
           lobby.gamePhase = 2;
+          lobby.hitCounter = 0;
+          lobby.maxAllowedHits = (lobby.hiding.length * 3);
           startSecondGamePhase(lobby.id);
           clearInterval(timerId);
         } else {
@@ -212,9 +225,16 @@ function startSecondGamePhase(lobbyId) {
   lobbyArray.forEach(lobby => {
     if(lobby.id == lobbyId && lobby.gamePhase == 2) {
       // init second game phase with 300 seconds
-      lobby.gameCountdown = 300;
-
+      lobby.gameCountdown = 20;
       let timerId = setInterval(function() {
+        lobbyArray.forEach(realLobby => {
+          if (realLobby.id == lobby.id) {
+            if (realLobby.gamePhase != 2) {
+              lobby.gameCountdown = 0;
+              clearInterval(timerId);
+            }
+          }
+        });
         if (lobby.gameCountdown == 0) {
           lobby.gamePhase = 3;
           clearInterval(timerId);
@@ -222,6 +242,37 @@ function startSecondGamePhase(lobbyId) {
           lobby.gameCountdown = lobby.gameCountdown - 1;
         }
       }, 1000);
+    }
+  });
+}
+
+function trueClick(msg) {
+  
+  lobbyArray.forEach(lobby => {
+    console.log(lobby);
+    if(lobby.id == msg.gameId && lobby.gamePhase == 2) {
+      if(!lobby.uncovered.includes(msg.playerId)) {
+        lobby.hitCounter = lobby.hitCounter + 1;
+        lobby.uncovered.push(msg.playerId);
+        if (lobby.hitCounter >= lobby.maxAllowedHits) {
+          lobby.gamePhase = 3; // hiding wins
+        }
+        if (lobby.seeker.length == lobby.uncovered.length) {
+          lobby.gamePhase = 4; // seeker wins
+        }
+      }
+    }
+  });
+}
+
+function falseClick(msg) {
+  lobbyArray.forEach(lobby => {
+    console.log(lobby);
+    if(lobby.id == msg.gameId && lobby.gamePhase == 2) {
+        lobby.hitCounter = lobby.hitCounter + 1;
+        if (lobby.hitCounter >= lobby.maxAllowedHits) {
+          lobby.gamePhase = 3; // hiding wins
+        }
     }
   });
 }

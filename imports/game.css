@@ -169,6 +169,7 @@ body {
     margin-right: -50%;
     transform: translate(-50%, -50%);
     display: none;
+    pointer-events: none;
 }
 
 .seekerWaitView{
