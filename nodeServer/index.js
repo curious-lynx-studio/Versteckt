@@ -63,17 +63,17 @@ wss.on('connection', function connection(ws) {
 
 // http & https cert settings
 const httpServer = http.createServer(app);
-httpServer.listen(3000, () => {
+httpServer.listen(3003, () => {
   console.log('Lobby Server running');
 });
 
-// const httpsServer = https.createServer({
-//     key: fs.readFileSync('/etc/letsencrypt/live/blank42.de/privkey.pem'),
-//     cert: fs.readFileSync('/etc/letsencrypt/live/blank42.de/fullchain.pem'),
-//   }, app);
-// httpsServer.listen(3030, () => {
-//   console.log('HTTPS Server running on port 443');
-// });
+const httpsServer = https.createServer({
+    key: fs.readFileSync('/etc/letsencrypt/live/blank42.de/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/blank42.de/fullchain.pem'),
+  }, app);
+httpsServer.listen(3033, () => {
+  console.log('HTTPS Server running on port 443');
+});
 
 // body parse function
 var bodyParser = require('body-parser');

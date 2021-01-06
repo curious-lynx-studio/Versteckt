@@ -1,4 +1,4 @@
-var socketName = "ws:localhost:1337";
+var socketName = "ws:blank42.de:1337";
 var webSocket = new WebSocket(socketName);
 var playerName = localStorage.getItem('playerName');
 let playerId = playerName + makeid(6);

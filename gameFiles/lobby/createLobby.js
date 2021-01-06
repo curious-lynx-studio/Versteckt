@@ -19,7 +19,7 @@ async function postData(url = '', data = {}) {
 function startLobby() {
     var lobbyName = document.getElementById('lobbyNameToSet').value;
     var lobbyMap = document.getElementById('lobbyMap').value;
-    postData('http://localhost:3000/newLobby', { name: lobbyName, map: lobbyMap })
+    postData('http://localhost:3003/newLobby', { name: lobbyName, map: lobbyMap })
     .then(data => {
         console.log(data); // JSON data parsed by `data.json()` call
         joinOwnGame(data);
