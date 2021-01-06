@@ -151,13 +151,8 @@ input:checked ~ .tab-content {
 }
 
 .menuButtonLobby {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
     height: 335px;
     width: 900px;
-    margin: auto;
-    margin-bottom: 20px;
     padding-top: 32px;
     padding-left: 50px;
     padding-right: 50px;
@@ -250,7 +245,13 @@ input:checked ~ .tab-content {
 
 .container {
     z-index: 999;
-    position: relative;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    text-align: center;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 0 !important;
 }
 
 .seperator {
