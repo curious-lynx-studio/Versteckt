@@ -299,7 +299,7 @@ function prepareSecondGamePhase(seeker, hiding) {
     if (hiding.includes(playerId)) {
         seekerStatus = false;
         hidePropBar();
-        hidePlaceObjectsBar();
+        // hidePlaceObjectsBar();
         hideSeekWaitView();
         document.getElementById('actualState').innerHTML = "Good Luck!";
     }
@@ -343,6 +343,7 @@ function resetEverything() {
         showAdminConsole();
     }
     hideSeekView();
+    hidePlaceObjectsBar();
     resetPlayerModel();
 }
 

@@ -56,6 +56,7 @@ body {
 .propBtn {
     width: 70px;
     height: 70px;
+    float: left;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -115,7 +116,7 @@ body {
     position: absolute;
     bottom: 0;
     margin: auto;
-    width: 600px;
+    width: 100vw;
     height: 66px;
     background-color: #000000a1;
     left: 0;
@@ -128,7 +129,7 @@ body {
 
 .placeObjectsBar {
     position: absolute;
-    width: 66px;
+    width: 147px;
     height: 600px;
     background-color: #000000a1;
     right: 1px;
