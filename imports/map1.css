@@ -3,11 +3,11 @@
     top: 20vh; */
     display: block;
     margin: 0 auto;
-    width: 768px;
+    width: 1280px;
     height: 640px;
     overflow: hidden;
     position: absolute;
-    background-image: url(../maps/map1.png);
+    background-image: url(../maps/map2.png);
     background-repeat: no-repeat;
     background-size: cover;
 
