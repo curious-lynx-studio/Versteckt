@@ -1,13 +1,15 @@
 {
-  "name": "ScoreHunter",
-  "version": "1.0.0",
-  "description": "Bomberman like game with JS -> Electron + Websocket Multiplayer. Just some Project to learn more about the technology.",
+  "name": "scorehunter",
+  "version": "0.0.1",
+  "description": "Hide'n'Seek game with JS -> Electron + Websocket Multiplayer. Just some Project to learn more about the technology.",
   "main": "main.js",
   "dependencies": {},
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "dist": "electron-builder"
+    "distLinux": "electron-builder -mwl",
+    "distWin": "electron-builder --win portable --publish=never"
   },
   "repository": {
     "type": "git",
