@@ -205,3 +205,19 @@ body {
     text-align: center;
     font-size: x-large;
 }
+
+.infoText {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9;
+    text-align: center;
+    padding-top: 40vh;
+    color: white;
+    font-size: xxx-large;
+}

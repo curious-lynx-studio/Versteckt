@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="imports/game.css">
         <link rel="stylesheet" type="text/css" href="imports/player.css">
         <link href="imports/bootstrap.min.css" rel="stylesheet" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- preloads -->
@@ -15,6 +16,9 @@
         <link rel="preload" href="gameFiles/showLobbyCode.js" as="script">
     </head>
     <body>
+        <div class="infoText">
+            <h1 id="infoText"></h1>
+        </div>
         <div class="mainWindow">
             <div class="fullWindow">
                 <div id="gameArea" class="gameArea">
@@ -123,6 +127,7 @@
     <script type="text/javascript" src="gameFiles/movement.js"></script>
     <script type="text/javascript" src="gameFiles/moveForce.js"></script>
     <script type="text/javascript" src="gameFiles/connectToGameInstance.js"></script>
+    <script type="text/javascript" src="gameFiles/infoText.js"></script>
     <script type="text/javascript" src="gameFiles/charImage.js"></script>
     <script type="text/javascript" src="gameFiles/showPlayerName.js"></script>
     <script type="text/javascript" src="gameFiles/showLobbyCode.js"></script>

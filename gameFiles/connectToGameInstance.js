@@ -94,7 +94,10 @@ webSocket.onmessage = (message) => {
                 }
             } else {
                 if(obj.uncovered.includes(playerId)) {
-                    playerDead();
+                    if (playerModel != 'deadPlayer') {
+                        youWhereFoundMessage();
+                        playerDead();
+                    }
                 }
             }
             if (player.objects.length > 0) {
@@ -295,6 +298,7 @@ function prepareFirstGamePhase(seeker, hiding) {
         hideSeekWaitView();
         document.getElementById('actualState').innerHTML = "You have to hide!";
     }
+    gameStartMessage();
 }
 
 function prepareSecondGamePhase(seeker, hiding) {
@@ -352,11 +356,13 @@ function timeOver() {
 
 function hidingWins() {
     document.getElementById('actualState').innerHTML = "Team Hide WON!";
+    hidingWinMessage();
     resetEverything();
 }
 
 function seekerWins() {
     document.getElementById('actualState').innerHTML = "Team Seek WON!";
+    seekerWinMessage();
     resetEverything();
 }
 

@@ -19,6 +19,9 @@ function startNotMovedTimer() {
             stopNotMovedTimer();
         } else {
             sec--;
+            if (sec == 8) {
+                moveMessage();
+            }
             if (sec == 00) {
                 timeOver();
             }
