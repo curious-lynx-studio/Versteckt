@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 function setPlayerName() {
-    const name = document.getElementById('nameInput').value;
+    let name = document.getElementById('nameInput').value;
+    name = name.replace(/[^a-zA-Z0-9]/g,'');
+    name = name.substring(0, 13);
     localStorage.setItem('playerName', name);
 }
 

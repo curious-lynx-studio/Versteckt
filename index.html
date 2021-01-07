@@ -24,7 +24,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">Enter Name:</span>
             </div>
-            <input type="text" id="nameInput" class="form-control" placeholder="Set Your Username" maxlength="10" aria-describedby="button-addon2">
+            <input type="text" id="nameInput" class="form-control" placeholder="Set Your Username" maxlength="13" aria-describedby="button-addon2">
           </div>
           <br>
           <hr>
@@ -47,7 +47,7 @@
                 </select>
               </div>
 
-              <div class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="setPlayerName(); startLobby()">Start Lobby<div></div>
+              <div class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="setPlayerName(); setStdUserName(); startLobby()">Start Lobby<div></div>
             </div>
             </div>
 
@@ -62,7 +62,7 @@
                 <input type="text" class="form-control" id="gameCode" aria-describedby="inputGroup-sizing-default">
               </div>
     
-              <div class="btn btn-primary" style="width: 100%; margin-top: 46px;" onclick="setPlayerName(); joinGame();">Join Game<div></div>
+              <div class="btn btn-primary" style="width: 100%; margin-top: 46px;" onclick="setPlayerName(); setStdUserName(); joinGame();">Join Game<div></div>
               </div>
             </div>
           </div>
