@@ -30,3 +30,8 @@ function stopNotMovedTimer() {
     clearInterval(window.notMovedTimer);
     startNotMovedTimer();
 }
+
+function resetNotMoveTimer() {
+    document.getElementById("lastTimeMoved").innerHTML = '';
+    clearInterval(window.notMovedTimer);
+}

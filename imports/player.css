@@ -26,6 +26,19 @@
     z-index: 10;
 }
 
+.otherClientSeeker {
+    height: 250px;
+    width: 250px;
+    border: solid 1px red;
+    border-radius: 100%;
+    position: absolute;
+    background-position: center;
+    background-size: 25px;
+    -webkit-transform: translate3d(-45%, -35%, 0); 
+    -moz-transform: translate3d(-45%, -35%, 0);  
+    transform: translate3d(-45%, -35%, 0);  
+}
+
 .otherClient:hover {
     border: 1px solid red;
 }

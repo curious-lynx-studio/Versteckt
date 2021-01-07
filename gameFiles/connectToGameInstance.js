@@ -167,6 +167,10 @@ function updatePlayerObj(player) {
     } else {
         otherClient.style.fontSize = '14';
     }
+
+    if (seekerList.includes(player.playerId)) {
+        otherClient.classList.add('otherClientSeeker');
+    }
 }
 
 function deleteObject(element) {
@@ -272,6 +276,7 @@ function startRound() {
 
 function prepareFirstGamePhase(seeker, hiding) {
     playerModelChange('hunter');
+    resetNotMoveTimer();
     removeOldObjects();
     if(playerAdminState) {
         hideAdminConsole();
@@ -364,6 +369,7 @@ function resetEverything() {
     hideSeekView();
     hidePlaceObjectsBar();
     resetPlayerModel();
+    resetNotMoveTimer();
 }
 
 function removeOldObjects() {
