@@ -10,6 +10,7 @@
     justify-content: center;
     left: 50%;
     top: 45%;
+    z-index: 10;
 }
 
 .otherClient {
@@ -59,6 +60,10 @@
 
 .hunter--Right{
     background-image: url(../gameAssets/Character/red_right.png);
+}
+
+.deadPlayer {
+    background-image: url(../gameAssets/Character/dead.png);
 }
 
 .playerDeath {

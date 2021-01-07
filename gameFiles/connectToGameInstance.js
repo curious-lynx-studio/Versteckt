@@ -92,6 +92,10 @@ webSocket.onmessage = (message) => {
                     createPlayerObj(player);
                     clientsOnline.push(player);
                 }
+            } else {
+                if(obj.uncovered.includes(playerId)) {
+                    playerDead();
+                }
             }
             if (player.objects.length > 0) {
                 drawObjects(player.objects);
@@ -213,6 +217,10 @@ function setMap(data) {
     }
 }
 
+function playerDead() {
+    playerModelChange('deadPlayer');
+}
+
 function showAdminConsole() {
     document.getElementById('adminBar').style.display = 'block';
 }
@@ -230,11 +238,11 @@ function hidePropBar() {
 }
 
 function showPlaceObjectsBar() {
-    document.getElementById('placeObjectsBar').style.display = 'block';
+    document.getElementById('placeObjectsBar').style.visibility = 'visible';
 }
 
 function hidePlaceObjectsBar() {
-    document.getElementById('placeObjectsBar').style.display = 'none';
+    document.getElementById('placeObjectsBar').style.visibility = 'hidden';
 }
 
 function showSeekView() {
@@ -263,6 +271,7 @@ function startRound() {
 }
 
 function prepareFirstGamePhase(seeker, hiding) {
+    playerModelChange('hunter');
     removeOldObjects();
     if(playerAdminState) {
         hideAdminConsole();
@@ -302,6 +311,7 @@ function prepareSecondGamePhase(seeker, hiding) {
         // hidePlaceObjectsBar();
         hideSeekWaitView();
         document.getElementById('actualState').innerHTML = "Good Luck!";
+        startNotMovedTimer();
     }
 }
 
@@ -324,6 +334,15 @@ function clickedObject(state, id) {
             webSocket.send(JSON.stringify(data));
         }
     }
+}
+
+function timeOver() {
+    let data = {    
+        messageType: 'trueClick',
+        clickedId: playerId,
+        gameId: gameId
+    };
+    webSocket.send(JSON.stringify(data));
 }
 
 function hidingWins() {

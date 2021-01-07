@@ -27,16 +27,18 @@
         <a href="index.html"><div id="leaveGame" class="leaveGame">Leave Game</div></a>
         <div id="lobbyCode" class="lobbyCode"></div>
         <div id="gameState" class="d-flex justify-content-between gameState">
-            <div id="actualState" style="width: 80%;">waiting for host...</div>
-            <div id="timer" style="width: 20%;"></div>
-            <div class="d-flex justify-content-between">
+            <div id="actualState" style="width: 50%;">waiting for host...</div>
+            <div id="timer" style="width: 10%;"></div>
+            <div style="width: 15%;" class="d-flex justify-content-between">
                 <div id="hitsLabel">HIT: </div>
                 <div id="hitsClicked">-</div>
                 <div>/</div>
                 <div id="maxHits">-</div>
             </div>
+            <div id="lastTimeMoved" style="width: 10%;" style="color: red;"></div>
         </div>
-        <div class="propMenuBar d-flex justify-content-around" id="propMenuBar">
+        <div class="propMenuBar" id="propMenuBar">
+            <div class="morphText">Morph Yourself:</div>
             <div class="propBtn prop0" onclick="playerModelChange('prop0')"></div>
             <div class="propBtn prop1" onclick="playerModelChange('prop1')"></div>
             <div class="propBtn prop2" onclick="playerModelChange('prop2')"></div>
@@ -73,7 +75,7 @@
             <div class="propBtn prop33" onclick="playerModelChange('prop33')"></div>
             <div class="propBtn prop34" onclick="playerModelChange('prop34')"></div>
         </div>
-        <div class="placeObjectsBar" id="placeObjectsBar">
+        <div class="placeObjectsBar d-flex justify-content-between" id="placeObjectsBar">
             <div class="propBtn prop0" onclick="placeObject('prop0')"></div>
             <div class="propBtn prop1" onclick="placeObject('prop1')"></div>
             <div class="propBtn prop2" onclick="placeObject('prop2')"></div>
@@ -119,6 +121,7 @@
     </body>
     <script type="text/javascript" src="maps/map2.js"></script>
     <script type="text/javascript" src="gameFiles/movement.js"></script>
+    <script type="text/javascript" src="gameFiles/moveForce.js"></script>
     <script type="text/javascript" src="gameFiles/connectToGameInstance.js"></script>
     <script type="text/javascript" src="gameFiles/charImage.js"></script>
     <script type="text/javascript" src="gameFiles/showPlayerName.js"></script>

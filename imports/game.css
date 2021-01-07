@@ -83,15 +83,16 @@ body {
     position: relative;
     top: 1px;
     margin: auto;
-    width: 350px;
-    height: 35px;
+    width: 500px;
+    height: 80px;
     background-color: #000000a1;
     margin-left: auto;
     margin-right: auto;
     border: solid 1px white;
     padding: 3px;
     text-align: center;
-    font-size: large;
+    font-size: x-large;
+    padding-top: 19px;
     z-index: 9999;
 }
 
@@ -114,21 +115,6 @@ body {
 
 .propMenuBar {
     position: absolute;
-    bottom: 0;
-    margin: auto;
-    width: 100vw;
-    height: 66px;
-    background-color: #000000a1;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    border: solid 1px white;
-    visibility: hidden;
-}
-
-.placeObjectsBar {
-    position: absolute;
     width: 147px;
     height: 600px;
     background-color: #000000a1;
@@ -140,7 +126,22 @@ body {
     margin-top: -300px;
     overflow-x: hidden;
     overflow-y: scroll;
-    display: none;
+    visibility: hidden;
+}
+
+.placeObjectsBar {
+    position: absolute;
+    bottom: 0;
+    margin: auto;
+    width: 100vw;
+    height: 66px;
+    background-color: #000000a1;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px white;
+    visibility: hidden;
 }
 
 .adminBar {
@@ -185,4 +186,10 @@ body {
     transform: translate(-50%, -50%);
     background-color: black;
     display: none;
+}
+
+.morphText {
+    width: 140px;
+    text-align: center;
+    font-size: x-large;
 }
