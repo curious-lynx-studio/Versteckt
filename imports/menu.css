@@ -1,3 +1,16 @@
+@font-face {
+    font-family: Retro Gaming;
+    src: url('../gameAssets/Retro\ Gaming.ttf');
+}
+
+h1 {
+    font-family: Retro Gaming;
+}
+
+body {
+    font-family: Retro Gaming !important;
+}
+
 .mainJumbotron {
     background-color:#755d5da6;
     text-align: center;
@@ -263,4 +276,37 @@ input:checked ~ .tab-content {
 .alertsInMenu {
     border: 0 !important;
     border-radius: 0 !important;
+}
+
+.exitBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 150px;
+    height: 35px;
+    z-index: 99;
+    padding-left: 50px;
+    background-image: url(../gameAssets/exitIcon.png);
+    background-position: 15px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
+
+.volumeBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 35px;
+    z-index: 99;
+}
+
+.topBar {
+    width: 100vw;
+    height: 49px;
+    position: absolute;
+    background-color: #a7a7a78f;
+    border: solid 1px #fff;
+    padding: 10px;
+    z-index: 98;
 }

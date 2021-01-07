@@ -18,3 +18,7 @@ function setStdUserName() {
         localStorage.setItem('playerName', 'unknownplayer');
     }
 }
+
+function closeApp() {
+    window.close();
+}

@@ -15,9 +15,11 @@
 
   </head>
   <body id="body">  
-
+    <div class="topBar">
+      <div class="btn btn-primary exitBtn" onclick="closeApp();">EXIT</div>
+    </div>
+    
     <div class="container d-flex justify-content-center">
-
       <div id="playerName" class="menuButtonLobby d-flex justify-content-center">
         <div class="tab-content">
           <div class="input-group" style="margin-bottom: 2px;">
@@ -31,13 +33,6 @@
           <div class="d-flex justify-content-between" style="width: 800px">
             <div class="hostGame" style="width: 45%;">
               <div class="alert alert-secondary alertsInMenu">Host Game:</div>
-              <div class="input-group" style="margin-bottom: 2px;">
-                <div class="input-group-prepend">
-                  <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">LobbyName:</span>
-                </div>
-                <input type="text" class="form-control" id="lobbyNameToSet" aria-describedby="inputGroup-sizing-default">
-              </div>
-
               <div class="input-group" style="margin-bottom: 2px;">
                 <div class="input-group-prepend">
                   <label class="input-group-text input-group-text-lobbycreator" for="inputGroupSelect01">Map:</label>
@@ -57,12 +52,12 @@
               <div class="alert alert-secondary alertsInMenu">Join Game:</div>
               <div class="input-group" style="margin-bottom: 2px;">
                 <div class="input-group-prepend">
-                  <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">Enter Game Code:</span>
+                  <span class="input-group-text input-group-text-lobbycreator" id="inputGroup-sizing-default">Game Code:</span>
                 </div>
                 <input type="text" class="form-control" id="gameCode" aria-describedby="inputGroup-sizing-default">
               </div>
     
-              <div class="btn btn-primary" style="width: 100%; margin-top: 46px;" onclick="setPlayerName(); setStdUserName(); joinGame();">Join Game<div></div>
+              <div class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="setPlayerName(); setStdUserName(); joinGame();">Join Game<div></div>
               </div>
             </div>
           </div>

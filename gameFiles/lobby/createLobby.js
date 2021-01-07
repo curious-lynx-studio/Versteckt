@@ -17,7 +17,7 @@ async function postData(url = '', data = {}) {
 }
 
 function startLobby() {
-    var lobbyName = document.getElementById('lobbyNameToSet').value;
+    var lobbyName = '';
     var lobbyMap = document.getElementById('lobbyMap').value;
     postData('http://blank42.de:3003/newLobby', { name: lobbyName, map: lobbyMap })
     .then(data => {
