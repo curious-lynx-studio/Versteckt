@@ -1,13 +1,25 @@
 var p1 = document.getElementById('player');
 keyCodes = { left: 'KeyA', up: 'KeyW', right: 'KeyD', down: 'KeyS' };
 keys = [];
+let mapVariable = '1';
+let blockedCoords = JSON.parse(map2);
+
 
 // read JSON object from file
 function start() {
     // parse JSON object
-    const blockedCoords = JSON.parse(map);
-
+    
+    
     function canMove(testIfCanMove) {
+        if (window.gameMap != mapVariable) {
+            mapVariable = window.gameMap;
+            if (window.gameMap == '1') {
+                blockedCoords = JSON.parse(map2);
+            }
+            if (window.gameMap == '2') {
+                blockedCoords = JSON.parse(map3);
+            }
+        }
         let blockedValue = true;
         blockedCoords.forEach(coords => {
             if(coords.left == testIfCanMove.left && coords.top == testIfCanMove.top) {
@@ -23,6 +35,7 @@ function start() {
 
     // position Loop
     setInterval(function () {
+
         var p1 = document.getElementById('player');
         var world = document.getElementById('gameArea');
         // get position of div

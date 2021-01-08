@@ -9,6 +9,7 @@ let playerAdminState = false;
 let seekerStatus = false;
 let lobbyMaxAllowedHits = 0;
 let lobbyHitCounter = 0;
+window.gameMap = 0;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var gameId = urlParams.get('id').slice(1,-1);
@@ -36,6 +37,10 @@ webSocket.onmessage = (message) => {
         if (obj.admin == playerId && playerAdminState == false) {
             playerAdminState = true;
             showAdminConsole();
+        }
+        // set map
+        if (obj.map != gameMap) {
+            setMap(obj.map);
         }
 
         // show time count down
@@ -210,17 +215,16 @@ function drawObjects(data) {
     }); 
 }
 
-function setMap(data) {
-    if (data.map == '1') {
-        var linkElement = this.document.createElement('link');
-        linkElement.setAttribute('rel', 'stylesheet');
-        linkElement.setAttribute('type', 'text/css');
-        linkElement.setAttribute('href', 'imports/map1.css');
-
-        var script = document.createElement("script");
-        script.setAttribute("type", "text/javascript");
-        script.setAttribute("src", "maps/mapBlock.js");
-        document.getElementsByTagName("head")[0].appendChild(script);
+function setMap(map) {
+    if (map == '1') {
+        window.gameMap = '1';
+        document.getElementById('gameArea').classList.remove('map3');
+        document.getElementById('gameArea').classList.add('map2');
+    }
+    if (map == '2') {
+        window.gameMap = '2';
+        document.getElementById('gameArea').classList.remove('map2');
+        document.getElementById('gameArea').classList.add('map3');
     }
 }
 
