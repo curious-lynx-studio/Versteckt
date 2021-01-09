@@ -3,7 +3,7 @@ keyCodes = { left: 'KeyA', up: 'KeyW', right: 'KeyD', down: 'KeyS' };
 keys = [];
 let mapVariable = '1';
 let blockedCoords = JSON.parse(map2);
-let velocity = 0.6;
+let velocity = 1;
 let velocityMax = 1.4;
 let velocityMin = 0.6;
 
@@ -46,18 +46,18 @@ function start() {
         let xWorld = parseInt(world.offsetLeft, 10);
         let yWorld = parseInt(world.offsetTop, 10);
         // velocity calculation
-        if (keys[keyCodes.left] || keys[keyCodes.right] || keys[keyCodes.up] || keys[keyCodes.down]) {
-            velocity += 0.01;
-        } else {
-            velocity -= 0.01;
-        }
+        // if (keys[keyCodes.left] || keys[keyCodes.right] || keys[keyCodes.up] || keys[keyCodes.down]) {
+        //     velocity += 0.01;
+        // } else {
+        //     velocity -= 0.01;
+        // }
 
-        if (velocity > velocityMax) {
-            velocity = velocityMax;
-        }
-        if (velocity < velocityMin) {
-            velocity = velocityMin;
-        }
+        // if (velocity > velocityMax) {
+        //     velocity = velocityMax;
+        // }
+        // if (velocity < velocityMin) {
+        //     velocity = velocityMin;
+        // }
 
         let endPosition = parseInt(Math.round(velocity), 10);
         let xRounded = Math.round(x);
