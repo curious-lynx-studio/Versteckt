@@ -48,7 +48,6 @@ function start() {
         // velocity calculation
         if (keys[keyCodes.left] || keys[keyCodes.right] || keys[keyCodes.up] || keys[keyCodes.down]) {
             velocity += 0.01;
-            console.log(velocity);
         } else {
             velocity -= 0.01;
         }
