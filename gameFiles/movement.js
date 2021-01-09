@@ -3,12 +3,14 @@ keyCodes = { left: 'KeyA', up: 'KeyW', right: 'KeyD', down: 'KeyS' };
 keys = [];
 let mapVariable = '1';
 let blockedCoords = JSON.parse(map2);
+let velocity = 0.6;
+let velocityMax = 1.4;
+let velocityMin = 0.6;
 
 
 // read JSON object from file
 function start() {
     // parse JSON object
-    
     
     function canMove(testIfCanMove) {
         if (window.gameMap != mapVariable) {
@@ -36,44 +38,62 @@ function start() {
     // position Loop
     setInterval(function () {
 
-        var p1 = document.getElementById('player');
-        var world = document.getElementById('gameArea');
+        let p1 = document.getElementById('player');
+        let world = document.getElementById('gameArea');
         // get position of div
-        var x = (parseInt(p1.offsetLeft, 10)) + 10;
-        var y = (parseInt(p1.offsetTop, 10)) + 40;
-        var xWorld = parseInt(world.offsetLeft, 10);
-        var yWorld = parseInt(world.offsetTop, 10);
-    
+        let x = (parseInt(p1.offsetLeft, 10)) + 10;
+        let y = (parseInt(p1.offsetTop, 10)) + 40;
+        let xWorld = parseInt(world.offsetLeft, 10);
+        let yWorld = parseInt(world.offsetTop, 10);
+        // velocity calculation
+        if (keys[keyCodes.left] || keys[keyCodes.right] || keys[keyCodes.up] || keys[keyCodes.down]) {
+            velocity += 0.01;
+            console.log(velocity);
+        } else {
+            velocity -= 0.01;
+        }
+
+        if (velocity > velocityMax) {
+            velocity = velocityMax;
+        }
+        if (velocity < velocityMin) {
+            velocity = velocityMin;
+        }
+
+        let endPosition = parseInt(Math.round(velocity), 10);
+        let xRounded = Math.round(x);
+        let yRounded = Math.round(y);
+
         // update position
         // left/right
         if (keys[keyCodes.left]) { 
-            const testIfCanMove = {left: (x-1), top: y}
+            const testIfCanMove = {left: (xRounded-endPosition), top: yRounded}
             if (canMove(testIfCanMove)) { 
-                x = x - 1;
-                xWorld = xWorld + 1;
+                x = x - velocity;
+                xWorld = xWorld + velocity;
             }
         }
 
         if (keys[keyCodes.right]) {
-            const testIfCanMove = {left: (x+1), top: y}
+            const testIfCanMove = {left: (xRounded+endPosition), top: yRounded}
             if (canMove(testIfCanMove)) { 
-                x = x + 1;
-                xWorld = xWorld - 1;
+                x = x + velocity;
+                xWorld = xWorld - velocity;
             }
         }
         // up/down
         if (keys[keyCodes.up]) {
-            const testIfCanMove = {left: x, top: (y-1)}
+            const testIfCanMove = {left: xRounded, top: (yRounded-endPosition)}
             if (canMove(testIfCanMove)) { 
-                y = y - 1;
-                yWorld = yWorld + 1;
+                y = y - velocity;
+                yWorld = yWorld + velocity;
             }
         }
         if (keys[keyCodes.down]) {
-            const testIfCanMove = {left: x, top: (y+1)}
+            const testIfCanMove = {left: xRounded, top: (yRounded+endPosition)}
             if (canMove(testIfCanMove)) { 
-                y = y + 1;
-                yWorld = yWorld - 1;
+                y = y + velocity;
+                yWorld = yWorld - velocity;
             }
         }
         // set div position
