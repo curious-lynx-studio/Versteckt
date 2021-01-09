@@ -4,7 +4,7 @@ lastX = lastX.substring(0, lastX.length - 2);
 lastY = lastY.substring(0, lastY.length - 2);
 
 function startNotMovedTimer() {
-    var sec = 30;
+    var sec = 25;
     window.notMovedTimer = setInterval(function() {
         document.getElementById("lastTimeMoved").innerHTML = sec;
         let nowX = document.getElementById("player").style.left;
