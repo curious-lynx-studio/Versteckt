@@ -36,7 +36,7 @@ async function moveMessage() {
 
 async function youWhereFoundMessage() {
     const headline = document.getElementById('infoText');
-    headline.innerHTML = "YOU WHERE FOUND!"
+    headline.innerHTML = "PLAYER FOUND!"
     headline.classList.add('animate__animated');
     headline.classList.add('animate__bounceIn');
     await sleep(1000);
@@ -51,6 +51,7 @@ async function youWhereFoundMessage() {
 }
 
 async function seekerWinMessage() {
+    await sleep(2100);
     const headline = document.getElementById('infoText');
     headline.innerHTML = "TEAM SEEK WINS!"
     headline.classList.add('animate__animated');
@@ -67,6 +68,7 @@ async function seekerWinMessage() {
 }
 
 async function hidingWinMessage() {
+    await sleep(2100);
     const headline = document.getElementById('infoText');
     headline.innerHTML = "TEAM HIDE WINS!"
     headline.classList.add('animate__animated');
