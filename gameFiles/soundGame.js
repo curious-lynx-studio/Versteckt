@@ -5,7 +5,7 @@ var storageVolume = localStorage.getItem('volume');
 
 document.addEventListener("DOMContentLoaded", function(event) { 
     ambient.volume = storageVolume;
-    ambient.play();
+    // ambient.play();
 });
 
 function wrongClickPlay() {
