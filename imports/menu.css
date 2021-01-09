@@ -310,3 +310,44 @@ input:checked ~ .tab-content {
     padding: 10px;
     z-index: 98;
 }
+
+.slider {
+    -webkit-appearance: none;
+    width: 150px;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #50a3a2;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #50a3a2;
+    cursor: pointer;
+  }
+
+  .audioIcon {
+    width: 40px;
+    height: 25px;
+    z-index: 99;
+    background-image: url(../gameAssets/audioIcon.png);
+    background-position: center;
+    background-size: 27px;
+    background-repeat: no-repeat;
+}
