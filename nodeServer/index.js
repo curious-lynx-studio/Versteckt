@@ -206,7 +206,7 @@ function startGameForLobby(msg) {
       });
 
       // start game countdown
-      lobby.gameCountdown = 30;
+      lobby.gameCountdown = 45;
 
       let timerId = setInterval(function() {
         if (lobby.gameCountdown == 0) {
@@ -252,7 +252,6 @@ function startSecondGamePhase(lobbyId) {
 function trueClick(msg) {
   
   lobbyArray.forEach(lobby => {
-    console.log(lobby);
     if(lobby.id == msg.gameId && lobby.gamePhase == 2) {
       if(!lobby.uncovered.includes(msg.clickedId)) {
         lobby.hitCounter = lobby.hitCounter + 1;
@@ -260,7 +259,7 @@ function trueClick(msg) {
         if (lobby.hitCounter >= lobby.maxAllowedHits) {
           lobby.gamePhase = 3; // hiding wins
         }
-        if (lobby.seeker.length == lobby.uncovered.length) {
+        if (lobby.hiding.length == lobby.uncovered.length) {
           lobby.gamePhase = 4; // seeker wins
         }
       }
@@ -270,7 +269,6 @@ function trueClick(msg) {
 
 function falseClick(msg) {
   lobbyArray.forEach(lobby => {
-    console.log(lobby);
     if(lobby.id == msg.gameId && lobby.gamePhase == 2) {
         lobby.hitCounter = lobby.hitCounter + 1;
         if (lobby.hitCounter >= lobby.maxAllowedHits) {
