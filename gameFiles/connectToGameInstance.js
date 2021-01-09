@@ -331,6 +331,7 @@ function prepareSecondGamePhase(seeker, hiding) {
 function clickedObject(state, id) {
     if (seekerList.includes(playerId)) { 
         if(state) {
+            goodClickPlay();
             let data = {    
                 messageType: 'trueClick',
                 clickedId: id,
@@ -339,6 +340,7 @@ function clickedObject(state, id) {
             webSocket.send(JSON.stringify(data));
         }
         if(!state) {
+            wrongClickPlay();
             let data = {    
                 messageType: 'falseClick',
                 clickedId: 'false',
