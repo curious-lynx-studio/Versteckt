@@ -375,6 +375,7 @@ function seekerWins() {
 function resetEverything() {
     seekerStatus = false;
     playerObjects = [];
+    seekerList = [];
     if(playerAdminState) {
         showAdminConsole();
     }
