@@ -163,4 +163,28 @@
     background-size: 32px !important;
     background-image: url(../gameAssets/PropObjects/prop34.png);
 }
+.prop35 {
+    background-size: 20px !important;
+    background-image: url(../gameAssets/PropObjects/prop35.png);
+}
+.prop36 {
+    background-size: 25px !important;
+    background-image: url(../gameAssets/PropObjects/prop36.png);
+}
+.prop37 {
+    background-size: 55px !important;
+    width: 55px !important;
+    background-image: url(../gameAssets/PropObjects/prop37.png);
+}
+.prop38 {
+    background-size: 60px !important;
+    width: 60px !important;
+    background-image: url(../gameAssets/PropObjects/prop38.png);
+}
+.prop39 {
+    background-size: 60px !important;
+    width: 60px !important;
+    background-image: url(../gameAssets/PropObjects/prop39.png);
+}
+
 
