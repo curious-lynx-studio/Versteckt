@@ -53,7 +53,6 @@ const httpsWssServer = https.createServer({
   });
 // create WebsocketServer
 const wss = new WebSocket.Server({httpsWssServer, port: 1337});
-httpsWssServer.listen(1337);
 
 
 httpsWssServer.on('connection', function connection(ws) {
