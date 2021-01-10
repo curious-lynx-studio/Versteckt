@@ -55,7 +55,7 @@ const httpsWssServer = https.createServer({
 const wss = new WebSocket.Server({httpsWssServer, port: 1337});
 
 
-httpsWssServer.on('connection', function connection(ws) {
+wss.on('connection', function connection(ws) {
   let playerSocket = new SocketContainer(ws);
 
   ws.on('message', function incoming(message) {
