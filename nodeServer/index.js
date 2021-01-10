@@ -6,6 +6,13 @@ var http = require('http');
 var https = require('https');
 const WebSocket = require('ws');
 
+var privateKey = fs.readFileSync('/etc/letsencrypt/live/blank42.de/privkey.pem');
+var certificate = fs.readFileSync('/etc/letsencrypt/live/blank42.de/fullchain.pem');
+var credentials = { key: privateKey, cert: certificate };
+
+var wsshttpsServer = https.createServer(credentials);
+wsshttpsServer.listen(1337);
+
 //globalVariables
 var lobbyArray = [];
 
@@ -48,7 +55,11 @@ app.post('/newLobby', function (req, res, next) {
 })
 
 // create WebsocketServer
-const wss = new WebSocket.Server({httpsServer, port: 1337});
+// const wss = new WebSocket.Server({httpsServer, port: 1337});
+var WebSocketServer = require('ws').Server;
+var wss = new WebSocketServer({
+    server: wsshttpsServer
+});
 
 wss.on('connection', function connection(ws) {
   let playerSocket = new SocketContainer(ws);
