@@ -16,33 +16,33 @@
         <link rel="preload" href="gameFiles/showLobbyCode.js" as="script">
     </head>
     <body>
-        <div class="infoText">
-            <h1 id="infoText"></h1>
+        <div class="infoText unselectable">
+            <h1 id="infoText" class="unselectable"></h1>
         </div>
         <div class="mainWindow">
             <div class="fullWindow">
                 <div id="gameArea" class="gameArea">
-                    <div id="player" class="player"></div>
+                    <div id="player" class="player unselectable"></div>
                 </div>
             </div>
         </div>
         <div class="seekerWaitView" id="seekerWaitView"></div>
         <div class="seekerView" id="seekerView"></div>
-        <a href="index.html"><div id="leaveGame" class="leaveGame">Leave Game</div></a>
+        <a href="index.html"><div id="leaveGame" class="leaveGame unselectable">Leave Game</div></a>
         <div id="lobbyCode" class="lobbyCode"></div>
         <div id="gameState" class="d-flex justify-content-between gameState">
-            <div id="actualState" style="width: 50%;">waiting for host...</div>
+            <div id="actualState" style="width: 50%;" class="unselectable">waiting for host...</div>
             <div id="timer" style="width: 10%;"></div>
             <div style="width: 15%;" class="d-flex justify-content-between">
-                <div id="hitsLabel">HIT: </div>
-                <div id="hitsClicked">-</div>
-                <div>/</div>
-                <div id="maxHits">-</div>
+                <div id="hitsLabel" class="unselectable">HIT: </div>
+                <div id="hitsClicked" class="unselectable">-</div>
+                <div class="unselectable">/</div>
+                <div id="maxHits" class="unselectable">-</div>
             </div>
-            <div id="lastTimeMoved" style="width: 10%;" style="color: red;"></div>
+            <div id="lastTimeMoved" style="width: 10%; color: red;" class="unselectable"></div>
         </div>
         <div class="propMenuBar" id="propMenuBar">
-            <div class="morphText">Morph Yourself:</div>
+            <div class="morphText unselectable">Morph Yourself:</div>
             <div class="propBtn prop0" onclick="playerModelChange('prop0')"></div>
             <div class="propBtn prop1" onclick="playerModelChange('prop1')"></div>
             <div class="propBtn prop2" onclick="playerModelChange('prop2')"></div>
@@ -126,7 +126,7 @@
             <div class="propBtn prop38" onclick="placeObject('prop38')"></div>
             <div class="propBtn prop39" onclick="placeObject('prop39')"></div>
         </div>
-        <div class="adminBar" id="adminBar" onclick="startRound()">
+        <div class="adminBar unselectable" id="adminBar" onclick="startRound()">
             START ROUND
         </div>
     </body>
