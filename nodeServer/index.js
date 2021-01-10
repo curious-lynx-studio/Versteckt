@@ -52,12 +52,11 @@ const httpsWssServer = https.createServer({
   cert: fs.readFileSync('/etc/letsencrypt/live/blank42.de/fullchain.pem')
   });
 // create WebsocketServer
-httpsWssServer.listen(1337);
 const wss = new WebSocket.Server({httpsWssServer});
 httpsWssServer.listen(1337);
 
 
-wss.on('connection', function connection(ws) {
+httpsWssServer.on('connection', function connection(ws) {
   let playerSocket = new SocketContainer(ws);
 
   ws.on('message', function incoming(message) {
