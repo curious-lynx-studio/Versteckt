@@ -59,46 +59,36 @@
     border: 1px solid red;
 }
 
-.hunter--Down{
-    background-image: url(../gameAssets/Character/red_down.png);
-}
-
-.hunter--Up{
-    background-image: url(../gameAssets/Character/red_up.png);
-}
-
-.hunter--Left{
-    background-image: url(../gameAssets/Character/red_left.png);
-}
-
-.hunter--Right{
-    background-image: url(../gameAssets/Character/red_right.png);
-}
-
 .deadPlayer {
-    background-image: url(../gameAssets/Character/dead.png);
+    -webkit-animation-name: deadPlayerAnimation;
+	-webkit-animation-duration: 0.3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
 }
 
-.playerDeath {
-    height: 50px;
-    width: 32px;
-    position: relative;
-    background-image: url(../gameAssets/Character/killed_01.png);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    color: white;
-    display: flex;
-    justify-content: center;
-    animation-name: killed;
-    animation-duration: 2s;
-}
-
-@keyframes killed {
-    0%   {background-image: url(../gameAssets/Character/killed_01.png);}
-    50%  {background-image: url(../gameAssets/Character/killed_02.png);}
-    100%  {background-image: url(../gameAssets/Character/killed_03.png);}
+@keyframes deadPlayerAnimation{
+	0% {
+		background-image: url(../gameAssets/Character/dead1.png);
+	}
+    100% {
+		background-image: url(../gameAssets/Character/dead2.png);
+	}	
 }
 
 .hunter {
-    background-image: url(../gameAssets/Character/red_down.png);
+    -webkit-animation-name: hunterAnimation;
+	-webkit-animation-duration: 0.3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: linear;
+}
+
+@keyframes hunterAnimation{
+	0% {
+		background-image: url(../gameAssets/Character/hunter1.png);
+	}
+    100% {
+		background-image: url(../gameAssets/Character/hunter2.png);
+	}	
 }
