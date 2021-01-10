@@ -52,7 +52,7 @@ const httpsWssServer = https.createServer({
   cert: fs.readFileSync('/etc/letsencrypt/live/blank42.de/fullchain.pem')
   });
 // create WebsocketServer
-const wss = new WebSocket.Server({httpsWssServer});
+const wss = new WebSocket.Server({httpsWssServer, port: 1337});
 httpsWssServer.listen(1337);
 
 
