@@ -47,7 +47,7 @@
     display: block;
     width: 40px;
     height: 40px;
-    background-color: rgba(255, 255, 255, 0.15);
+    /* background-color: rgba(255, 255, 255, 0.15); */
     bottom: -160px;
     -webkit-animation: square 25s infinite;
     animation: square 25s infinite;
@@ -56,11 +56,19 @@
   }
   .bg-bubbles li:nth-child(1) {
     left: 10%;
+    background-image: url(../gameAssets/PropObjects/prop13.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
   .bg-bubbles li:nth-child(2) {
     left: 20%;
     width: 80px;
     height: 80px;
+    background-image: url(../gameAssets/PropObjects/prop10.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     -webkit-animation-delay: 2s;
             animation-delay: 2s;
     -webkit-animation-duration: 17s;
@@ -68,6 +76,10 @@
   }
   .bg-bubbles li:nth-child(3) {
     left: 25%;
+    background-image: url(../gameAssets/PropObjects/prop22.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     -webkit-animation-delay: 4s;
             animation-delay: 4s;
   }
@@ -75,29 +87,49 @@
     left: 40%;
     width: 60px;
     height: 60px;
+    background-image: url(../gameAssets/PropObjects/prop30.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     -webkit-animation-duration: 22s;
             animation-duration: 22s;
-    background-color: rgba(255, 255, 255, 0.25);
+    /* background-color: rgba(255, 255, 255, 0.25); */
   }
   .bg-bubbles li:nth-child(5) {
+    background-image: url(../gameAssets/PropObjects/prop17.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     left: 70%;
   }
   .bg-bubbles li:nth-child(6) {
     left: 80%;
     width: 120px;
     height: 120px;
+    background-image: url(../gameAssets/PropObjects/prop19.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     -webkit-animation-delay: 3s;
             animation-delay: 3s;
-    background-color: rgba(255, 255, 255, 0.2);
+    /* background-color: rgba(255, 255, 255, 0.2); */
   }
   .bg-bubbles li:nth-child(7) {
     left: 32%;
     width: 160px;
     height: 160px;
+    background-image: url(../gameAssets/PropObjects/prop7.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     -webkit-animation-delay: 7s;
             animation-delay: 7s;
   }
   .bg-bubbles li:nth-child(8) {
+    background-image: url(../gameAssets/PropObjects/prop9.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     left: 55%;
     width: 20px;
     height: 20px;
@@ -107,6 +139,10 @@
             animation-duration: 40s;
   }
   .bg-bubbles li:nth-child(9) {
+    background-image: url(../gameAssets/PropObjects/prop24.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     left: 25%;
     width: 10px;
     height: 10px;
@@ -114,12 +150,16 @@
             animation-delay: 2s;
     -webkit-animation-duration: 40s;
             animation-duration: 40s;
-    background-color: rgba(255, 255, 255, 0.3);
+    /* background-color: rgba(255, 255, 255, 0.3); */
   }
   .bg-bubbles li:nth-child(10) {
     left: 90%;
     width: 160px;
     height: 160px;
+    background-image: url(../gameAssets/PropObjects/prop28.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     -webkit-animation-delay: 11s;
             animation-delay: 11s;
   }
