@@ -47,13 +47,8 @@ app.post('/newLobby', function (req, res, next) {
   res.json(JSON.stringify(uniqueId));
 })
 
-const httpsWssServer = https.createServer({
-  key: fs.readFileSync('/etc/letsencrypt/live/blank42.de/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/blank42.de/fullchain.pem')
-  });
 // create WebsocketServer
-const wss = new WebSocket.Server({httpsWssServer, port: 1337});
-
+const wss = new WebSocket.Server({httpsServer, port: 1337});
 
 wss.on('connection', function connection(ws) {
   let playerSocket = new SocketContainer(ws);
