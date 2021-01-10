@@ -1,5 +1,6 @@
 let playerModel = 'hunter';
 var char = document.getElementById("player");
+document.addEventListener('keypress', logKey);
 setPlayerModelClass();
 
 function setPlayerModelClass(oldModel) {
@@ -27,4 +28,31 @@ function resetPlayerModel() {
     let oldModel = playerModel;
     playerModel = 'hunter';
     setPlayerModelClass(oldModel);
+}
+
+function logKey(e) {
+    if(playerModel == 'hunter') {
+        if (e.keyCode === 100 || e.keyCode === 97) {
+            char.classList.remove(playerModel+'-left');
+            char.classList.remove(playerModel+'-right');
+        }
+        if (e.keyCode === 97) {
+            char.classList.add(playerModel+'-left')
+        }
+        if (e.keyCode === 100) {
+            char.classList.add(playerModel+'-right')
+        }
+    }
+    if(playerModel == 'deadPlayer') {
+        if (e.keyCode === 100 || e.keyCode === 97) {
+            char.classList.remove(playerModel+'-left');
+            char.classList.remove(playerModel+'-right');
+        }
+        if (e.keyCode === 97) {
+            char.classList.add(playerModel+'-left')
+        }
+        if (e.keyCode === 100) {
+            char.classList.add(playerModel+'-right')
+        }
+    }
 }
