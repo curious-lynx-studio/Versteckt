@@ -1,6 +1,7 @@
 var ambient = new Audio('./gameAssets/music/menu.wav');
 var wrongClick = new Audio('./gameAssets/music/wrongObject.wav');
 var goodClick = new Audio('./gameAssets/music/correctObject.wav');
+var addObject = new Audio('./gameAssets/music/addObject.wav');
 var storageVolume = localStorage.getItem('volume');
 
 document.addEventListener("DOMContentLoaded", function(event) { 
@@ -16,4 +17,9 @@ function wrongClickPlay() {
 function goodClickPlay() {
     goodClick.volume = storageVolume;
     goodClick.play();
+}
+
+function addObjectPlay() {
+    addObject.volume = storageVolume;
+    addObject.play();
 }

@@ -211,6 +211,7 @@ function drawObjects(data) {
             objectSpawn.style.top = objectToDraw.y + "px";
             objectSpawn.onclick=function(){clickedObject(false, '')}
             document.getElementById("gameArea").appendChild(objectSpawn);
+            addObjectPlay();
         }
     }); 
 }
