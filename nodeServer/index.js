@@ -10,6 +10,7 @@ var privateKey = fs.readFileSync('/etc/letsencrypt/live/blank42.de/privkey.pem')
 var certificate = fs.readFileSync('/etc/letsencrypt/live/blank42.de/fullchain.pem');
 var credentials = { key: privateKey, cert: certificate };
 
+// create https server for secure websocket connection
 var wsshttpsServer = https.createServer(credentials);
 wsshttpsServer.listen(1337);
 
