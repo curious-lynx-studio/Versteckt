@@ -1,5 +1,5 @@
 {
-  "name": "scorehunter",
+  "name": "versteckt-the-game",
   "version": "0.0.1",
   "description": "Hide'n'Seek game with JS -> Electron + Websocket Multiplayer. Just some Project to learn more about the technology.",
   "main": "main.js",
