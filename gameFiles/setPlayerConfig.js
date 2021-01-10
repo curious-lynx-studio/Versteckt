@@ -21,4 +21,5 @@ function setStdUserName() {
 
 function closeApp() {
     window.close();
+    window.location.href = 'https://versteckt.blank42.de/';
 }
