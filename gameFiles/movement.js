@@ -9,6 +9,7 @@ let velocityMax = 2.0;
 let velocityMin = 0.0;
 let acceleration = 0.1;
 let lastKey = '';
+let neverZeroVelocity;
 
 
 // read JSON object from file
@@ -73,34 +74,41 @@ function start() {
 
         // update position
         // left/right
-        if (lastKeys[keyCodes.left]) {
-            const testIfCanMove = {left: xRounded-velocity, top: yRounded}
-            if (canMove(testIfCanMove)) { 
-                x = x - velocity;
-                xWorld = xWorld + velocity;
+        if(velocity > 0.0){
+            if(velocity < 1.0){
+                neverZeroVelocity = 1;
             }
-        }
-
-        if (lastKeys[keyCodes.right]) {
-            const testIfCanMove = {left: xRounded+velocity, top: yRounded}
-            if (canMove(testIfCanMove)) { 
-                x = x + velocity;
-                xWorld = xWorld - velocity;
+            else{
+                neverZeroVelocity = 2;
             }
-        }
-        // up/down
-        if (lastKeys[keyCodes.up]) {
-            const testIfCanMove = {left: xRounded, top: yRounded-velocity}
-            if (canMove(testIfCanMove)) { 
-                y = y - velocity;
-                yWorld = yWorld + velocity;
+            if (lastKeys[keyCodes.left]) {
+                const testIfCanMove = {left: xRounded-velocityMax, top: yRounded}
+                if (canMove(testIfCanMove)) { 
+                    x -= neverZeroVelocity;
+                    xWorld += neverZeroVelocity;
+                }
             }
-        }
-        if (lastKeys[keyCodes.down]) {
-            const testIfCanMove = {left: xRounded, top: yRounded+velocity}
-            if (canMove(testIfCanMove)) { 
-                y = y + velocity;
-                yWorld = yWorld - velocity;
+            if (lastKeys[keyCodes.right]) {
+                const testIfCanMove = {left: xRounded+velocityMax, top: yRounded}
+                if (canMove(testIfCanMove)) { 
+                    x += neverZeroVelocity;
+                    xWorld -= neverZeroVelocity;
+                }
+            }
+            // up/down
+            if (lastKeys[keyCodes.up]) {
+                const testIfCanMove = {left: xRounded, top: yRounded-velocityMax}
+                if (canMove(testIfCanMove)) { 
+                    y -= neverZeroVelocity;
+                    yWorld += neverZeroVelocity;
+                }
+            }
+            if (lastKeys[keyCodes.down]) {
+                const testIfCanMove = {left: xRounded, top: yRounded+velocityMax}
+                if (canMove(testIfCanMove)) { 
+                    y += neverZeroVelocity;
+                    yWorld -= neverZeroVelocity;
+                }
             }
         }
 
