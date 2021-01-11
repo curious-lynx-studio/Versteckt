@@ -106,7 +106,7 @@
     left: 80%;
     width: 120px;
     height: 120px;
-    background-image: url(../gameAssets/PropObjects/prop19.png);
+    background-image: url(../gameAssets/PropObjects/prop20.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -131,8 +131,8 @@
     background-repeat: no-repeat;
     background-position: center;
     left: 55%;
-    width: 20px;
-    height: 20px;
+    width: 50px;
+    height: 50px;
     -webkit-animation-delay: 15s;
             animation-delay: 15s;
     -webkit-animation-duration: 40s;
@@ -144,8 +144,8 @@
     background-repeat: no-repeat;
     background-position: center;
     left: 25%;
-    width: 10px;
-    height: 10px;
+    width: 50px;
+    height: 50px;
     -webkit-animation-delay: 2s;
             animation-delay: 2s;
     -webkit-animation-duration: 40s;
@@ -156,7 +156,7 @@
     left: 90%;
     width: 160px;
     height: 160px;
-    background-image: url(../gameAssets/PropObjects/prop28.png);
+    background-image: url(../gameAssets/PropObjects/prop14.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
