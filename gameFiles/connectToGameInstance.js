@@ -48,6 +48,9 @@ webSocket.onmessage = (message) => {
             actualGameCounter = obj.gameCountdown;
             if (obj.gameCountdown > 0) {
                 document.getElementById('timer').innerHTML = obj.gameCountdown;
+                if (obj.gameCountdown < 6) {
+                    timePlay();
+                }
             } else {
                 document.getElementById('timer').innerHTML = '';
             }

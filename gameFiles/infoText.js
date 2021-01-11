@@ -7,6 +7,7 @@ async function gameStartMessage() {
     headline.innerHTML = "GAME START"
     headline.classList.add('animate__animated');
     headline.classList.add('animate__bounceIn');
+    startGamePlay();
     await sleep(1000);
     headline.classList.remove('animate__animated');
     headline.classList.remove('animate__bounceIn');
@@ -23,6 +24,7 @@ async function moveMessage() {
     headline.innerHTML = "YOU HAVE TO MOVE!!"
     headline.classList.add('animate__animated');
     headline.classList.add('animate__bounceInLeft');
+    movePlay();
     await sleep(1500);
     headline.classList.remove('animate__animated');
     headline.classList.remove('animate__bounceInLeft');
@@ -56,6 +58,7 @@ async function seekerWinMessage() {
     headline.innerHTML = "TEAM SEEK WINS!"
     headline.classList.add('animate__animated');
     headline.classList.add('animate__flipInY');
+    startGamePlay();
     await sleep(1000);
     headline.classList.remove('animate__animated');
     headline.classList.remove('animate__flipInY');
@@ -73,6 +76,7 @@ async function hidingWinMessage() {
     headline.innerHTML = "TEAM HIDE WINS!"
     headline.classList.add('animate__animated');
     headline.classList.add('animate__backInDown');
+    startGamePlay();
     await sleep(1000);
     headline.classList.remove('animate__animated');
     headline.classList.remove('animate__backInDown');

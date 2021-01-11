@@ -22,6 +22,9 @@ function startNotMovedTimer() {
             if (sec == 8) {
                 moveMessage();
             }
+            if (sec == 5 || sec == 4 || sec == 3 || sec == 2 || sec == 1) {
+                timePlay();
+            }
             if (sec == 00) {
                 timeOver();
             }
