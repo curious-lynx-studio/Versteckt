@@ -24,6 +24,10 @@
     display: flex;
     justify-content: center;
     z-index: 9;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+     -ms-user-select: none;
+         user-select: none;
 }
 
 .otherClientSeeker {
@@ -37,6 +41,10 @@
     -webkit-transform: translate3d(-45%, -35%, 0); 
     -moz-transform: translate3d(-45%, -35%, 0);  
     transform: translate3d(-45%, -35%, 0);  
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+     -ms-user-select: none;
+         user-select: none;
 }
 
 .otherClient:hover {

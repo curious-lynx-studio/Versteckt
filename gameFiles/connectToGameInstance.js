@@ -391,3 +391,7 @@ function removeOldObjects() {
         a.remove()
     })
 }
+
+function playerMorphed() {
+    hidePropBar();
+}

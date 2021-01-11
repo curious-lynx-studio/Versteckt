@@ -127,18 +127,19 @@ body {
 
 .propMenuBar {
     position: absolute;
-    width: 147px;
-    height: 600px;
+    width: 50vw;
     background-color: #000000a1;
-    right: 1px;
     margin-left: auto;
     margin-right: auto;
     border: solid 1px white;
     top: 50%;
-    margin-top: -300px;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     visibility: hidden;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -51%);
 }
 
 .placeObjectsBar {
@@ -201,7 +202,6 @@ body {
 }
 
 .morphText {
-    width: 140px;
     text-align: center;
     font-size: x-large;
 }
