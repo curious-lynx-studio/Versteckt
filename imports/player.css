@@ -68,6 +68,11 @@
 }
 
 .deadPlayer {
+    animation-name: deadPlayerAnimation;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
     -webkit-animation-name: deadPlayerAnimation;
 	-webkit-animation-duration: 0.3s;
 	-webkit-animation-iteration-count: infinite;
@@ -85,6 +90,11 @@
 }
 
 .deadPlayer-left {
+    animation-name: deadPlayer-leftAnimation;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
     -webkit-animation-name: deadPlayer-leftAnimation;
 	-webkit-animation-duration: 0.3s;
 	-webkit-animation-iteration-count: infinite;
@@ -102,6 +112,11 @@
 }
 
 .deadPlayer-right {
+    animation-name: deadPlayer-rightAnimation;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
     -webkit-animation-name: deadPlayer-rightAnimation;
 	-webkit-animation-duration: 0.3s;
 	-webkit-animation-iteration-count: infinite;
@@ -119,6 +134,11 @@
 }
 
 .hunter {
+    animation-name: hunterAnimation;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
     -webkit-animation-name: hunterAnimation;
 	-webkit-animation-duration: 0.3s;
 	-webkit-animation-iteration-count: infinite;
@@ -136,6 +156,11 @@
 }
 
 .hunter-left {
+    animation-name: hunter-leftAnimation;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
     -webkit-animation-name: hunter-leftAnimation;
 	-webkit-animation-duration: 0.3s;
 	-webkit-animation-iteration-count: infinite;
@@ -153,6 +178,11 @@
 }
 
 .hunter-right {
+    animation-name: hunter-rightAnimation;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
     -webkit-animation-name: hunter-rightAnimation;
 	-webkit-animation-duration: 0.3s;
 	-webkit-animation-iteration-count: infinite;
