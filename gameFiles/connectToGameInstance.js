@@ -13,7 +13,7 @@ window.gameMap = 0;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var gameId = urlParams.get('id').slice(1,-1);
-const clientsOnline = [];
+let clientsOnline = [];
 let playerObjects = [];
 let seekerList = [];
 
@@ -115,10 +115,11 @@ webSocket.onmessage = (message) => {
 
         // remove offline players
         if ((obj['data'].length - 1) != clientsOnline.length) {
-            clientsOnline.forEach(element => {
+            clientsOnline.forEach((element, index) => {
                 const exists = obj['data'].filter(obj => obj.id === element.playerId);
                 if (exists == false) {
-                    clientsOnline.pop(element);
+                    console.log("player left")
+                    clientsOnline.splice(index, 1);
                     deleteObject(element.playerId);
                 }
             });
