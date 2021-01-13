@@ -99,7 +99,7 @@ wss.on('connection', function connection(ws) {
     }
   });
 
-  ws.send('something');
+  ws.send(lobbyArray);
 
   ws.on('close', function(){
     handleConnectionClosed(playerSocket);
