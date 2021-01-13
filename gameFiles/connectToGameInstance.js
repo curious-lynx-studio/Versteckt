@@ -30,6 +30,7 @@ function makeid(length) {
 webSocket.onmessage = (message) => {
     if (firstMessage == 0) {
         firstMessage = 1;
+        console.log(JSON.parse(message.data));
         let playerDataSendLoop = setInterval(sendData, 10);
     } else {
         const obj = JSON.parse(message.data);

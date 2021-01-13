@@ -67,6 +67,7 @@ wss.on('connection', function connection(ws) {
 
   ws.on('message', function incoming(message) {
     let msg = JSON.parse(message);
+
     switch (msg.messageType) {
       case 'startGame':
         startGameForLobby(msg);
@@ -98,7 +99,11 @@ wss.on('connection', function connection(ws) {
     }
   });
 
-  ws.send('something');
+  lobbyArray.forEach(lobby => {
+    if(lobby.id == msg.gameId) {
+      ws.send(JSON.stringify(lobby));
+    }
+  });
 
   ws.on('close', function(){
     handleConnectionClosed(playerSocket);
