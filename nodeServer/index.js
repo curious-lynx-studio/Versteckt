@@ -68,6 +68,12 @@ wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     let msg = JSON.parse(message);
 
+    lobbyArray.forEach(lobby => {
+      if(lobby.id == msg.gameId) {
+        ws.send(JSON.stringify(lobby));
+      }
+    });
+
     switch (msg.messageType) {
       case 'startGame':
         startGameForLobby(msg);
@@ -96,12 +102,6 @@ wss.on('connection', function connection(ws) {
           }
         });
         break;
-    }
-  });
-
-  lobbyArray.forEach(lobby => {
-    if(lobby.id == msg.gameId) {
-      ws.send(JSON.stringify(lobby));
     }
   });
 
