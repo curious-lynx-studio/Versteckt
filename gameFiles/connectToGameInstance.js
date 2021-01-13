@@ -31,7 +31,8 @@ webSocket.onmessage = (message) => {
     if (firstMessage == 0) {
         firstMessage = 1;
         let gamePhaseOfOpenLobby = 0;
-        const firstMsgFromServer = JSON.parse(message.data);
+        let firstMsgFromServer = JSON.parse(message.data);
+        console.log (firstMsgFromServer);
         firstMsgFromServer.forEach(lobby => {
             if (lobby.id == gameId) {
                 gamePhaseOfOpenLobby = lobby.gamePhase
@@ -44,7 +45,6 @@ webSocket.onmessage = (message) => {
             firstMessage = 0;
             let data = {    
                 messageType: 'wait',
-                gameId: gameId
             };
             webSocket.send(JSON.stringify(data));
         }

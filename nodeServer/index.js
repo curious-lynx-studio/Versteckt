@@ -67,38 +67,38 @@ wss.on('connection', function connection(ws) {
 
   ws.on('message', function incoming(message) {
     let msg = JSON.parse(message);
-    
-    switch (msg.messageType) {
-      case 'startGame':
-        startGameForLobby(msg);
-        break;
-      case 'trueClick':
-        trueClick(msg);
-        break;
-      case 'falseClick':
-        falseClick(msg);
-        break;
-      case 'falseClick':
-        ws.send(JSON.stringify(lobbyArray));
-        break;
-      default:
-        if (typeof msg !== undefined){
-          playerSocket.mostRecentMessage = msg;
-        }
-    
-        if(playerSocket.associatedID === -1){
-          associatePlayer(playerSocket);
-        }
-        else{
-          filterObjectToCorrectLobby(playerSocket)
-        }
-    
-        lobbyArray.forEach(lobby => {
-          if(lobby.id == msg.gameId) {
-            ws.send(JSON.stringify(lobby));
+    if (msg.messageType == 'wait') {
+      ws.send(JSON.stringify(lobbyArray));
+    } else {
+      switch (msg.messageType) {
+        case 'startGame':
+          startGameForLobby(msg);
+          break;
+        case 'trueClick':
+          trueClick(msg);
+          break;
+        case 'falseClick':
+          falseClick(msg);
+          break;
+        default:
+          if (typeof msg !== undefined){
+            playerSocket.mostRecentMessage = msg;
           }
-        });
-        break;
+      
+          if(playerSocket.associatedID === -1){
+            associatePlayer(playerSocket);
+          }
+          else{
+            filterObjectToCorrectLobby(playerSocket)
+          }
+      
+          lobbyArray.forEach(lobby => {
+            if(lobby.id == msg.gameId) {
+              ws.send(JSON.stringify(lobby));
+            }
+          });
+          break;
+      }
     }
   });
 
