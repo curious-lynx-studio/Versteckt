@@ -32,16 +32,14 @@ webSocket.onmessage = (message) => {
         firstMessage = 1;
         let gamePhaseOfOpenLobby = 0;
         let firstMsgFromServer = JSON.parse(message.data);
-        console.log (firstMsgFromServer);
         firstMsgFromServer.forEach(lobby => {
             if (lobby.id == gameId) {
                 gamePhaseOfOpenLobby = lobby.gamePhase
             }
         });
-        if (gamePhaseOfOpenLobby == 0) {
+        if (gamePhaseOfOpenLobby == 0 || gamePhaseOfOpenLobby == 4 || gamePhaseOfOpenLobby == 3) {
             let playerDataSendLoop = setInterval(sendData, 10);
         } else {
-            console.log("waiting for game start")
             firstMessage = 0;
             let data = {    
                 messageType: 'wait',
@@ -135,7 +133,6 @@ webSocket.onmessage = (message) => {
             clientsOnline.forEach((element, index) => {
                 const exists = obj['data'].filter(obj => obj.id === element.playerId);
                 if (exists == false) {
-                    console.log("player left")
                     clientsOnline.splice(index, 1);
                     deleteObject(element.playerId);
                 }
