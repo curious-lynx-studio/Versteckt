@@ -30,8 +30,24 @@ function makeid(length) {
 webSocket.onmessage = (message) => {
     if (firstMessage == 0) {
         firstMessage = 1;
-        console.log(message);
-        let playerDataSendLoop = setInterval(sendData, 10);
+        let gamePhaseOfOpenLobby = 0;
+        const firstMsgFromServer = JSON.parse(message.data);
+        firstMsgFromServer.forEach(lobby => {
+            if (lobby.id == gameId) {
+                gamePhaseOfOpenLobby = lobby.gamePhase
+            }
+        });
+        if (gamePhaseOfOpenLobby == 0) {
+            let playerDataSendLoop = setInterval(sendData, 10);
+        } else {
+            console.log("waiting for game start")
+            firstMessage = 0;
+            let data = {    
+                messageType: 'wait',
+                gameId: gameId
+            };
+            webSocket.send(JSON.stringify(data));
+        }
     } else {
         const obj = JSON.parse(message.data);
         // check if player is admin

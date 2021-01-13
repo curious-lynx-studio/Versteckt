@@ -78,6 +78,9 @@ wss.on('connection', function connection(ws) {
       case 'falseClick':
         falseClick(msg);
         break;
+      case 'falseClick':
+        ws.send(JSON.stringify(lobbyArray));
+        break;
       default:
         if (typeof msg !== undefined){
           playerSocket.mostRecentMessage = msg;
