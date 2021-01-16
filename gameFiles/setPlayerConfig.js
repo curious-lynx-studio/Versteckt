@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (name != false) {
         document.getElementById('nameInput').value = name;
     }
+    localStorage.setItem('streamerMode', '0');
+    document.getElementById('streamerMode').innerHTML = "Streamer Mode is OFF";
 });
 
 function setPlayerName() {
@@ -22,4 +24,18 @@ function setStdUserName() {
 function closeApp() {
     window.close();
     window.location.href = 'https://versteckt.blank42.de/';
+}
+
+function toggleStreamerMode() {
+    var streamMode = localStorage.getItem('streamerMode');
+    if (streamMode == '0' || streamMode == '1') {
+        if (streamMode == '0') {
+            localStorage.setItem('streamerMode', '1');
+            document.getElementById('streamerMode').innerHTML = "Streamer Mode is ON";
+        }
+        if (streamMode == '1') {
+            localStorage.setItem('streamerMode', '0');
+            document.getElementById('streamerMode').innerHTML = "Streamer Mode is OFF";
+        }
+    }
 }

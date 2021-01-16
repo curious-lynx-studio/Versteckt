@@ -351,3 +351,9 @@ input:checked ~ .tab-content {
     background-size: 27px;
     background-repeat: no-repeat;
 }
+
+.streamerBtn {
+    margin: auto;
+    margin-top: -5px;
+    height: 35px;
+}
