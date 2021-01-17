@@ -12,10 +12,10 @@ function startNotMovedTimer() {
         nowX = nowX.substring(0, nowX.length - 2);
         nowY = nowY.substring(0, nowY.length - 2);
 
-        if (nowX != lastX || nowY != lastY){
+        if (nowX != lastX || nowY != lastY || playerModel == 'deadPlayer' || playerModel == 'deadPlayer-left' || playerModel == 'deadPlayer-right'){
             lastX = nowX;
             lastY = nowY;
-            document.getElementById("lastTimeMoved").innerHTML = 30;
+            document.getElementById("lastTimeMoved").innerHTML = 25;
             stopNotMovedTimer();
         } else {
             sec--;
