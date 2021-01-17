@@ -23,6 +23,10 @@
     background-image: url(../maps/map3.png);
 }
 
+.map5 {
+    background-image: url(../maps/map5.png);
+}
+
 .prop0 {
     background-size: 32px !important;
     background-image: url(../gameAssets/PropObjects/prop0.png);

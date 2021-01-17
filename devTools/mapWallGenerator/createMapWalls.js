@@ -1,6 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
-const mapHeight = 704;
+const mapHeight = 576;
 const mapWidth = 704;
 let i = 0;
 let coord = 0;

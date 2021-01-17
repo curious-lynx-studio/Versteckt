@@ -238,12 +238,20 @@ function setMap(map) {
     if (map == '1') {
         window.gameMap = '1';
         document.getElementById('gameArea').classList.remove('map3');
+        document.getElementById('gameArea').classList.remove('map5');
         document.getElementById('gameArea').classList.add('map2');
     }
     if (map == '2') {
         window.gameMap = '2';
         document.getElementById('gameArea').classList.remove('map2');
+        document.getElementById('gameArea').classList.remove('map5');
         document.getElementById('gameArea').classList.add('map3');
+    }
+    if (map == '3') {
+        window.gameMap = '3';
+        document.getElementById('gameArea').classList.remove('map2');
+        document.getElementById('gameArea').classList.remove('map3');
+        document.getElementById('gameArea').classList.add('map5');
     }
 }
 

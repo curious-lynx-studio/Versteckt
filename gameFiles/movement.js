@@ -25,6 +25,9 @@ function start() {
             if (window.gameMap == '2') {
                 blockedCoords = JSON.parse(map3);
             }
+            if (window.gameMap == '3') {
+                blockedCoords = JSON.parse(map5);
+            }
         }
         let blockedValue = true;
         blockedCoords.forEach(coords => {
