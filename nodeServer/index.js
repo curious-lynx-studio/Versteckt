@@ -177,9 +177,10 @@ class SocketContainer{
 
 function handleConnectionClosed(playerSocket){
   let lastMessage = playerSocket.mostRecentMessage;
-  console.log(lobby.players.length);
+  
   lobbyArray.forEach(lobby => {
     if(lobby.id===lastMessage.gameId){
+      console.log(lobby.players.length);
       lobby.players.forEach((player, index) => {
         if(player === playerSocket.associatedID) {
           lobby.players = lobby.players.slice(index, 1);
