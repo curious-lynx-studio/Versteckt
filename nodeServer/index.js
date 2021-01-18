@@ -183,7 +183,8 @@ function handleConnectionClosed(playerSocket){
       console.log(lobby.players.length);
       lobby.players.forEach((player, index) => {
         if(player === playerSocket.associatedID) {
-          lobby.players = lobby.players.slice(index, 1);
+          // lobby.players = lobby.players.slice(index, 1);
+          console.log(player, playerSocket.associatedID);
           console.log(lobby.players.length);
         }
       });
