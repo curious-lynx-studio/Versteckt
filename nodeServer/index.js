@@ -182,12 +182,12 @@ function handleConnectionClosed(playerSocket){
     if(lobby.id===lastMessage.gameId){
       lobby.players.forEach((player, index) => {
         if(player === playerSocket.associatedID) {
-          lobby.players = lobby.players.splice(index, 1);
+          lobby.players.splice(index, 1);
         }
       });
       lobby.data = lobby.data.filter( obj => obj.playerId !== playerSocket.associatedID);
       lobby.hiding.forEach((playerHidingId, index) => {
-        if (playerHidingId == playerSocket.associatedID) {
+        if (playerHidingId === playerSocket.associatedID) {
           lobby.hiding = lobby.hiding.splice(index, 1);
         }
       });
