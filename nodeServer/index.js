@@ -188,7 +188,7 @@ function handleConnectionClosed(playerSocket){
       lobby.data = lobby.data.filter( obj => obj.playerId !== playerSocket.associatedID);
       lobby.hiding.forEach((playerHidingId, index) => {
         if (playerHidingId === playerSocket.associatedID) {
-          lobby.hiding = lobby.hiding.splice(index, 1);
+          lobby.hiding.splice(index, 1);
         }
       });
       console.log("player "+playerSocket.associatedID+" has been removed from the game")
