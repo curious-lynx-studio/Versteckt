@@ -180,12 +180,9 @@ function handleConnectionClosed(playerSocket){
   
   lobbyArray.forEach(lobby => {
     if(lobby.id===lastMessage.gameId){
-      console.log(lobby.players.length);
       lobby.players.forEach((player, index) => {
         if(player === playerSocket.associatedID) {
-          // lobby.players = lobby.players.slice(index, 1);
-          console.log(player, playerSocket.associatedID);
-          console.log(lobby.players.length);
+          lobby.players = lobby.players.splice(index, 1);
         }
       });
       lobby.data = lobby.data.filter( obj => obj.playerId !== playerSocket.associatedID);
@@ -199,7 +196,7 @@ function handleConnectionClosed(playerSocket){
       if (lobby.players.length < 1){
         lobbyArray.forEach((lobbyInArray, index) => {
           if(lobbyInArray.id == lobby.id) {
-            lobbyArray.slice(index, 1);
+            lobbyArray.splice(index, 1);
           }
         });
         console.log("lobby closed (no player in lobby)")
