@@ -179,7 +179,11 @@ function handleConnectionClosed(playerSocket){
   let lastMessage = playerSocket.mostRecentMessage;
   lobbyArray.forEach(lobby => {
     if(lobby.id===lastMessage.gameId){
-      lobby.players.pop(playerSocket.associatedID)
+      lobby.players.forEach((player, index) => {
+        if(player.playerId == playerSocket.associatedID) {
+          lobby.players.slice(index, 1);
+        }
+      });
       lobby.data = lobby.data.filter( obj => obj.playerId !== playerSocket.associatedID);
       lobby.hiding.forEach((playerHidingId, index) => {
         if (playerHidingId == playerSocket.associatedID) {
@@ -188,7 +192,11 @@ function handleConnectionClosed(playerSocket){
       });
       console.log("player "+playerSocket.associatedID+" has been removed from the game")
       if (lobby.players.length < 1){
-        lobbyArray.pop(lobby);
+        lobbyArray.forEach((lobbyInArray, index) => {
+          if(lobbyInArray.id == lobby.id) {
+            lobbyArray.slice(index, 1);
+          }
+        });
         console.log("lobby closed (no player in lobby)")
       }
     }
