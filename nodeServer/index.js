@@ -180,7 +180,7 @@ function handleConnectionClosed(playerSocket){
   lobbyArray.forEach(lobby => {
     if(lobby.id===lastMessage.gameId){
       lobby.players.forEach((player, index) => {
-        if(player == playerSocket.associatedID) {
+        if(player === playerSocket.associatedID) {
           lobby.players = lobby.players.slice(index, 1);
         }
       });
