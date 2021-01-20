@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var streamerMode = localStorage.getItem('streamerMode');
     if (streamerMode != '1') {
         localStorage.setItem('streamerMode', '0');
+        document.getElementById('streamerMode').innerHTML = "Streamer Mode is OFF";
     } else {
+        localStorage.setItem('streamerMode', '1');
         document.getElementById('streamerMode').innerHTML = "Streamer Mode is ON";
     }
 });
