@@ -3,8 +3,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (name != false) {
         document.getElementById('nameInput').value = name;
     }
-    localStorage.setItem('streamerMode', '0');
-    document.getElementById('streamerMode').innerHTML = "Streamer Mode is OFF";
+    var streamerMode = localStorage.getItem('streamerMode');
+    if (streamerMode != '1') {
+        localStorage.setItem('streamerMode', '0');
+    } else {
+        document.getElementById('streamerMode').innerHTML = "Streamer Mode is ON";
+    }
 });
 
 function setPlayerName() {
