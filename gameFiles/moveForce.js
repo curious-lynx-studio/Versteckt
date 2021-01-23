@@ -24,6 +24,7 @@ function startNotMovedTimer() {
             }
             if (sec == 5 || sec == 4 || sec == 3 || sec == 2 || sec == 1) {
                 timePlay();
+                blinkBorder();
             }
             if (sec == 00) {
                 timeOver();

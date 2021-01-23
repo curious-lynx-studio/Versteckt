@@ -4,11 +4,11 @@
   "description": "Hide'n'Seek game with JS -> Electron + Websocket Multiplayer. Just some Project to learn more about the technology.",
   "main": "main.js",
   "build": {
-		"icon": "./icon.png",
-		"linux": {
-			"icon": "./icon.png"
-		}
-	},
+    "icon": "./icon.png",
+    "linux": {
+      "icon": "./icon.png"
+    }
+  },
   "dependencies": {
     "animate.css": "^4.1.1"
   },

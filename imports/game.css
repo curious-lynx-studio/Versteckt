@@ -201,6 +201,21 @@ body {
     display: none;
 }
 
+.warningBorder{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    -moz-box-shadow:    inset 0 0 200px #ff0000;
+    -webkit-box-shadow: inset 0 0 200px #ff0000;
+    box-shadow:         inset 0 0 200px #ff0000;
+    display: none;
+}
+
 .morphText {
     text-align: center;
     font-size: x-large;
