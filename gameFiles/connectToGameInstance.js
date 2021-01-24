@@ -65,6 +65,7 @@ webSocket.onmessage = (message) => {
                 document.getElementById('timer').innerHTML = obj.gameCountdown;
                 if (obj.gameCountdown < 6) {
                     timePlay();
+                    blinkBorder();
                 }
             } else {
                 document.getElementById('timer').innerHTML = '';
