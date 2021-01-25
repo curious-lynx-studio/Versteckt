@@ -322,6 +322,7 @@ function prepareFirstGamePhase(seeker, hiding) {
         hidePlaceObjectsBar();
         showSeekWaitView();
         document.getElementById('actualState').innerHTML = "You are Seeker!";
+        gameStartMessage('seek');
     }
     if (hiding.includes(playerId)) {
         seekerStatus = false;
@@ -329,8 +330,8 @@ function prepareFirstGamePhase(seeker, hiding) {
         showPlaceObjectsBar();
         hideSeekWaitView();
         document.getElementById('actualState').innerHTML = "You have to hide!";
-    }
-    gameStartMessage();
+        gameStartMessage('hide');
+    }    
 }
 
 function prepareSecondGamePhase(seeker, hiding) {

@@ -2,7 +2,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function gameStartMessage() {
+async function gameStartMessage(value) {
     const headline = document.getElementById('infoText');
     headline.innerHTML = "GAME START"
     headline.classList.add('animate__animated');
@@ -17,6 +17,9 @@ async function gameStartMessage() {
     headline.classList.remove('animate__animated');
     headline.classList.remove('animate__bounceOut');
     headline.innerHTML = ""
+    if(value == 'seek') {
+        seekerExplainMessage();
+    }
 }
 
 async function moveMessage() {
@@ -85,5 +88,21 @@ async function hidingWinMessage() {
     await sleep(1000);
     headline.classList.remove('animate__animated');
     headline.classList.remove('animate__backOutDown');
+    headline.innerHTML = ""
+}
+
+async function seekerExplainMessage() {
+    const headline = document.getElementById('infoText');
+    headline.innerHTML = "After the Countdown, you have to seek the hiding players by clicking on them!"
+    headline.classList.add('animate__animated');
+    headline.classList.add('animate__bounceInDown');
+    await sleep(20000);
+    headline.classList.remove('animate__animated');
+    headline.classList.remove('animate__bounceInDown');
+    headline.classList.add('animate__animated');
+    headline.classList.add('animate__bounceOut');
+    await sleep(1000);
+    headline.classList.remove('animate__animated');
+    headline.classList.remove('animate__bounceOut');
     headline.innerHTML = ""
 }
