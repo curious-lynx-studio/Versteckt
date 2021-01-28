@@ -6,5 +6,8 @@ Hide'n'Seek game with JS -> Electron + Websocket Multiplayer. Just some Project 
 # Download:
 Download Link from last build: [Download](https://github.com/valplusplusle/ScoreHunter/releases) 
 
+# Devlog:
+[Youtube](https://www.youtube.com/watch?v=hTRQushvcu8) 
+
 # Build by yourself:
 Clone the repo and run npm install. After that run npm run start.
