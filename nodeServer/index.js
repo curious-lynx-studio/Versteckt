@@ -48,6 +48,11 @@ app.get('/getLobby', function (req, res, next) {
   res.json(JSON.stringify(lobbyArray));
 })
 
+app.get('/getOnlineLobbys', function (req, res, next) {
+  console.log("Send Lobbys Online");
+  res.json(JSON.stringify(lobbyArray.length));
+})
+
 app.post('/newLobby', function (req, res, next) {
   var uniqueId = makeid(6)
   console.log('create new Lobby');
