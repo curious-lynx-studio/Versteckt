@@ -237,6 +237,11 @@ body {
     font-size: xxx-large;
 }
 
+.objectPlaceHint {
+    padding-top: 45vh;
+    font-size: xxx-large;
+}
+
 .unselectable {
     -webkit-user-select: none;
        -moz-user-select: -moz-none;

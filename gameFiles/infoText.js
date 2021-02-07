@@ -19,6 +19,8 @@ async function gameStartMessage(value) {
     headline.innerHTML = ""
     if(value == 'seek') {
         seekerExplainMessage();
+    } else {
+        hidingExplainMessage();
     }
 }
 
@@ -97,6 +99,22 @@ async function seekerExplainMessage() {
     headline.classList.add('animate__animated');
     headline.classList.add('animate__bounceInDown');
     await sleep(20000);
+    headline.classList.remove('animate__animated');
+    headline.classList.remove('animate__bounceInDown');
+    headline.classList.add('animate__animated');
+    headline.classList.add('animate__bounceOut');
+    await sleep(1000);
+    headline.classList.remove('animate__animated');
+    headline.classList.remove('animate__bounceOut');
+    headline.innerHTML = ""
+}
+
+async function hidingExplainMessage() {
+    const headline = document.getElementById('infoText');
+    headline.innerHTML = "<div class='objectPlaceHint'>Click on the Objects to place them.</div>"
+    headline.classList.add('animate__animated');
+    headline.classList.add('animate__bounceInDown');
+    await sleep(10000);
     headline.classList.remove('animate__animated');
     headline.classList.remove('animate__bounceInDown');
     headline.classList.add('animate__animated');
