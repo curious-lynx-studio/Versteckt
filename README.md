@@ -3,9 +3,6 @@ Hide'n'Seek game with JS -> Electron + Websocket Multiplayer. Just some Project 
 
 ![nopic](https://github.com/valplusplusle/ScoreHunter/blob/master/screenshot.png)
 
-# Download:
-Download Link from last build: [Download](https://github.com/valplusplusle/ScoreHunter/releases) 
-
 # Devlog:
 [Youtube](https://www.youtube.com/watch?v=hTRQushvcu8) 
 
