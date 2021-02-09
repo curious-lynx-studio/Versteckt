@@ -4,8 +4,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function joinGame() {
     var code = document.getElementById('gameCode').value
-    
-    window.location = "./game.html?id="+'"'+code+'"';
+    if (code != '') {
+        window.location = "./game.html?id="+'"'+code+'"';
+    }
 }
 
 function getLobbyCount() {
