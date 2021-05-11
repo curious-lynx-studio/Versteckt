@@ -278,6 +278,13 @@ input:checked ~ .tab-content {
     border-radius: 0 !important;
 }
 
+.alertsPrivate {
+    border: 0 !important;
+    border-radius: 0 !important;
+    height: 35px;
+    padding: 5px
+}
+
 .exitBtn {
     position: absolute;
     top: 5px;

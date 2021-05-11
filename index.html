@@ -54,8 +54,12 @@
                   <option value="1" >Huge Office (8-10 Player)</option>
                 </select>
               </div>
+              <div class="alert alert-secondary alertsPrivate d-flex justify-content-between">
+                <span style="margin-left: 12px; margin-top: 2px;">PRIVATE LOBBY?</span>
+                <input type="checkbox" id="private" name="private" style="margin-right: 5px; height: 25px; width: 25px;">
+              </div>
 
-              <div class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="setPlayerName(); setStdUserName(); startLobby()">Start Lobby<div></div>
+              <div class="btn btn-primary" style="width: 100%; margin-top: 6px;" onclick="setPlayerName(); setStdUserName(); startLobby()">Start Lobby<div></div>
             </div>
             </div>
 
@@ -70,8 +74,8 @@
                 <input type="text" class="form-control" id="gameCode" aria-describedby="inputGroup-sizing-default">
               </div>
     
-              <div class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="setPlayerName(); setStdUserName(); joinGame();">Join Game<div></div>
-              </div>
+              <div class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="setPlayerName(); setStdUserName(); joinGame();">Join Game By Code</div>
+              <div class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="setPlayerName(); setStdUserName(); joinGame();">Join Random Public Game</div>
             </div>
           </div>
 
