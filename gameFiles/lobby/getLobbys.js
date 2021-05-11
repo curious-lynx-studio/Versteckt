@@ -20,13 +20,12 @@ function joinRandomGame() {
     getData('https://blank42.de:3033/getPublicLobbys', {})
     .then(data => {
         console.log(data)
-        if(data.length > 0) {
-            var lobbyCode = data[Math.floor(Math.random() * data.length)];
-            console.log(lobbyCode)
-            // window.location = "./game.html?id="+'"'+lobbyCode+'"';
+        var lobbys = JSON.parse(data);
+        if(lobbys.length > 0) {
+            var lobbyCode = lobbys[Math.floor(Math.random() * lobbys.length)];
+            window.location = "./game.html?id="+'"'+lobbyCode+'"';
         } else {
-            console.log("test")
-            // startLobby();
+            startLobby();
         }
     });
 }
