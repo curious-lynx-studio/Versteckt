@@ -19,8 +19,8 @@ async function postData(url = '', data = {}) {
 function startLobby() {
     var lobbyName = '';
     var lobbyMap = document.getElementById('lobbyMap').value;
-    var public = document.getElementById('private').checked;
-    postData('https://blank42.de:3033/newLobby', { name: lobbyName, map: lobbyMap, public: public })
+    var private = document.getElementById('private').checked;
+    postData('https://blank42.de:3033/newLobby', { name: lobbyName, map: lobbyMap, private: private })
     .then(data => {
         console.log(data); // JSON data parsed by `data.json()` call
         joinOwnGame(data);
