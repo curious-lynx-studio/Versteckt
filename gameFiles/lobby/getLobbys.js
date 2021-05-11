@@ -23,7 +23,7 @@ function joinRandomGame() {
             var lobbyCode = data[Math.floor(Math.random() * data.length)];
             window.location = "./game.html?id="+'"'+lobbyCode+'"';
         } else {
-            console.log('no lobbys online')
+            startLobby();
         }
     });
 }
