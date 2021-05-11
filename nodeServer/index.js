@@ -53,6 +53,17 @@ app.get('/getOnlineLobbys', function (req, res, next) {
   res.json(JSON.stringify(lobbyArray.length));
 })
 
+app.get('/getPublicLobbys', function (req, res, next) {
+  console.log("Get all public Lobbys");
+  var publicLobbys = []
+  lobbyArray.forEach(lobby => {
+    if (lobby.public == true) {
+      publicLobbys.push(lobby.id)
+    }
+  });
+  res.json(JSON.stringify(publicLobbys));
+})
+
 app.post('/newLobby', function (req, res, next) {
   var uniqueId = makeid(6)
   console.log('create new Lobby');
@@ -130,6 +141,7 @@ function createLobby(jsonData, uniqueId) {
                     id: uniqueId, 
                     name: jsonData.name, 
                     map: jsonData.map,
+                    public: jsonData.public,
                     admin: '',
                     gamePhase: 0,
                     gameCountdown: 0,
