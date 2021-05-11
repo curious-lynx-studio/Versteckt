@@ -16,6 +16,18 @@ function getLobbyCount() {
     });
 }
 
+function joinRandomGame() {
+    getData('https://blank42.de:3033/getPublicLobbys', {})
+    .then(data => {
+        if(data.length > 0) {
+            var lobbyCode = data[Math.floor(Math.random() * data.length)];
+            window.location = "./game.html?id="+'"'+lobbyCode+'"';
+        } else {
+            console.log('no lobbys online')
+        }
+    });
+}
+
 async function getData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
