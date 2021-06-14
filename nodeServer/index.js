@@ -151,6 +151,7 @@ function createLobby(jsonData, uniqueId) {
                     hiding: [],
                     uncovered: [],
                     players: [],
+                    randomObjects: [],
                     data: []
                 }
     lobbyArray.push(lobby);
@@ -253,6 +254,7 @@ function startGameForLobby(msg) {
 
       // start game countdown
       lobby.gameCountdown = 45;
+      setRandomGameObjects(lobby);
 
       let timerId = setInterval(function() {
         if (lobby.gameCountdown == 0) {
@@ -274,7 +276,6 @@ function startSecondGamePhase(lobbyId) {
     if(lobby.id == lobbyId && lobby.gamePhase == 2) {
       // init second game phase with 300 seconds
       lobby.gameCountdown = 300;
-      setRandomGameObjects(lobby);
       let timerId = setInterval(function() {
         lobbyArray.forEach(realLobby => {
           if (realLobby.id == lobby.id) {
@@ -327,4 +328,26 @@ function falseClick(msg) {
 
 function setRandomGameObjects(lobby) {
   console.log(lobby);
+  lobby.randomObjects = [];
+  var objectListTable = [
+    {x: "257", y: "142", objectId: "fakeObject-4LVeqf5O", objectClass: "prop23"},
+    {x: "243", y: "130", objectId: "fakeObject-uWufflfC", objectClass: "prop17"},
+    {x: "243", y: "143", objectId: "fakeObject-ePamZCeb", objectClass: "prop17"},
+    {x: "273", y: "143", objectId: "fakeObject-RoGaZjmW", objectClass: "prop17"},
+    {x: "273", y: "130", objectId: "fakeObject-zpiZOndy", objectClass: "prop17"}
+  ]
+
+  var objectListDresser = [
+    {x: "213", y: "88", objectId: "fakeObject-IqggE3sk", objectClass: "prop12"},
+    {x: "307", y: "88", objectId: "fakeObject-9XB0v9pT", objectClass: "prop12"},
+    {x: "145", y: "88", objectId: "fakeObject-k9GMRDNx", objectClass: "prop12"},
+    {x: "51", y: "88" , objectId: "fakeObject-Nq3rHbj3", objectClass: "prop12"},
+    {x: "397", y: "88", objectId: "fakeObject-4lP7d8Qm", objectClass: "prop12"},
+    {x: "533", y: "88", objectId: "fakeObject-wIR35IqS", objectClass: "prop12"},
+    {x: "632", y: "88", objectId: "fakeObject-wu3yz568", objectClass: "prop12"}
+  ]
+
+  objectListDresser.forEach(dresser => {
+    lobby.randomObjects.push(dresser);
+  });
 }

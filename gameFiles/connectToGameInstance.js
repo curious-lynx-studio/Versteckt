@@ -139,6 +139,8 @@ webSocket.onmessage = (message) => {
                 }
             });
         }
+
+        drawObjects(obj.randomObjects)
     }
 }
 
@@ -215,6 +217,7 @@ function placeObject(objectClass) {
     y = y.substring(0, y.length - 2);
     let objectId = 'fakeObject-' + makeid(8);
     let object = {x: x, y: y, objectId: objectId, objectClass: objectClass};
+    console.log(object)
     if (playerObjects.length < 30) {
         playerObjects.push(object);
     }
