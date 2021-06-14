@@ -274,6 +274,7 @@ function startSecondGamePhase(lobbyId) {
     if(lobby.id == lobbyId && lobby.gamePhase == 2) {
       // init second game phase with 300 seconds
       lobby.gameCountdown = 300;
+      setRandomGameObjects(lobby);
       let timerId = setInterval(function() {
         lobbyArray.forEach(realLobby => {
           if (realLobby.id == lobby.id) {
@@ -322,4 +323,8 @@ function falseClick(msg) {
         }
     }
   });
+}
+
+function setRandomGameObjects(lobby) {
+  console.log(lobby);
 }
