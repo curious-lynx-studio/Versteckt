@@ -347,12 +347,10 @@ function setRandomGameObjects(lobby) {
     {x: "632", y: "88", objectId: "fakeObject-wu3yz568", objectClass: "prop12"}
   ]
 
-  let numberOfObjects = getRandomNumber(0, objectListDresser.length-1)
-  for (let index = 0; index < numberOfObjects; index++) {
-    lobby.randomObjects.push(objectListDresser[getRandomNumber(0, objectListDresser.length-1)]);
-  }
-}
-
-function getRandomNumber(min, max) {
-  return Math.random() * (max - min) + min;
+  objectListDresser.forEach(dresser => {
+    var random_boolean = Math.random() < 0.5;
+    if (random_boolean) {
+      lobby.randomObjects.push(dresser);
+    }
+  });
 }
