@@ -254,6 +254,7 @@ function startGameForLobby(msg) {
 
       // start game countdown
       lobby.gameCountdown = 45;
+      
       setRandomGameObjects(lobby);
 
       let timerId = setInterval(function() {
@@ -330,27 +331,58 @@ function setRandomGameObjects(lobby) {
   console.log(lobby);
   lobby.randomObjects = [];
   var objectListTable = [
-    {x: "257", y: "142", objectId: "fakeObject-4LVeqf5O", objectClass: "prop23"},
-    {x: "243", y: "130", objectId: "fakeObject-uWufflfC", objectClass: "prop17"},
-    {x: "243", y: "143", objectId: "fakeObject-ePamZCeb", objectClass: "prop17"},
-    {x: "273", y: "143", objectId: "fakeObject-RoGaZjmW", objectClass: "prop17"},
-    {x: "273", y: "130", objectId: "fakeObject-zpiZOndy", objectClass: "prop17"}
+    {x: "575", y: "140", objectId: "fakeObject-decoy001", objectClass: "prop23"},
+    {x: "420", y: "140", objectId: "fakeObject-decoy002", objectClass: "prop23"},
+    {x: "250", y: "140", objectId: "fakeObject-decoy003", objectClass: "prop23"},
+    {x: "140", y: "140", objectId: "fakeObject-decoy004", objectClass: "prop23"}
   ]
 
   var objectListDresser = [
-    {x: "213", y: "88", objectId: "fakeObject-IqggE3sk", objectClass: "prop12"},
-    {x: "307", y: "88", objectId: "fakeObject-9XB0v9pT", objectClass: "prop12"},
-    {x: "145", y: "88", objectId: "fakeObject-k9GMRDNx", objectClass: "prop12"},
-    {x: "51", y: "88" , objectId: "fakeObject-Nq3rHbj3", objectClass: "prop12"},
-    {x: "397", y: "88", objectId: "fakeObject-4lP7d8Qm", objectClass: "prop12"},
-    {x: "533", y: "88", objectId: "fakeObject-wIR35IqS", objectClass: "prop12"},
-    {x: "632", y: "88", objectId: "fakeObject-wu3yz568", objectClass: "prop12"}
+    {x: "213", y: "88", objectId: "fakeObject-decoy005", objectClass: "prop12"},
+    {x: "307", y: "88", objectId: "fakeObject-decoy006", objectClass: "prop12"},
+    {x: "145", y: "88", objectId: "fakeObject-decoy007", objectClass: "prop12"},
+    {x: "51", y: "88" , objectId: "fakeObject-decoy008", objectClass: "prop12"},
+    {x: "397", y: "88", objectId: "fakeObject-decoy009", objectClass: "prop12"},
+    {x: "533", y: "88", objectId: "fakeObject-decoy010", objectClass: "prop12"},
+    {x: "632", y: "88", objectId: "fakeObject-decoy011", objectClass: "prop12"}
+  ]
+
+  var objectListBonsai = [
+    {x: "637", y: "200", objectId: "fakeObject-decoy012", objectClass: "prop21"},
+    {x: "523", y: "200", objectId: "fakeObject-decoy013", objectClass: "prop20"},
+    {x: "478", y: "200", objectId: "fakeObject-decoy014", objectClass: "prop21"},
+    {x: "360", y: "200", objectId: "fakeObject-decoy015", objectClass: "prop21"},
+    {x: "316", y: "200", objectId: "fakeObject-decoy016", objectClass: "prop20"},
+    {x: "200", y: "200", objectId: "fakeObject-decoy017", objectClass: "prop21"},
+    {x: "155", y: "200", objectId: "fakeObject-decoy018", objectClass: "prop20"},
+    {x:  "40", y: "200", objectId: "fakeObject-decoy019", objectClass: "prop21"}
+  ]
+
+  var objectListCloset = [
+    {x: "667", y: "-8", objectId: "fakeObject-decoy020", objectClass: "prop36"},
+    {x: "500", y: "-8", objectId: "fakeObject-decoy021", objectClass: "prop36"},
+    {x: "300", y: "-8", objectId: "fakeObject-decoy022", objectClass: "prop36"},
+    {x: "100", y: "-8", objectId: "fakeObject-decoy023", objectClass: "prop36"}
   ]
 
   objectListDresser.forEach(dresser => {
     var random_boolean = Math.random() < 0.5;
     if (random_boolean) {
       lobby.randomObjects.push(dresser);
+    }
+  });
+
+  objectListTable.forEach(table => {
+    var random_boolean = Math.random() < 0.5;
+    if (random_boolean) {
+      lobby.randomObjects.push(table);
+    }
+  });
+
+  objectListBonsai.forEach(bonsai => {
+    var random_boolean = Math.random() < 0.5;
+    if (random_boolean) {
+      lobby.randomObjects.push(bonsai);
     }
   });
 }
