@@ -366,6 +366,20 @@ function setRandomGameObjects(lobby) {
       {x: "300", y: "-8", objectId: "fakeObject-decoy022", objectClass: "prop36"},
       {x: "100", y: "-8", objectId: "fakeObject-decoy023", objectClass: "prop36"}
     ]
+
+    var singleObjects = [
+      {x: "463", y: "-8", objectId: "fakeObject-decoy024", objectClass: "prop35"},
+      {x: "234", y: "197", objectId: "fakeObject-decoy025", objectClass: "prop39"},
+      {x: "548", y: "139", objectId: "fakeObject-decoy026", objectClass: "prop17"},
+      {x: "601", y: "139", objectId: "fakeObject-decoy027", objectClass: "prop17"},
+      {x: "479", y: "144", objectId: "fakeObject-decoy028", objectClass: "prop15"},
+      {x: "316", y: "145", objectId: "fakeObject-decoy029", objectClass: "prop9"},
+      {x: "-3", y: "22", objectId: "fakeObject-decoy030", objectClass: "prop2"},
+      {x: "-3", y: "49", objectId: "fakeObject-decoy031", objectClass: "prop2"},
+      {x: "679", y: "22", objectId: "fakeObject-decoy032", objectClass: "prop2"},
+      {x: "679", y: "42", objectId: "fakeObject-decoy033", objectClass: "prop2"}
+    ]
+
   
     objectListDresser.forEach(dresser => {
       var random_boolean = Math.random() < 0.5;
@@ -392,6 +406,13 @@ function setRandomGameObjects(lobby) {
       var random_boolean = Math.random() < 0.5;
       if (random_boolean) {
         lobby.randomObjects.push(closet);
+      }
+    });
+
+    singleObjects.forEach(object => {
+      var random_boolean = Math.random() < 0.5;
+      if (random_boolean) {
+        lobby.randomObjects.push(object);
       }
     });
   }
