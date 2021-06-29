@@ -1,6 +1,6 @@
 {
   "name": "versteckt-the-game",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Hide'n'Seek game with JS -> Electron + Websocket Multiplayer. Just some Project to learn more about the technology.",
   "main": "main.js",
   "build": {
