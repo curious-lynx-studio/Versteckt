@@ -5,6 +5,7 @@ var fs = require('fs');
 var http = require('http');
 var https = require('https');
 const WebSocket = require('ws');
+var pjson = require('./package.json');
 
 var privateKey = fs.readFileSync('/etc/letsencrypt/live/blank42.de/privkey.pem');
 var certificate = fs.readFileSync('/etc/letsencrypt/live/blank42.de/fullchain.pem');
@@ -46,6 +47,11 @@ app.use(bodyParser.text({ limit: '200mb' }));
 app.get('/getLobby', function (req, res, next) {
   console.log("Send all Lobby Infos");
   res.json(JSON.stringify(lobbyArray));
+})
+
+// listener
+app.get('/getVersion', function (req, res, next) {
+  res.json(JSON.stringify({version: pjson.version}));
 })
 
 app.get('/getOnlineLobbys', function (req, res, next) {
