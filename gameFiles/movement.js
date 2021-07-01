@@ -1,5 +1,5 @@
 var p1 = document.getElementById('player');
-keyCodes = { left: 'KeyA', up: 'KeyW', right: 'KeyD', down: 'KeyS' };
+keyCodes = { left: 'KeyA', up: 'KeyW', right: 'KeyD', down: 'KeyS', space: 'Space' };
 keys = [];
 lastKeys = [];
 let mapVariable = '1';
@@ -10,7 +10,7 @@ let velocityMin = 0.0;
 let acceleration = 0.1;
 let lastKey = '';
 let neverZeroVelocity;
-
+let speedUsed = 0;
 
 // read JSON object from file
 function start() {
@@ -54,13 +54,13 @@ function start() {
         let yWorld = world.offsetTop;
 
         // velocity calculation
-        if (keys[keyCodes.left] || keys[keyCodes.right] || keys[keyCodes.up] || keys[keyCodes.down]) {
+        if (keys[keyCodes.left] || keys[keyCodes.right] || keys[keyCodes.up] || keys[keyCodes.down] || keys[keyCodes.space]) {
             velocity += acceleration;
-
             lastKeys[keyCodes.left] = keys[keyCodes.left];
             lastKeys[keyCodes.right] = keys[keyCodes.right];
             lastKeys[keyCodes.up] = keys[keyCodes.up];
             lastKeys[keyCodes.down] = keys[keyCodes.down];
+            lastKeys[keyCodes.space] = keys[keyCodes.space];
         } else {
             velocity -= acceleration;
         }
@@ -84,6 +84,14 @@ function start() {
             else{
                 neverZeroVelocity = 2;
             }
+
+            if (lastKeys[keyCodes.space] && speedUsed < 100) {
+                neverZeroVelocity = 4;
+                speedUsed = speedUsed + 5;
+            } else {
+                speedUsed = speedUsed - 0.5;
+            }
+
             if (lastKeys[keyCodes.left]) {
                 const testIfCanMove = {left: xRounded-velocityMax, top: yRounded}
                 if (canMove(testIfCanMove)) { 
