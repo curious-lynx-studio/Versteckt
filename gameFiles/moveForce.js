@@ -11,8 +11,14 @@ function startNotMovedTimer() {
         let nowY = document.getElementById("player").style.top;
         nowX = nowX.substring(0, nowX.length - 2);
         nowY = nowY.substring(0, nowY.length - 2);
+        console.log(nowX, lastX)
 
-        if (nowX != lastX || nowY != lastY || playerModel == 'deadPlayer' || playerModel == 'deadPlayer-left' || playerModel == 'deadPlayer-right'){
+        let movedX = false;
+        if (!(nowX > lastX-50 && nowX < lastX+50)) {movedX = true}
+        let movedY = false;
+        if (!(nowY > lastY-50 && nowY < lastY+50)) {movedY = true}
+
+        if (movedY || movedX || playerModel == 'deadPlayer' || playerModel == 'deadPlayer-left' || playerModel == 'deadPlayer-right'){
             lastX = nowX;
             lastY = nowY;
             document.getElementById("lastTimeMoved").innerHTML = 25;
