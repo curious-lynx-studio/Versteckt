@@ -89,7 +89,9 @@ function start() {
                 neverZeroVelocity = 4;
                 speedUsed = speedUsed + 5;
             } else {
-                speedUsed = speedUsed - 0.5;
+                if(speedUsed >= 0) {
+                    speedUsed = speedUsed - 0.5;
+                }
             }
 
             if (lastKeys[keyCodes.left]) {
