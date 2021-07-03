@@ -85,12 +85,14 @@ function start() {
                 neverZeroVelocity = 2;
             }
 
-            if (lastKeys[keyCodes.space] && speedUsed < 100) {
-                neverZeroVelocity = 4;
-                speedUsed = speedUsed + 5;
-            } else {
-                if(speedUsed >= 0) {
-                    speedUsed = speedUsed - 0.5;
+            if(seekerStatus == false) {
+                if (lastKeys[keyCodes.space] && speedUsed < 100) {
+                    neverZeroVelocity = 4;
+                    speedUsed = speedUsed + 5;
+                } else {
+                    if(speedUsed >= 0) {
+                        speedUsed = speedUsed - 0.5;
+                    }
                 }
             }
 
