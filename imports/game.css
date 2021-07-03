@@ -258,3 +258,21 @@ body {
     transform: translate(-40px, -10px);
     visibility: hidden;
 }
+
+.speedmeter {
+    pointer-events: none;
+    position: absolute;
+    width: 20px;
+    height: 200px;
+    border: 1px solid white;
+    background-color: #2a9fd6;
+    top: 30%;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.inner-speedmeter {
+    height: 0%;
+    width: 100%;
+    background-color: #1d3c3b;
+}

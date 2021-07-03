@@ -75,6 +75,11 @@ function start() {
         let xRounded = Math.round(x);
         let yRounded = Math.round(y);
 
+        if (seekerStatus == false) {
+            document.getElementById('speedmeter').style.visibility = 'visible';
+        } else {
+            document.getElementById('speedmeter').style.visibility = 'hidden';
+        }
         // update position
         // left/right
         if(velocity > 0.0){
@@ -87,10 +92,12 @@ function start() {
 
             if (lastKeys[keyCodes.space] && speedUsed < 100 && seekerStatus == false) {
                 neverZeroVelocity = 4;
-                speedUsed = speedUsed + 5;
+                speedUsed = speedUsed + 4;
+                document.getElementById('inner-speedmeter').style.height = speedUsed.toString() + '%';
             } else {
                 if(speedUsed >= 0) {
                     speedUsed = speedUsed - 0.5;
+                    document.getElementById('inner-speedmeter').style.height = speedUsed.toString() + '%';
                 }
             }
 
