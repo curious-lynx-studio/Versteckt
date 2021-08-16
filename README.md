@@ -1,5 +1,5 @@
 # Versteckt-The-Game
-Hide'n'Seek game with JS -> Electron + Websocket Multiplayer. Just some Project to learn more about the technology.
+Hide'n'Seek game with JS -> Websocket Multiplayer. Just some Project to learn more about the technology.
 
 [![](https://static.itch.io/images/badge.svg)](https://valplusplusle.itch.io/versteckt-the-game) 
 
